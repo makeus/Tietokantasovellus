@@ -31,12 +31,3 @@ create table Ryhmä (
  primary key (RyhmänNimi,RyhmänJäsen),
  foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi)
 );
-
-create table Viesti (
- Id serial not null,
- Aika  Timestamp(0) not null,
- Teksti  text not null,
- Kirjoittaja text not null,
- primary key (Id),
- foreign key (Kirjoittaja) references Käyttäjä (Käyttäjänimi),
-);
