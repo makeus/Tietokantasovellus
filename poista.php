@@ -1,6 +1,6 @@
 <?php
   include("yhteys.php");
-  $kysely = $yhteys->prepare("DELETE FROM teksti WHERE viesti=(?)");
-  $kysely->execute(array($_GET["viesti"]));
+  $kysely = $yhteys->prepare("DELETE FROM Viesti WHERE id=(?)");
+  $kysely->execute(array($_GET["id"]));
   header("Location: http://keus.users.cs.helsinki.fi");
 ?>

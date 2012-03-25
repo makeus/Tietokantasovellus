@@ -1,0 +1,42 @@
+create table Käyttäjä (
+ Käyttäjänimi text not null unique,
+ Sähköposti text,
+ Salasana text not null,
+ primary key (Käyttäjänimi)
+);
+
+create table Kategoria (
+ Id  integer not null primary key,
+ KategorianNimi text not null,
+ Näkyvyys text not null
+);
+
+create table Viesti (
+ Id  integer not null,
+ Aika  Timestamp(0) not null,
+ Teksti  text not null,
+ ViestinLukeneet text[],
+ Vastaus  integer,
+ Kirjoittaja text not null,
+ Kategoria integer not null,
+ primary key (Id),
+ foreign key (Vastaus) references Viesti (Id),
+ foreign key (Kirjoittaja) references Käyttäjä (Käyttäjänimi),
+ foreign key (Kategoria) references Kategoria (Id)
+);
+
+create table Ryhmä (
+ RyhmänNimi text not null,
+ RyhmänJäsen text not null,
+ primary key (RyhmänNimi,RyhmänJäsen),
+ foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi)
+);
+
+create table Viesti (
+ Id serial not null,
+ Aika  Timestamp(0) not null,
+ Teksti  text not null,
+ Kirjoittaja text not null,
+ primary key (Id),
+ foreign key (Kirjoittaja) references Käyttäjä (Käyttäjänimi),
+);
