@@ -14,20 +14,21 @@ create table Kategoria (
 create table Viesti (
  Id  integer not null,
  Aika  Timestamp(0) not null,
+ Otsikko text not null,
  Teksti  text not null,
  ViestinLukeneet text[],
  Vastaus  integer,
  Kirjoittaja text not null,
  Kategoria integer not null,
  primary key (Id),
- foreign key (Vastaus) references Viesti (Id),
- foreign key (Kirjoittaja) references Käyttäjä (Käyttäjänimi),
- foreign key (Kategoria) references Kategoria (Id)
+ foreign key (Vastaus) references Viesti (Id) on delete cascade,
+ foreign key (Kirjoittaja) references Käyttäjä (Käyttäjänimi) on delete cascade,
+ foreign key (Kategoria) references Kategoria (Id) on delete cascade
 );
 
 create table Ryhmä (
  RyhmänNimi text not null,
  RyhmänJäsen text not null,
  primary key (RyhmänNimi,RyhmänJäsen),
- foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi)
+ foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi) on delete cascade
 );
