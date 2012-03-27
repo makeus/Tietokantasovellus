@@ -15,9 +15,9 @@ Uusi ylläpitäjä? <input type="boolean" name="admin" required placeholder="T/F
 </form>
 </body>
 </html>
-<?php}
+<?php }
 else {
-echo "<p>Ei tänne =D!</p>"
+echo "<p>Ei tänne =D!</p>";
 }  ?>
 <?php
 $db = pg_connect("host=localhost dbname=keus user=keus password=a646a8dd503014f5");
