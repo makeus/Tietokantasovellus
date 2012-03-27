@@ -7,14 +7,14 @@ create table Käyttäjä (
 );
 
 create table Ryhmä (
- Id serial primary key
- RyhmänNimi text not null
+ Id serial primary key,
+ RyhmänNimi text not null unique
 );
 
 create table Kategoria (
  Id serial primary key,
  KategorianNimi text not null,
- Näkyvyys text not null
+ Näkyvyys integer not null,
  foreign key (Näkyvyys) references Ryhmä (Id) on delete cascade
 );
 
@@ -37,6 +37,6 @@ create table RyhmäNimi (
  RyhmänNimi text not null,
  RyhmänJäsen text not null,
  primary key (RyhmänNimi,RyhmänJäsen),
- foreign key (RyhmänNimi) references Ryhmä (RyhmänNimi) on delete cascade
+ foreign key (RyhmänNimi) references Ryhmä (RyhmänNimi) on delete cascade,
  foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi) on delete cascade
 );

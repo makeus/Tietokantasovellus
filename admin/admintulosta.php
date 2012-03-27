@@ -1,24 +1,33 @@
 <?php
   function tulostaRyhmat(){
    session_start(); 
-   if($_SESSION["käyttäjänimi"] == 'admin'){
+   
+   if($_SESSION["admin"] == 't'){
 
     include("../yhteys.php");
-    $kysely = pg_query($yhteys, "SELECT * FROM Viesti");
-    echo "<table>
+    $kysely = pg_prepare($yhteys, "ryhmat", 'SELECT * FROM Ryhmä');
+    $kysely = pg_execute($yhteys, "ryhmat", array());
+    $jasenet = pg_prepare($yhteys, "jasenet", 'SELECT Ryhmänjäsen FROM RyhmäNimi WHERE ryhmännimi=$1');
+
+    echo "<h1>Hallinnoi Ryhmiä</h1>
+         <table>
            <tr>
              <th>ID</th>
-             <th>Aika</th>
-             <th>Kirjoittaja</th>
-             <th>Teksti</th>
+             <th>Ryhmän nimi</th>
+             <th>Ryhmän jäsenet</th>
              <th>Poista</th>
-           </tr>";
+           </tr>";    
     while ($rivi = pg_fetch_array($kysely)) {
      echo "<tr>
              <td>" . $rivi["id"] . "</td>
-             <td>" . $rivi["aika"] . "</td>
-             <td>" . $rivi["teksti"] . "</td>
-             <td> <a href=poistaRyhma.php?id=" . $rivi["id"] . ">x</a></td>
+             <td>" . $rivi["ryhmännimi"] . "</td>
+             <td>";
+     $jasenet = pg_execute($yhteys, "jasenet", array($rivi["ryhmännimi"])); 
+     while($jasen = pg_fetch_array($jasenet)) {
+       echo $jasen["ryhmänjäsen"] . ", ";
+     }
+     echo "</td>
+             <td> <a href=# onclick='varmista(\"poistaRyhma.php?id=" . $rivi["id"] . "\")'>x</a></td>
            </tr>";
     }
     echo "</table><br>";

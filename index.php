@@ -30,11 +30,19 @@ session_start();
     else {
       echo "<section>";
       echo "<h1>Tekstipalsta: </h1>";
-      echo "<p>Kirjautuneena käyttäjänä " . $_SESSION["käyttäjänimi"] . "</p>";
+      echo "<p>Kirjautuneena käyttäjänä " . $_SESSION["käyttäjänimi"] . ", Ylläpito-oikeus: " . $_SESSION["admin"] . "</p>";
       echo '<a href="/admin/admin.php?p=1">Ylläpito</a>';
       include("tulostus.php");
       tulosta();
-      echo "</section>";
-    } ?>
+    ?>
+     <form action="laheta.php" method="post">
+       <input type="text" name="otsikko" placeholder="Otsikko" /><br />            
+       <input type="text" name="teksti" placeholder="Teksti" /><br />
+       <input type="hidden" name="kategoria" value="2" /><br />
+       <input type="submit" value="Lähetä" />
+     </form>
+     <p><a href="logout.php">Kirjaudu ulos!</a></p>
+    <?php } ?>
+  </section>
   </body>
 </html>

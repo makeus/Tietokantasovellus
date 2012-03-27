@@ -1,6 +1,6 @@
 <?php
   session_start(); 
-  if($_SESSION["käyttäjänimi"] == 'admin'){
+  if($_SESSION["admin"] == 't'){
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +31,10 @@
         padding-left: 10px;
         color: lightgrey;
         font-size: 50px;
+      }
+      section > h1 {
+        font-size:30px;
+        color: slategrey;
       }
       nav {
         padding: 15px;
@@ -64,8 +68,23 @@
       #nykyne {
          color: black;
       }
+      table  {
+         width: 100%;
+         border: solid thin black
+      }
+      tr {
+        text-align: center;
+      }
 
     </style>
+    <script type="text/javascript">
+      function varmista(url){
+        console.log(url);
+        if(confirm("Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..")) {
+          window.location = url;
+        }
+      }
+    </script>
   </head>
   <body>
     <h1>Ylläpitosivu</h1>

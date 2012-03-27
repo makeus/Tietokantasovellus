@@ -20,10 +20,5 @@
            </tr>";
     }
     echo "</table><br>";
-    echo '<form action="laheta.php" method="post">
-            <input type="text" name="viesti" />
-            <input type="submit" value="Lähetä" />
-          </form>
-          <p><a href="logout.php">Kirjaudu ulos!</a></p>';
   }
 ?>
