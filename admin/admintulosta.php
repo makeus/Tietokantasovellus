@@ -4,25 +4,31 @@
    
    if($_SESSION["admin"] == 't'){
 
+
+    // "valmistellaan" molemmat haut, ja haetaan ryhmät
     include("../yhteys.php");
-    $kysely = pg_prepare($yhteys, "ryhmat", 'SELECT * FROM Ryhmä');
-    $kysely = pg_execute($yhteys, "ryhmat", array());
+    $ryhmat = pg_prepare($yhteys, "ryhmat", 'SELECT * FROM Ryhmä');
+    $ryhmat = pg_execute($yhteys, "ryhmat", array());
     $jasenet = pg_prepare($yhteys, "jasenet", 'SELECT Ryhmänjäsen FROM RyhmäNimi WHERE ryhmännimi=$1');
 
-    echo "<h1>Hallinnoi Ryhmiä</h1>
-         <table>
+    // Taulukon otsikko
+    echo "<table>
            <tr>
              <th>ID</th>
              <th>Ryhmän nimi</th>
              <th>Ryhmän jäsenet</th>
              <th>Poista</th>
            </tr>";    
-    while ($rivi = pg_fetch_array($kysely)) {
+
+    // Haetaan kaikki ryhmät
+    while ($rivi = pg_fetch_array($ryhmat)) {
      echo "<tr>
              <td>" . $rivi["id"] . "</td>
              <td>" . $rivi["ryhmännimi"] . "</td>
              <td>";
      $jasenet = pg_execute($yhteys, "jasenet", array($rivi["ryhmännimi"])); 
+     
+    // Haetaan nykysen ryhmän kaikki jäsenet
      while($jasen = pg_fetch_array($jasenet)) {
        echo $jasen["ryhmänjäsen"] . ", ";
      }

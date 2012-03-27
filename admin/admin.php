@@ -1,6 +1,6 @@
 <?php
   session_start(); 
-  if($_SESSION["admin"] == 't'){
+  if($_SESSION["admin"] == 't'){  // Jos admin oikeudet on t, eli true!
 ?>
 
 <!DOCTYPE html>
@@ -98,27 +98,26 @@
       <h2>Ryhmät</h2>
       <ul>
         <li><a href="admin.php?p=3" <?php if($_GET["p"] == 3){ echo'id="nykyne"';} ?>>Hallinnoi käyttäjiä</a></li>
-        <li><a href="admin.php?p=4" <?php if($_GET["p"] == 4){ echo'id="nykyne"';} ?>>Luo käyttäjiä</a></li>
+        <li><a href="admin.php?p=4" <?php if($_GET["p"] == 4){ echo'id="nykyne"';} ?>>Luo käyttäjä</a></li>
       <ul>
     </nav>      
     <section>
      <?php
        if($_GET["p"] == 1){
+         echo "<h1>Hallinnoi ryhmiä</h1>";
          include("admintulosta.php");
          tulostaRyhmat();
        }
        if($_GET["p"] == 2){
-     ?>
-     Sivu2
-     <?php }
+         echo "<h1>Luo ryhmä</h1>";
+       }
        if($_GET["p"] == 3){
-     ?>
-     Sivu3
-     <?php }
+         echo "<h1>Hallinnoi käyttäjiä</h1>";
+       }
        if($_GET["p"] == 4){
+         echo "<h1>Luo käyttäjä</h1>";
+       }
      ?>
-     Sivu4
-     <?php } ?>
     </section>
     </div>
   </body>
