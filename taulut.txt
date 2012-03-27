@@ -2,7 +2,14 @@ create table Käyttäjä (
  Käyttäjänimi text not null unique,
  Sähköposti text,
  Salasana text not null,
+ Ylläpitäjä boolean not null,
  primary key (Käyttäjänimi)
+);
+
+create table Ryhmä (
+ Id integer not null,
+ Nimi text not null,
+ primary key(Id)
 );
 
 create table Kategoria (
@@ -35,8 +42,4 @@ create table Ryhmänjäsenet (
  foreign key (RyhmänId) references Ryhmä (Id) on delete cascade
 );
 
-create table Ryhmä (
- Id integer not null,
- Nimi text not null,
- primary key(Id)
-);
+
