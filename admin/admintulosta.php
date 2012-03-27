@@ -1,7 +1,12 @@
 <?php
-  function tulosta(){
-    include("yhteys.php");
-    $kysely = pg_query($yhteys, "SELECT * FROM Viesti");
+  function tulostaRyhmat(){
+   session_start(); 
+   if($_SESSION["käyttäjänimi"] == 'admin'){
+
+    include("../yhteys.php");
+    $kysely = $yhteys->prepare("SELECT * FROM Viesti");
+    $kysely->execute();
+ 
     echo "<table>
            <tr>
              <th>ID</th>
@@ -10,7 +15,7 @@
              <th>Teksti</th>
              <th>Poista</th>
            </tr>";
-    while ($rivi = pg_fetch_array($kysely)) {
+    while ($rivi = $kysely->fetch()) {
      echo "<tr>
              <td>" . $rivi["id"] . "</td>
              <td>" . $rivi["aika"] . "</td>
@@ -26,4 +31,8 @@
           </form>
           <p><a href="logout.php">Kirjaudu ulos!</a></p>';
   }
+  else { 
+    header('HTTP/1.1 403 Forbidden');
+  }
+}
 ?>

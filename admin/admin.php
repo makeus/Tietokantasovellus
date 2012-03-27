@@ -85,9 +85,9 @@
     <section>
      <?php
        if($_GET["p"] == 1){
-     ?>
-     Sivu1
-     <?php }
+         include("admintulosta.php");
+         tulostaRyhmat();
+       }
        if($_GET["p"] == 2){
      ?>
      Sivu2

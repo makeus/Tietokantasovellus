@@ -1,8 +1,6 @@
 <?php
-    try {
-       $yhteys = new PDO("pgsql:host=localhost;dbname=keus", "keus", "a646a8dd503014f5"); 
-    } catch (PDOException $e) {
-       die("VIRHE: " . $e->getMessage());
+    $yhteys = pg_connect("dbname=keus user=keus password=a646a8dd503014f5"); 
+    if($yhteys == FALSE) {
+      echo "Tietokantayhteys epäonnistui!";
     }
-    $yhteys->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
