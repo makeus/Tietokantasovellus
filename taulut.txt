@@ -8,7 +8,8 @@ create table Käyttäjä (
 create table Kategoria (
  Id  integer not null primary key,
  KategorianNimi text not null,
- Näkyvyys text not null
+ Näkyvyys integer not null,
+ foreign key (Näkyvyys) references Ryhmä (Id) on delete cascade
 );
 
 create table Viesti (
@@ -26,9 +27,16 @@ create table Viesti (
  foreign key (Kategoria) references Kategoria (Id) on delete cascade
 );
 
-create table Ryhmä (
- RyhmänNimi text not null,
+create table Ryhmänjäsenet (
+ RyhmänId integer not null,
  RyhmänJäsen text not null,
- primary key (RyhmänNimi,RyhmänJäsen),
- foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi) on delete cascade
+ primary key (RyhmänId,RyhmänJäsen),
+ foreign key (RyhmänJäsen) references Käyttäjä (Käyttäjänimi) on delete cascade,
+ foreign key (RyhmänId) references Ryhmä (Id) on delete cascade
+);
+
+create table Ryhmä (
+ Id integer not null,
+ Nimi text not null,
+ primary key(Id)
 );
