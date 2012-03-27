@@ -31,6 +31,7 @@ session_start();
       echo "<section>";
       echo "<h1>Tekstipalsta: </h1>";
       echo "<p>Kirjautuneena käyttäjänä " . $_SESSION["käyttäjänimi"] . "</p>";
+      echo '<a href="/admin/admin.php?p=1">Ylläpito</a>';
       include("tulostus.php");
       tulosta();
       echo "</section>";
