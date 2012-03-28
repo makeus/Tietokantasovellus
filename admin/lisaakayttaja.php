@@ -5,11 +5,11 @@
 <body>
 <form name="Luo käyttäjä" action="klisays.php" method="post" >
 Käyttäjänimi:<input type="text" name="kayttajanimi" required placeholder="Käyttäjänimi" /><br>
-Sähköposti:<input type="text" name="sahkoposti" required placeholder="Sähköposti" /><br>
+Sähköposti:<input type="text" name="sahkoposti" placeholder="Sähköposti" /><br>
 Salasana:<input type="password" name="salasana" required placeholder="Salasana"/><br>
-Uusi ylläpitäjä? <select>
-  <option value="T">Kyllä</option>
-  <option value="F">Ei</option>
+Uusi ylläpitäjä? <select name="admin">
+  <option value="t" selected>Kyllä</option>
+  <option value="f">Ei</option>
 </select><br>
 <input type="submit" />
 </form>
