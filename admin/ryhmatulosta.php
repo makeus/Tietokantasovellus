@@ -56,7 +56,7 @@ function muokkaaRyhma($id) {
     echo "<h2>Ryhmän käyttäjät</h2><h2>Muut käyttäjät</h2>";
     echo "<form class=\"ryhmaform\" method=\"post\" action=\"poistaKayttajaRyhmasta.php\">";  
     echo "<input type=\"hidden\" value=\"" . $ryhmannimi . "\" name=\"ryhmannimi\">";    
-    echo "<select size=\"4\" name=\"jasen\">";
+    echo "<select class=\"ryhmaselect\" size=\"4\" name=\"jasen\">";
   
     $kayttajat = array(); // Taulukko ryhmän käyttäjistä
 
@@ -81,7 +81,7 @@ function muokkaaRyhma($id) {
     echo "<input type=\"hidden\" value=\"" . $ryhmannimi . "\" name=\"ryhmannimi\">";
     echo "<input class=\"isosubmit\" type=\"submit\" value=\"<\" />";
 
-    echo "<select size=\"4\" name=\"jasen\">";
+    echo "<select class=\"ryhmaselect\" size=\"4\" name=\"jasen\">";
 
    
     while($jasen = pg_fetch_array($toiset)) {

@@ -63,7 +63,7 @@
       form + form.ryhmaform {
         float: right;
       }
-      select {
+      .ryhmaselect {
         font-size: 20px;
         text-align: center;
         width: 45%;
