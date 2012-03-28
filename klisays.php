@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<head>
-<title>Käyttäjän lisäys</title>
-</head>
-<body>
 <?php
-     if(session_is_registered("käyttäjänimi")){
-   ?>
-<form name="käyttäjän lisäys" action="klisays.php" method="POST" >
-Käyttäjänimi:<input type="text" name="knimi" required placeholder="Käyttäjänimi" /><br>
-Sähköposti:<input type="text" name="sposti" required placeholder="Sähköposti" /><br>
-Salasana:<input type="password" name="ssana" required placeholder="Salasana"/><br>
-Uusi ylläpitäjä? <input type="boolean" name="admin" required placeholder="T/F" />
-<input type="submit" />
-</form>
-</body>
-</html>
-<?php }
-else {
-echo "<p>Ei tänne =D!</p>";
-}  ?>
-<?php
-$db = pg_connect("host=localhost dbname=keus user=keus password=a646a8dd503014f5");
-$kysely = "INSERT INTO Käyttäjä VALUES ('$_POST[knimi]','$_POST[sposti]','$_POST[ssana]')";
-$tulos = pg_query($kysely); 
+  session_start();
+  include("yhteys.php");
+  $kysely = pg_prepare($yhteys, "lisays", 'INSERT INTO Käyttäjä (Käyttäjänimi, Sähköposti, Salasana, ylläpitäjä) VALUES (NOW(), $1, $2, $3, $4)');
+  $kysely = pg_execute($yhteys, "lisays", array($_POST["knimi"], $_POST["sposti"], $_SESSION["ssana"], $_POST["admin"]));
+  header("Location: http://jeraiha.users.cs.helsinki.fi");
 ?>
