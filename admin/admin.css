@@ -52,7 +52,7 @@
         padding-left: 10px;
         list-style: none;
       }
-      form {
+      form.ryhmaform {
         height: 100%;
         float: left;
         width: 50%;
@@ -60,7 +60,7 @@
         text-align: center;
         display: inline;
       }
-      form + form {
+      form + form.ryhmaform {
         float: right;
       }
       select {

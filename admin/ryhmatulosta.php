@@ -54,7 +54,7 @@ function muokkaaRyhma($id) {
     $jasenet = pg_query($yhteys, "SELECT ryhmänjäsen FROM RyhmäNimi where Ryhmännimi=('$ryhmannimi')");
 
     echo "<h2>Ryhmän käyttäjät</h2><h2>Muut käyttäjät</h2>";
-    echo "<form method=\"post\" action=\"poistaKayttajaRyhmasta.php\">";  
+    echo "<form class=\"ryhmaform\" method=\"post\" action=\"poistaKayttajaRyhmasta.php\">";  
     echo "<input type=\"hidden\" value=\"" . $ryhmannimi . "\" name=\"ryhmannimi\">";    
     echo "<select size=\"4\" name=\"jasen\">";
   
@@ -77,7 +77,7 @@ function muokkaaRyhma($id) {
     // Haetaan kaikki paitsi ryhmän jäsenet
     $toiset = pg_query($yhteys, "SELECT käyttäjänimi FROM Käyttäjä where Käyttäjänimi!=('$kayttajat[0]')$maar");
      
-    echo "<form method=\"post\" action=\"lisaaKayttajaRyhmaan.php\">";  
+    echo "<form class=\"ryhmaform\" method=\"post\" action=\"lisaaKayttajaRyhmaan.php\">";  
     echo "<input type=\"hidden\" value=\"" . $ryhmannimi . "\" name=\"ryhmannimi\">";
     echo "<input class=\"isosubmit\" type=\"submit\" value=\"<\" />";
 
