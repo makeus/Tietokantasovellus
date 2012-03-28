@@ -16,7 +16,7 @@
         font-family: "Verdana", "Arial", serif;
       }
       div {
-        height: 80%;
+        height: 88%;
         border-top: thin solid black;
         display: -moz-box;
         display: -webkit-box;
@@ -31,15 +31,16 @@
         padding-left: 10px;
         color: lightgrey;
         font-size: 50px;
+
       }
       section > h1 {
-        font-size:30px;
+        font-size:20px;
         color: slategrey;
       }
       nav {
-        padding: 15px;
+        padding: 20px;
+        padding-top: 40px;
         padding-right: 25px;
-        height: 100%;
         border-right: thin solid black;
         float: center;
       }
@@ -50,20 +51,20 @@
       }
       li > a {   
         text-decoration: none;
-        font-size: 16px;
+        font-size: 15px;
 	color: slategrey;
         line-height: 180%;
       }
       nav > h2 {        
         color: lightslategrey;
-        font-size: 18px;
+        font-size: 17px;
         margin-bottom: 6px;
       }
       section {
-         -moz-box-flex: 1;
-         -webkit-box-flex: 1;
-         box-flex: 1;
-         padding: 2em;
+        -moz-box-flex: 1;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        padding: 2em;
       }
       #nykyne {
          color: black;
@@ -75,7 +76,6 @@
       tr {
         text-align: center;
       }
-
     </style>
     <script type="text/javascript">
       function varmista(url){
@@ -99,7 +99,16 @@
       <ul>
         <li><a href="admin.php?p=3" <?php if($_GET["p"] == 3){ echo'id="nykyne"';} ?>>Hallinnoi käyttäjiä</a></li>
         <li><a href="admin.php?p=4" <?php if($_GET["p"] == 4){ echo'id="nykyne"';} ?>>Luo käyttäjä</a></li>
+      </ul>
+      <h2>Kategoriat</h2>
       <ul>
+        <li><a href="admin.php?p=5" <?php if($_GET["p"] == 5){ echo'id="nykyne"';} ?>>Hallinnoi kategorioita</a></li>
+        <li><a href="admin.php?p=6" <?php if($_GET["p"] == 6){ echo'id="nykyne"';} ?>>Luo kategoria</a></li>
+      </ul><br/>
+      <ul>
+       <li><a href="../logout.php">Logout</a></li>
+       <li><a href="../index.php">Etusivu</a></li>
+      </ul>
     </nav>      
     <section>
      <?php
@@ -116,6 +125,12 @@
        }
        if($_GET["p"] == 4){
          echo "<h1>Luo käyttäjä</h1>";
+       }
+       if($_GET["p"] == 5){
+         echo "<h1>Hallinnoi kategorioita</h1>";
+       }
+       if($_GET["p"] == 6){
+         echo "<h1>Luo kategoria</h1>";
        }
      ?>
     </section>
