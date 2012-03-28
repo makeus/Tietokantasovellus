@@ -7,7 +7,7 @@
     $ryhmanimi = $_POST["ryhmannimi"];
     $ryhmat = pg_query($yhteys, "SELECT id FROM Ryhmä where ryhmännimi=('$ryhmanimi')");
     $rivi = pg_fetch_row($ryhmat);
-    header("Location: http://keus.users.cs.helsinki.fi/admin/admin.php?p=1&m=$rivi[0]");
+    header("Location: admin/admin.php?p=1&m=$rivi[0]");
   } else {
     header('HTTP/1.1 403 Forbidden');
   }
