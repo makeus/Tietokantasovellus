@@ -7,7 +7,10 @@
 Käyttäjänimi:<input type="text" name="kayttajanimi" required placeholder="Käyttäjänimi" /><br>
 Sähköposti:<input type="text" name="sahkoposti" required placeholder="Sähköposti" /><br>
 Salasana:<input type="password" name="salasana" required placeholder="Salasana"/><br>
-Uusi ylläpitäjä? <input type="boolean" name="admin" required placeholder="T/F" />
+Uusi ylläpitäjä? <select>
+  <option value="T">T</option>
+  <option value="F">F</option>
+</select><br>
 <input type="submit" />
 </form>
 </body>
