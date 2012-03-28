@@ -9,7 +9,7 @@
    }
    else {
     $kayttaja1 = $_POST["käyttäjänimi"];
-    header("Location: http://jeraiha.users.cs.helsinki.fi/admin/admin.php?p=3&m=$kayttaja1");
+    header("Location: admin/admin.php?p=3&m=$kayttaja1");
     }
    
   }
