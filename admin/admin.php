@@ -16,8 +16,6 @@
         font-family: "Verdana", "Arial", serif;
       }
       div {
-        height: 88%;
-        border-top: thin solid black;
         display: -moz-box;
         display: -webkit-box;
         display: box;
@@ -28,20 +26,22 @@
       h1 {
         margin-top: 0;
         padding-top: 15px;
-        padding-left: 10px;
+        margin-bottom: 0;
+        padding-left: 15px;
         color: lightgrey;
         font-size: 50px;
 
       }
       section > h1 {
+        margin-bottom: 15px;
+        padding-left: 0px;
         font-size:20px;
-        color: slategrey;
+        color: grey;
       }
       nav {
         padding: 20px;
         padding-top: 40px;
         padding-right: 25px;
-        border-right: thin solid black;
         float: center;
       }
       ul, menu, dir {
@@ -70,8 +70,8 @@
          color: black;
       }
       table  {
+         border: thin solid black;
          width: 100%;
-         border: solid thin black
       }
       tr {
         text-align: center;
@@ -124,7 +124,8 @@
          echo "<h1>Hallinnoi käyttäjiä</h1>";
        }
        if($_GET["p"] == 4){
-         echo "<h1>Luo käyttäjä</h1>";
+         echo "<h1>Luo käyttäjä<
+        padding-left: 15px;/h1>";
        }
        if($_GET["p"] == 5){
          echo "<h1>Hallinnoi kategorioita</h1>";
