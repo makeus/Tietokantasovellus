@@ -56,6 +56,7 @@
        }
        if($_GET["p"] == 3){
          echo "<h1>Hallinnoi käyttäjiä</h1>";
+         include("poistakayttaja.php");
        }
        if($_GET["p"] == 4){
          echo "<h1>Luo käyttäjä</h1>";
