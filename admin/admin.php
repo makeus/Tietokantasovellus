@@ -135,8 +135,8 @@
          echo "<h1>Hallinnoi käyttäjiä</h1>";
        }
        if($_GET["p"] == 4){
-         echo "<h1>Luo käyttäjä<
-        padding-left: 15px;/h1>";
+         echo "<h1>Luo käyttäjä</h1>";
+         include("lisaakayttaja.php");
        }
        if($_GET["p"] == 5){
          echo "<h1>Hallinnoi kategorioita</h1>";
