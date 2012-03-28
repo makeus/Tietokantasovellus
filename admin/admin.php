@@ -38,6 +38,11 @@
         font-size:20px;
         color: grey;
       }
+      section > h2 {
+        margin-bottom: 15px;
+        font-size:16px;
+        color: grey;
+      }
       nav {
         padding: 20px;
         padding-top: 40px;
@@ -48,6 +53,9 @@
         margin-top: 0px;
         padding-left: 10px;
         list-style: none;
+      }
+      form {
+        display: inline;
       }
       li > a {   
         text-decoration: none;
@@ -116,6 +124,9 @@
          echo "<h1>Hallinnoi ryhmiä</h1>";
          include("admintulosta.php");
          tulostaRyhmat();
+         if(isset($_GET["m"])){
+           muokkaaRyhma($_GET["m"]);
+         }
        }
        if($_GET["p"] == 2){
          echo "<h1>Luo ryhmä</h1>";
