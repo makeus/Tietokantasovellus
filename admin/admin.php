@@ -7,87 +7,10 @@
 <html>
   <head>
     <title>Ylläpitosivu</title>
-    <style>
-      body, html {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        font-family: "Verdana", "Arial", serif;
-      }
-      div {
-        display: -moz-box;
-        display: -webkit-box;
-        display: box;
-        -moz-box-orient: horizontal;
-        -webkit-box-orient: horizontal;
-        box-orient: horizontal;
-      }
-      h1 {
-        margin-top: 0;
-        padding-top: 15px;
-        margin-bottom: 0;
-        padding-left: 15px;
-        color: lightgrey;
-        font-size: 50px;
-
-      }
-      section > h1 {
-        margin-bottom: 15px;
-        padding-left: 0px;
-        font-size:20px;
-        color: grey;
-      }
-      section > h2 {
-        margin-bottom: 15px;
-        font-size:16px;
-        color: grey;
-      }
-      nav {
-        padding: 20px;
-        padding-top: 40px;
-        padding-right: 25px;
-        float: center;
-      }
-      ul, menu, dir {
-        margin-top: 0px;
-        padding-left: 10px;
-        list-style: none;
-      }
-      form {
-        display: inline;
-      }
-      li > a {   
-        text-decoration: none;
-        font-size: 15px;
-	color: slategrey;
-        line-height: 180%;
-      }
-      nav > h2 {        
-        color: lightslategrey;
-        font-size: 17px;
-        margin-bottom: 6px;
-      }
-      section {
-        -moz-box-flex: 1;
-        -webkit-box-flex: 1;
-        box-flex: 1;
-        padding: 2em;
-      }
-      #nykyne {
-         color: black;
-      }
-      table  {
-         border: thin solid black;
-         width: 100%;
-      }
-      tr {
-        text-align: center;
-      }
-    </style>
+    <LINK rel="stylesheet" type="text/css" href="admin.css"/>
     <script type="text/javascript">
       function varmista(url){
-        console.log(url);
+        console.log(url);text-align: center;
         if(confirm("Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..")) {
           window.location = url;
         }
@@ -122,7 +45,7 @@
      <?php
        if($_GET["p"] == 1){
          echo "<h1>Hallinnoi ryhmiä</h1>";
-         include("admintulosta.php");
+         include("ryhmatulosta.php");
          tulostaRyhmat();
          if(isset($_GET["m"])){
            muokkaaRyhma($_GET["m"]);
