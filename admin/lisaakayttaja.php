@@ -8,8 +8,8 @@ Käyttäjänimi:<input type="text" name="kayttajanimi" required placeholder="Kä
 Sähköposti:<input type="text" name="sahkoposti" required placeholder="Sähköposti" /><br>
 Salasana:<input type="password" name="salasana" required placeholder="Salasana"/><br>
 Uusi ylläpitäjä? <select>
-  <option value="T">T</option>
-  <option value="F">F</option>
+  <option value="T">Kyllä</option>
+  <option value="F">Ei</option>
 </select><br>
 <input type="submit" />
 </form>
