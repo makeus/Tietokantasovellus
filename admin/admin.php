@@ -56,9 +56,12 @@
        }
        if($_GET["p"] == 3){
          echo "<h1>Hallinnoi käyttäjiä</h1>";
-         include("poistakayttaja.php");
+         include("hallinnoikayttaja.php");
          if(isset($_GET["m"])){
            tulostaSamankaltaiset($_GET["m"]);
+         }
+         if(isset($_GET["muokkaa"])){
+          avaaMuokkaus($_GET["nimi"],$_GET["sahkoposti"],$_GET["yllapitaja"]);
          }
        }
        if($_GET["p"] == 4){
