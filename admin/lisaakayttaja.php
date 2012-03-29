@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<head>
-<title>Käyttäjän lisäys</title>
-</head>
-<body>
+<pre>
 <form name="Luo käyttäjä" action="klisays.php" method="post" >
-Käyttäjänimi:<input type="text" name="kayttajanimi" required placeholder="Käyttäjänimi" /><br>
-Sähköposti:<input type="text" name="sahkoposti" placeholder="Sähköposti" /><br>
-Salasana:<input type="password" name="salasana" required placeholder="Salasana"/><br>
-Uusi ylläpitäjä? <select name="admin">
+Käyttäjänimi:	<input type="text" name="kayttajanimi" required placeholder="Käyttäjänimi" />
+Sähköposti:	<input type="text" name="sahkoposti" placeholder="Sähköposti" />
+Salasana:	<input type="password" name="salasana" required placeholder="Salasana"/>
+Ylläpitäjä?	<select name="admin">
   <option value="t" selected>Kyllä</option>
   <option value="f">Ei</option>
-</select><br>
+</select>
 <input type="submit" />
 </form>
-</body>
-</html>
+<pre>

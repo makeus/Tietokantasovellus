@@ -39,7 +39,7 @@
            </tr>";
 
     }
-    echo "</table><br><br>";
+    echo "</table><br>";
   }
   else { 
     header('HTTP/1.1 403 Forbidden');
@@ -49,11 +49,14 @@
 function muokkaaRyhma($id) {
     include("../yhteys.php");
     $ryhmat = pg_query($yhteys, "SELECT ryhmännimi FROM Ryhmä where id=('$id')");
-    $rivi = pg_fetch_row($ryhmat);
+    $rivi = pg_fetch_row($ryhmat);    
     $ryhmannimi = $rivi[0];
+    if(!isset($ryhmannimi)){
+      header("Location: admin.php?p=1");
+    }
     $jasenet = pg_query($yhteys, "SELECT ryhmänjäsen FROM RyhmäNimi where Ryhmännimi=('$ryhmannimi')");
 
-    echo "<h2>Ryhmän käyttäjät</h2><h2>Muut käyttäjät</h2>";
+    echo "<h2>Ryhmän " . $ryhmannimi . " käyttäjät</h2><h2>Muut käyttäjät</h2>";
     echo "<form class=\"ryhmaform\" method=\"post\" action=\"poistaKayttajaRyhmasta.php\">";  
     echo "<input type=\"hidden\" value=\"" . $ryhmannimi . "\" name=\"ryhmannimi\">";    
     echo "<select class=\"ryhmaselect\" size=\"4\" name=\"jasen\">";
@@ -93,6 +96,14 @@ function muokkaaRyhma($id) {
 
 }
 
+function uusiRyhma() {
+  echo "<pre><form method=\"post\" action=\"uusiRyhma.php\">"; 
+  echo "Ryhmän nimi:	<input type=\"text\" name=\"nimi\" placeholder=\"Ryhmän nimi\" required>\n";
+  echo "<input type=\"submit\">";
+  echo "</form></pre>";
+}
 
-
+function tulostaVirhe($nimi) {
+  echo "<p class=\"virhe\">Ryhmä " . $nimi . " löytyy jo!</p>"; 
+}
 ?>

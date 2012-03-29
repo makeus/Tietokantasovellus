@@ -10,7 +10,6 @@
     <LINK rel="stylesheet" type="text/css" href="admin.css"/>
     <script type="text/javascript">
       function varmista(url){
-        console.log(url);text-align: center;
         if(confirm("Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..")) {
           window.location = url;
         }
@@ -21,12 +20,12 @@
     <h1>Ylläpitosivu</h1>
     <div>
     <nav>
-      <h2>Käyttäjät</h2>
+      <h2>Ryhmät</h2>
       <ul>
         <li><a href="admin.php?p=1" <?php if($_GET["p"] == 1){ echo'id="nykyne"';} ?>>Hallinnoi ryhmiä</a></li>
         <li><a href="admin.php?p=2" <?php if($_GET["p"] == 2){ echo'id="nykyne"';} ?>>Luo ryhmä</a></li>
       </ul>
-      <h2>Ryhmät</h2>
+      <h2>Käyttäjät</h2>
       <ul>
         <li><a href="admin.php?p=3" <?php if($_GET["p"] == 3){ echo'id="nykyne"';} ?>>Hallinnoi käyttäjiä</a></li>
         <li><a href="admin.php?p=4" <?php if($_GET["p"] == 4){ echo'id="nykyne"';} ?>>Luo käyttäjä</a></li>
@@ -53,6 +52,11 @@
        }
        if($_GET["p"] == 2){
          echo "<h1>Luo ryhmä</h1>";
+         include ("ryhmatulosta.php");         
+         uusiRyhma();
+         if(isset($_GET["e"])){
+           tulostavirhe($_GET["e"]);
+         }
        }
        if($_GET["p"] == 3){
          echo "<h1>Hallinnoi käyttäjiä</h1>";

@@ -52,6 +52,13 @@
         padding-left: 10px;
         list-style: none;
       }
+      pre {
+        margin: 0;
+        font-family: "Arial", serif;
+      }
+      input, select {
+        margin-top: 5px;
+      }
       form.ryhmaform {
         height: 100%;
         float: left;
@@ -64,12 +71,14 @@
         float: right;
       }
       .ryhmaselect {
-        font-size: 20px;
+        margin-top: 1px;
+        font-size: 16px;
         text-align: center;
         width: 45%;
       }
       .isosubmit {
-        height: 100px;
+        margin-top:1px;
+        height: 79px;
         margin-left: 1em;
         margin-right: 1em;
         vertical-align: top;
@@ -94,6 +103,9 @@
       }
       #nykyne {
          color: black;
+      }
+      .virhe {
+         color: firebrick;
       }
       table  {
          border: thin solid black;

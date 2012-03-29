@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<head>
-<title>Käyttäjän poisto</title>
-</head>
-<body>
+<pre>
 <form name="Etsi käyttäjä" action="pkayttaja.php" method="post" >
-Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="Käyttäjänimi" /><br>
-<input name="poista" type="submit" value="Poista" />
-<input name="muokkaa" type="submit" value="Muokkaa" />
+Käyttäjänimi:	<input type="text" name="käyttäjänimi" required selected placeholder="Käyttäjänimi" />
+<input name="muokkaa" type="submit" value="Muokkaa" /> <input name="poista" type="submit" value="Poista" />
 </form>
+</pre>
 <?php 
   session_start();
   if($_SESSION["admin"] == 't'){
    function tulostaSamankaltaiset($haettava) {
     include("../yhteys.php");
-    echo "<br><p>Käyttäjää ".$haettava." ei löytynyt</p>";
-    echo "<br><p>Samankaltaiset nimet</p>";
+    echo "<p class=\"virhe\">Käyttäjää ".$haettava." ei löytynyt</p>";
+    echo "<p>Samankaltaiset nimet</p>";
     $kayttajat = pg_prepare($yhteys, "haku" ,'SELECT Käyttäjänimi FROM Käyttäjä WHERE Käyttäjänimi LIKE $1');
     $kayttajat = pg_execute($yhteys, "haku", array('%' . $haettava . '%'));
     echo "<table>
@@ -29,15 +25,15 @@ Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="
     echo "</table><br>";
     }
    function avaaMuokkaus($nimi,$sahkoposti,$yllapitaja){
-    echo "<form name=\"Muokkaa käyttäjää\" action=\"mkayttaja.php\" method=\"post\" >"
-       . "Käyttäjänimi:<input type=\"text\" name=\"käyttäjänimi\" value=\"" . $nimi . "\" /><br>"
-       . "Sähköposti:<input type=\"text\" name=\"sähköposti\" value=\"" . $sahkoposti . "\" /><br>"
+    echo "<pre><form name=\"Muokkaa käyttäjää\" action=\"mkayttaja.php\" method=\"post\" >"
+       . "Käyttäjänimi:	<input type=\"text\" name=\"käyttäjänimi\" value=\"" . $nimi . "\" />\n"
+       . "Sähköposti:	<input type=\"text\" name=\"sähköposti\" value=\"" . $sahkoposti . "\" />\n"
        . "<input type=\"hidden\" name=\"vanhakäyttäjänimi\" value=\"" . $nimi . "\" />"
-       . "Uusi ylläpitäjä? <select name=\"admin\">"
+       . "Ylläpitäjä? 	<select name=\"admin\">"
        .  "<option value=\"f\" selected>Ei</option>"
        .  "<option value=\"t\">Kyllä</option>"
-       .  "</select><br>"
-       .  "<input type=\"submit\" value=\"Vahvista\" />";
+       .  "</select>\n"
+       .  "<input type=\"submit\" value=\"Vahvista\" /></form></pre>";
    }
    function listaaKayttajat(){
     include("../yhteys.php");
@@ -60,5 +56,3 @@ Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="
    header('HTTP/1.1 403 Forbidden'); 
   }
 ?>
-</body>
-</html>
