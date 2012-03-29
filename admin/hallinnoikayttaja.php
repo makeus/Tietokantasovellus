@@ -37,16 +37,18 @@ Käyttäjänimi:	<input type="text" name="käyttäjänimi" required selected pla
    }
    function listaaKayttajat(){
     include("../yhteys.php");
-    $kysely = pg_query($yhteys, "SELECT käyttäjänimi,sähköposti FROM Käyttäjä order by käyttäjänimi");
+    $kysely = pg_query($yhteys, "SELECT käyttäjänimi, sähköposti, ylläpitäjä FROM Käyttäjä order by käyttäjänimi");
     echo "<table>
            <tr>
              <th>Käyttäjänimi</th>
              <th>Sähköposti</th>
+             <th>Ylläpitäjä</th>
            </tr>";
     while ($rivi = pg_fetch_array($kysely)) {
      echo "<tr>
              <td>" . $rivi["käyttäjänimi"] . "</td>
              <td>" . $rivi["sähköposti"] . "</td>
+             <td>"; if($rivi["ylläpitäjä"] == t){echo "Kyllä";} else {echo "Ei";} echo "</td> 
            </tr>";
     }
     echo "</table><br>";
