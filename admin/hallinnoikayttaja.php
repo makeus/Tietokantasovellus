@@ -17,9 +17,16 @@ Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="
     echo "<br><p>Samankaltaiset nimet</p>";
     $kayttajat = pg_prepare($yhteys, "haku" ,'SELECT Käyttäjänimi FROM Käyttäjä WHERE Käyttäjänimi LIKE $1');
     $kayttajat = pg_execute($yhteys, "haku", array('%' . $haettava . '%'));
+    echo "<table>
+           <tr>
+             <th>Käyttäjänimi</th>
+           </tr>";
     while($kayttaja = pg_fetch_array($kayttajat)) {
-     echo "<br><p>".$kayttaja[0]."</p>";
-     }
+     echo "<tr>
+             <td>" . $kayttaja[0] . "</td>
+           </tr>";
+    }
+    echo "</table><br>";
     }
    function avaaMuokkaus($nimi,$sahkoposti,$yllapitaja){
     echo "<form name=\"Muokkaa käyttäjää\" action=\"mkayttaja.php\" method=\"post\" >"
