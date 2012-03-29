@@ -5,7 +5,8 @@
 <body>
 <form name="Etsi käyttäjä" action="pkayttaja.php" method="post" >
 Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="Käyttäjänimi" /><br>
-<input type="submit" />
+<input name="poista" type="submit" value="Poista!" />
+<input name="muokkaa" type="submit" value="Muokkaa!" />
 </form>
 <?php 
   session_start();
