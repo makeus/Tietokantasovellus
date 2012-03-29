@@ -32,6 +32,22 @@ Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="
        .  "</select><br>"
        .  "<input type=\"submit\" value=\"Vahvista\" />";
    }
+   function listaaKayttajat(){
+    include("../yhteys.php");
+    $kysely = pg_query($yhteys, "SELECT käyttäjänimi,sähköposti FROM Käyttäjä order by käyttäjänimi");
+    echo "<table>
+           <tr>
+             <th>Käyttäjänimi</th>
+             <th>Sähköposti</th>
+           </tr>";
+    while ($rivi = pg_fetch_array($kysely)) {
+     echo "<tr>
+             <td>" . $rivi["käyttäjänimi"] . "</td>
+             <td>" . $rivi["sähköposti"] . "</td>
+           </tr>";
+    }
+    echo "</table><br>";
+   }
   }
   else {
    header('HTTP/1.1 403 Forbidden'); 
