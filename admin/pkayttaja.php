@@ -13,7 +13,7 @@
    }
    else {
     $kayttaja1 = $_POST["käyttäjänimi"];
-    header("Location: admin/admin.php?p=3&m=$kayttaja1");
+    header("Location: admin.php?p=3&m=$kayttaja1");
     }
    
   }
