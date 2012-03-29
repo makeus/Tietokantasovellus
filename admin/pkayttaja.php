@@ -7,7 +7,7 @@
     if(isset($_POST["poista"])){
      $kysely = pg_prepare($yhteys, "poisto", 'DELETE FROM Käyttäjä WHERE Käyttäjänimi=$1');
      $kysely = pg_execute($yhteys, "poisto", array($_POST["käyttäjänimi"]));
-     header("Location: admin/admin.php?p=3");
+     header("Location: admin.php?p=3");
     }
     else {
      $kysely = pg_query($yhteys, "SELECT käyttäjänimi, sähköposti, ylläpitäjä FROM Käyttäjä WHERE Käyttäjänimi='". $_POST["käyttäjänimi"]. "'");

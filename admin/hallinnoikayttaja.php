@@ -5,8 +5,8 @@
 <body>
 <form name="Etsi käyttäjä" action="pkayttaja.php" method="post" >
 Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="Käyttäjänimi" /><br>
-<input name="poista" type="submit" value="Poista!" />
-<input name="muokkaa" type="submit" value="Muokkaa!" />
+<input name="poista" type="submit" value="Poista" />
+<input name="muokkaa" type="submit" value="Muokkaa" />
 </form>
 <?php 
   session_start();
@@ -30,7 +30,7 @@ Käyttäjänimi:<input type="text" name="käyttäjänimi" required placeholder="
        .  "<option value=\"f\" selected>Ei</option>"
        .  "<option value=\"t\">Kyllä</option>"
        .  "</select><br>"
-       .  "<input type=\"submit\" value\"Vahvista!\" />";
+       .  "<input type=\"submit\" value=\"Vahvista\" />";
    }
   }
   else {

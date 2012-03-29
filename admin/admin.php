@@ -60,8 +60,11 @@
          if(isset($_GET["m"])){
            tulostaSamankaltaiset($_GET["m"]);
          }
-         if(isset($_GET["muokkaa"])){
+         elseif(isset($_GET["muokkaa"])){
           avaaMuokkaus($_GET["nimi"],$_GET["sahkoposti"],$_GET["yllapitaja"]);
+         }
+         else{
+          listaaKayttajat();
          }
        }
        if($_GET["p"] == 4){
