@@ -9,8 +9,8 @@
     <title>Ylläpitosivu</title>
     <LINK rel="stylesheet" type="text/css" href="admin.css"/>
     <script type="text/javascript">
-      function varmista(url){
-        if(confirm("Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..")) {
+      function varmista(url, viesti){
+        if(confirm(viesti)) {
           window.location = url;
         }
       }
@@ -55,7 +55,7 @@
          include ("ryhmatulosta.php");         
          uusiRyhma();
          if(isset($_GET["e"])){
-           tulostavirhe($_GET["e"]);
+             echo "<p class=\"virhe\">Ryhmä " . $_GET["e"] . " löytyy jo!</p>";
          }
        }
        if($_GET["p"] == 3){
@@ -77,9 +77,22 @@
        }
        if($_GET["p"] == 5){
          echo "<h1>Hallinnoi kategorioita</h1>";
+         include("kategoriatulosta.php");
+         tulostaKategoriat();
+         if(isset($_GET["m"])){
+           muokkaaKategoria($_GET["m"]);
+           if(isset($_GET["e"])){
+             echo "<p class=\"virhe\">Kategoria " . $_GET["e"] . " löytyy jo!</p>";
+           }
+         }
        }
        if($_GET["p"] == 6){
          echo "<h1>Luo kategoria</h1>";
+         include ("kategoriatulosta.php");         
+         uusiKategoria();
+         if(isset($_GET["e"])){
+             echo "<p class=\"virhe\">Kategoria " . $_GET["e"] . " löytyy jo!</p>";
+         }
        }
      ?>
     </section>

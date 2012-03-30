@@ -35,7 +35,7 @@
      echo "</td>
              <td> <a href=\"admin.php?p=1&m=" . $rivi["id"] ."\">x</a></td>";
      echo "</td>
-             <td> <a href=# onclick='varmista(\"poistaRyhma.php?id=" . $rivi["id"] . "\")'>x</a></td>
+             <td> <a href=# onclick='varmista(\"poistaRyhma.php?id=" . $rivi["id"] . "\", \"Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..\")'>x</a></td>
            </tr>";
 
     }
@@ -56,7 +56,7 @@ function muokkaaRyhma($id) {
     }
     $jasenet = pg_query($yhteys, "SELECT ryhmänjäsen FROM RyhmäNimi where Ryhmännimi=('$ryhmannimi')");
 
-    echo "<h2>Ryhmän " . $ryhmannimi . " käyttäjät</h2><h2>Muut käyttäjät</h2>";
+    echo "<h2 class=\"ryhmah2\">Ryhmän " . $ryhmannimi . " käyttäjät</h2><h2 class=\"ryhmah2\">Muut käyttäjät</h2>";
     echo "<form class=\"ryhmaform\" method=\"post\" action=\"poistaKayttajaRyhmasta.php\">";  
     echo "<input type=\"hidden\" value=\"" . $ryhmannimi . "\" name=\"ryhmannimi\">";    
     echo "<select class=\"ryhmaselect\" size=\"4\" name=\"jasen\">";
@@ -101,9 +101,5 @@ function uusiRyhma() {
   echo "Ryhmän nimi:	<input type=\"text\" name=\"nimi\" placeholder=\"Ryhmän nimi\" required>\n";
   echo "<input type=\"submit\">";
   echo "</form></pre>";
-}
-
-function tulostaVirhe($nimi) {
-  echo "<p class=\"virhe\">Ryhmä " . $nimi . " löytyy jo!</p>"; 
 }
 ?>
