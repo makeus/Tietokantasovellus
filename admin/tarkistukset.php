@@ -24,7 +24,7 @@ function tarkistaKategorianNimi($nimi) {
   return $loytyy;
 }
 
-function tarkistaKäyttäjä($nimi) {
+function tarkistaKayttaja($nimi) {
   include("../yhteys.php");
   $ryhmat = pg_query($yhteys, 'SELECT Käyttäjänimi FROM Käyttäjä');
   $loytyy = FALSE;

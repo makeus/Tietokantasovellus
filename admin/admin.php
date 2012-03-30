@@ -61,14 +61,14 @@
        if($_GET["p"] == 3){
          echo "<h1>Hallinnoi käyttäjiä</h1>";
          include("hallinnoikayttaja.php");
+         if(isset($_GET["e"])){
+             echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
+         }
          if(isset($_GET["m"])){
            tulostaSamankaltaiset($_GET["m"]);
          }
          elseif(isset($_GET["muokkaa"])){
           avaaMuokkaus($_GET["nimi"],$_GET["sahkoposti"],$_GET["yllapitaja"]);
-          if(isset($_GET["e"])){
-             echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
-          }
          }
          else{
           listaaKayttajat();
