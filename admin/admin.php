@@ -66,14 +66,20 @@
          }
          elseif(isset($_GET["muokkaa"])){
           avaaMuokkaus($_GET["nimi"],$_GET["sahkoposti"],$_GET["yllapitaja"]);
+          if(isset($_GET["e"])){
+             echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
+          }
          }
          else{
           listaaKayttajat();
          }
        }
        if($_GET["p"] == 4){
-         echo "<h1>Luo käyttäjä</h1>";
+         echo "<h1>Luo käyttäjä</h1>";         
          include("lisaakayttaja.php");
+         if(isset($_GET["e"])){
+             echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
+         }
        }
        if($_GET["p"] == 5){
          echo "<h1>Hallinnoi kategorioita</h1>";

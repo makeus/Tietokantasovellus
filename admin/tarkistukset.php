@@ -23,4 +23,18 @@ function tarkistaKategorianNimi($nimi) {
   }
   return $loytyy;
 }
+
+function tarkistaKäyttäjä($nimi) {
+  include("../yhteys.php");
+  $ryhmat = pg_query($yhteys, 'SELECT Käyttäjänimi FROM Käyttäjä');
+  $loytyy = FALSE;
+  while ($rivi = pg_fetch_array($ryhmat)) {
+    if($rivi[0] == $nimi) {
+      $loytyy = TRUE;
+    }
+  }
+  return $loytyy;
+}
+
+
 ?>
