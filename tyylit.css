@@ -1,0 +1,130 @@
+body,html{
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+body{
+	font-family:"Verdana","Arial",serif;
+	display:-moz-box;
+	display:-webkit-box;
+	display:box;
+	-moz-box-orient:horizontal;
+	-webkit-box-orient:horizontal;
+	box-orient:horizontal;
+}
+div.sivupalkki{
+	-moz-box-flex:1;
+	-webkit-box-flex:1;
+	box-flex:1;
+}
+h1{
+	margin-top:0;
+	padding-top:15px;
+	margin-bottom:0;
+	color:lightgrey;
+	font-size:50px;
+}
+nav {
+	text-align: center;
+	border: thin solid black;
+}
+#keskipalkki>h1{
+	margin-bottom:30px;
+}
+section>h1{
+	margin-bottom:15px;
+	padding-left:0px;
+	font-size:20px;
+	color:grey;
+}
+section>h2{
+	margin-bottom:15px;
+	font-size:16px;
+	color:grey;
+}
+section#kirjautuminen>h1{
+	font-size:20px;
+}
+section#kirjautuminen{
+	padding-top:0;
+	padding-bottom:20px;
+	text-align:center;
+}
+#kirjaudusubmit{
+	font-size:15px;
+	margin-top:10px;
+	padding:4px;
+	padding-left:10px;
+	padding-right:10px;
+}
+ul,menu,dir{
+	margin-top:0px;
+	padding-left:10px;
+	list-style:none;
+}
+pre {
+	margin:0;
+	font-family:"Arial",serif;
+}
+input,select{
+	margin-top:5px;
+}
+form.ryhmaform{
+	height:100%;
+	float:left;
+	width:50%;
+	font-size:15px;
+	text-align:center;
+	display:inline;
+}
+form+form.ryhmaform{
+	float:right;
+}
+.ryhmaselect{
+	margin-top:1px;
+	font-size:16px;
+	text-align:center;
+	width:45%;
+}
+.isosubmit{
+	margin-top:1px;
+	height:79px;
+	margin-left:1em;
+	margin-right:1em;
+	vertical-align:top;
+}
+
+nav > a{
+	margin-left: 15px;
+        margin-right: 15px;
+	text-decoration:none;
+	font-size:15px;
+	color:slategrey;
+	line-height:180%;
+}
+nav > h2{
+	color:lightslategrey;
+	font-size:17px;
+	margin-bottom:6px;
+}
+section{
+	padding:2em;
+}
+#nykyne{
+	color:black;
+}
+.virhe{
+	color:firebrick;
+}
+table{
+	border:thin solid black;
+	width:100%;
+}
+.otsikko > td {
+	font-size: 16px;
+        color: firebrick;
+}
+tr{
+	text-align:center;
+}

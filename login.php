@@ -5,7 +5,7 @@
   if (($tulos = pg_fetch_row($kysely)) != NULL) {
     $_SESSION["käyttäjänimi"] = $tulos[0];
     $_SESSION["admin"] = $tulos[1];
-    header("Location: index.php");
+    header("Location: /");
   }
   else {
     echo "Väärä käyttäjänimi tai salasana!";

@@ -5,7 +5,7 @@
    if($_SESSION["admin"] == 't'){
 
     include("../yhteys.php");
-    $kategoriat = pg_query($yhteys, 'SELECT * FROM Kategoria');
+    $kategoriat = pg_query($yhteys, 'SELECT * FROM Kategoria order by id');
 
     // Taulukon otsikko
     echo "<table>
