@@ -72,7 +72,7 @@ function uusiKategoria() {
   include("../yhteys.php");
   $ryhmat = pg_query($yhteys, "SELECT * FROM Ryhmä");
   echo "<pre><form method=\"post\" action=\"uusiKategoria.php\">"; 
-  echo "Kategorian nimi:	<input type=\"text\" name=\"nimi\" placeholder=\"Kategorian nimi\" required>\n";
+  echo "Kategorian nimi:	<input type=\"text\" autofocus name=\"nimi\" placeholder=\"Kategorian nimi\" required>\n";
   echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
     while($ryhmarivi = pg_fetch_array($ryhmat)){      
       echo "<option value=\"" . $ryhmarivi[0] . "\"";

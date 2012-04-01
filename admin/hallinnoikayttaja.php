@@ -1,4 +1,4 @@
-<pre><form name="Etsi käyttäjä" action="pkayttaja.php" method="post" >Käyttäjänimi:	<input type="text" name="käyttäjänimi" required selected placeholder="Käyttäjänimi" />
+<pre><form name="Etsi käyttäjä" action="pkayttaja.php" method="post" >Käyttäjänimi:	<input type="text" name="käyttäjänimi" required autofocus placeholder="Käyttäjänimi" />
 <input name="muokkaa" type="submit" value="Muokkaa" /> <input name="poista" type="submit" value="Poista" />
 </form>
 </pre>
@@ -24,7 +24,7 @@
     }
    function avaaMuokkaus($nimi,$sahkoposti,$yllapitaja){
     echo "<pre><form name=\"Muokkaa käyttäjää\" action=\"mkayttaja.php\" method=\"post\" >"
-       . "Käyttäjänimi:	<input type=\"text\" name=\"käyttäjänimi\" value=\"" . $nimi . "\" />\n"
+       . "Käyttäjänimi:	<input type=\"text\" name=\"käyttäjänimi\" autofocus value=\"" . $nimi . "\" />\n"
        . "Sähköposti:	<input type=\"text\" name=\"sähköposti\" value=\"" . $sahkoposti . "\" />\n"
        . "<input type=\"hidden\" name=\"vanhakäyttäjänimi\" value=\"" . $nimi . "\" />"
        . "Ylläpitäjä? 	<select name=\"admin\">"

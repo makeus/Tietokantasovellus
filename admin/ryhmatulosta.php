@@ -98,7 +98,7 @@ function muokkaaRyhma($id) {
 
 function uusiRyhma() {
   echo "<pre><form method=\"post\" action=\"uusiRyhma.php\">"; 
-  echo "Ryhmän nimi:	<input type=\"text\" name=\"nimi\" placeholder=\"Ryhmän nimi\" required>\n";
+  echo "Ryhmän nimi:	<input type=\"text\" name=\"nimi\" autofocus placeholder=\"Ryhmän nimi\" required>\n";
   echo "<input type=\"submit\">";
   echo "</form></pre>";
 }
