@@ -47,6 +47,8 @@ p.väliteksti + p.väliteksti {
 }
 
 #keskipalkki>h1{
+	padding-left: 2em;
+	padding-right: 2em;
 	margin-bottom:30px;
 }
 section>h1{
@@ -120,6 +122,7 @@ nav > a{
 	color:slategrey;
 	line-height:180%;
 }
+
 nav > h2{
 	color:lightslategrey;
 	font-size:17px;
@@ -145,23 +148,55 @@ td.kategoria{
 	padding-bottom: 7px;
 	color: SlateGrey;
 	font-weight: bold;
-	font-size:19px;
+	font-size:17px;
 	text-align:center;
 	background: #eee;
 }
+thead {
+	border thin solid black;
+	padding: 0;
+	
+}
 tr.otsikko > td {
-	width: 300px;
+	width: 533px;
 	padding-top: 7px;
 	padding-bottom: 7px;
 	padding-left: 15px;
 	padding-right: 15px;
 	border-bottom:thin solid #eee;
-	font-size: 18px;
+	font-size: 17px;
 	text-align: left;
 }
 tr.otsikko > td + td {
-	width: 80px;
+	width: 70px;
+	padding-left: 2px;
+	padding-right: 2px;
 	text-align: right;
-	font-size: 15px;
+	font-size: 13px;
 	vertical-align: middle;
+}
+tr.otsikko > td + td + td {
+	padding-right: 7px;
+}
+thead > tr > th  {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 10px;
+	text-align: left;
+}
+thead > tr > th + th {
+	width: 70px;
+	padding-left: 2px;
+	padding-right: 2px;
+	text-align: right;
+	font-size: 10px;
+	vertical-align: middle;
+}
+thead > tr > th + th + th {
+	padding-right: 7px;
+}
+#lukematon {
+	color: #EE9A00;
 }

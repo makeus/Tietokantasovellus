@@ -29,7 +29,7 @@ Salasana 		<input type="password" name="salasana" required />
      else {?>
      <nav>
        <a href="/">Etusivu</a>
-       <a href=#>Kirjoita viesti</a>
+       <a href=/?p=2>Kirjoita viesti</a>
        <?php if($_SESSION["admin"] == 't'){echo "<a href=\"admin\admin.php?p=1\">Ylläpito</a>";}?>
        <a href="logout.php"> Kirjaudu ulos </a>
      </nav>
@@ -43,10 +43,10 @@ Salasana 		<input type="password" name="salasana" required />
          include("tulostaKategoriat.php");
        }
        elseif($_GET["p"] == 2){
-         echo "sivu1";
+         echo "kirjoita viesti";
        }
        elseif($_GET["p"] == 3) {
-         echo "sivu3";
+         echo "ööö";
        }
        ?>
      </section>
