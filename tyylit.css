@@ -13,12 +13,16 @@ body{
 	-webkit-box-orient:horizontal;
 	box-orient:horizontal;
 }
-div.sivupalkki{
+div#keskipalkki {
+	
+}
+div.sivupalkki {
 	-moz-box-flex:1;
 	-webkit-box-flex:1;
 	box-flex:1;
 }
-h1{
+h1 {
+	text-align: center;
 	margin-top:0;
 	padding-top:15px;
 	margin-bottom:0;
@@ -29,6 +33,19 @@ nav {
 	text-align: center;
 	border: thin solid black;
 }
+p.väliteksti {
+	margin-top: 0;
+	padding-top: 0;
+	display: inline;
+	float: left;
+	font-size: 12px;
+	width: 50%;
+}
+
+p.väliteksti + p.väliteksti {
+	text-align: right;
+}
+
 #keskipalkki>h1{
 	margin-bottom:30px;
 }
@@ -109,7 +126,8 @@ nav > h2{
 	margin-bottom:6px;
 }
 section{
-	padding:2em;
+	padding-top:1em;
+	padding-bottom:2em;
 }
 #nykyne{
 	color:black;
@@ -119,12 +137,31 @@ section{
 }
 table{
 	border:thin solid black;
-	width:100%;
+	margin-left: auto;
+	margin-right: auto;
 }
-.otsikko > td {
-	font-size: 16px;
-        color: firebrick;
-}
-tr{
+td.kategoria{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	color: SlateGrey;
+	font-weight: bold;
+	font-size:19px;
 	text-align:center;
+	background: #eee;
+}
+tr.otsikko > td {
+	width: 300px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 15px;
+	padding-right: 15px;
+	border-bottom:thin solid #eee;
+	font-size: 18px;
+	text-align: left;
+}
+tr.otsikko > td + td {
+	width: 80px;
+	text-align: right;
+	font-size: 15px;
+	vertical-align: middle;
 }
