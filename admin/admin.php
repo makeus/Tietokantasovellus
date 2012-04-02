@@ -37,7 +37,7 @@
       </ul><br/>
       <ul>
        <li><a href="../logout.php">Logout</a></li>
-       <li><a href="../index.php">Etusivu</a></li>
+       <li><a href="../">Etusivu</a></li>
       </ul>
     </nav>      
     <section>
@@ -79,6 +79,9 @@
          include("lisaakayttaja.php");
          if(isset($_GET["e"])){
              echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
+         }
+         if(isset($_GET["ok"])){
+             echo "<p class=\"ok\">Käyttäjänimi " . $_GET["ok"] . " luotiin onnistuneesti!</p>";
          }
        }
        if($_GET["p"] == 5){

@@ -35,6 +35,7 @@ section>h2{
 	color:grey;
 }
 section>h2.ryhmah2{
+	font-size: 14px;
 	text-align:center;
 	width:50%;
 	display:inline;
@@ -109,10 +110,18 @@ section{
 .virhe{
 	color:firebrick;
 }
+.ok {
+	color: DarkSeaGreen;
+}
 table{
-	border:thinsolidblack;
+	border:thin solid black;
 	width:100%;
 }
-tr{
+td{
+	border-top: thin solid #ddd;
 	text-align:center;
+	padding: 2px;
+}
+#kategoriannimi {
+	width: 300px;
 }

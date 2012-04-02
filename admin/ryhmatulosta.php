@@ -34,8 +34,7 @@
      }
      echo "</td>
              <td> <a href=\"admin.php?p=1&m=" . $rivi["id"] ."\">x</a></td>";
-     echo "</td>
-             <td> <a href=# onclick='varmista(\"poistaRyhma.php?id=" . $rivi["id"] . "\", \"Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..\")'>x</a></td>
+     echo "  <td> <a href=# onclick='varmista(\"poistaRyhma.php?id=" . $rivi["id"] . "\", \"Oletko varma, että haluat poistaa ryhmän? Poistaminen poistaa myös kategorian, viestit..\")'>x</a></td>
            </tr>";
 
     }
@@ -98,7 +97,7 @@ function muokkaaRyhma($id) {
 
 function uusiRyhma() {
   echo "<pre><form method=\"post\" action=\"uusiRyhma.php\">"; 
-  echo "Ryhmän nimi:	<input type=\"text\" name=\"nimi\" autofocus placeholder=\"Ryhmän nimi\" required>\n";
+  echo "Ryhmän nimi:	<input type=\"text\" name=\"nimi\" autofocus placeholder=\"Ryhmän nimi\" maxlength=\"19\" required>\n";
   echo "<input type=\"submit\">";
   echo "</form></pre>";
 }

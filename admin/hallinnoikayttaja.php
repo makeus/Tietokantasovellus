@@ -77,16 +77,16 @@ function avaaMuokkaus($nimi){
    session_start();
    if($_SESSION["admin"] == 't'){
      include("../yhteys.php");
-     $rivi = pg_prepare($yhteys, "haku" ,'SELECT Käyttäjänimi, Sähköposti FROM Käyttäjä WHERE Käyttäjänimi = $1');
+     $rivi = pg_prepare($yhteys, "haku" ,'SELECT Käyttäjänimi, Sähköposti, Ylläpitäjä FROM Käyttäjä WHERE Käyttäjänimi = $1');
      $rivi = pg_execute($yhteys, "haku", array($nimi));
      $kayttaja = pg_fetch_array($rivi);
      echo "<pre><form name=\"Muokkaa käyttäjää\" action=\"mkayttaja.php\" method=\"post\" >"
-       . "Käyttäjänimi:	<input type=\"text\" name=\"käyttäjänimi\" autofocus value=\"" . $nimi . "\" />\n"
-       . "Sähköposti:	<input type=\"text\" name=\"sähköposti\" value=\"" . $kayttaja["sähköposti"] . "\" />\n"
+       . "Käyttäjänimi:	<input type=\"text\" name=\"käyttäjänimi\" autofocus value=\"" . $nimi . "\" pattern=\"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$\" />\n"
+       . "Sähköposti:	<input type=\"email\" name=\"sähköposti\" value=\"" . $kayttaja["sähköposti"] . "\" />\n"
        . "<input type=\"hidden\" name=\"vanhakäyttäjänimi\" value=\"" . $nimi . "\" />"
        . "Ylläpitäjä? 	<select name=\"admin\">"
-       .  "<option value=\"f\" selected>Ei</option>"
-       .  "<option value=\"t\">Kyllä</option>"
+       .  "<option value=\"f\">Ei</option>"
+       .  "<option value=\"t\""; if($kayttaja[2] == 't'){echo "selected";} echo ">Kyllä</option>"
        .  "</select>\n"
        .  "<input type=\"submit\" value=\"Vahvista\" /></form></pre>";
    

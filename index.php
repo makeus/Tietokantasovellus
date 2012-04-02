@@ -5,7 +5,8 @@ session_start();
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Työryhmätiedoitus - Kirjaudu sisään!</title>
+    
+    <title>Työryhmätiedoitus</title>
     <LINK rel="stylesheet" type="text/css" href="tyylit.css"/>
   </head>
   <body>
@@ -19,7 +20,7 @@ session_start();
      <section id="kirjautuminen">
        <h1>Kirjaudu sisään!</h1>
        <form action="login.php" method="post"><pre>
-Käyttäjänimi		<input type="text" name="käyttäjänimi" required />
+Käyttäjänimi	<input type="text" name="käyttäjänimi" autofocus required />
 Salasana 		<input type="password" name="salasana" required />
 <input type="submit" id="kirjaudusubmit" value="Kirjaudu!" /></pre>
        </form>
@@ -28,9 +29,9 @@ Salasana 		<input type="password" name="salasana" required />
      <?php }
      else {?>
      <nav>
-       <a href="/">Etusivu</a>
-       <a href=/?p=2>Kirjoita viesti</a>
-       <?php if($_SESSION["admin"] == 't'){echo "<a href=\"admin\admin.php?p=1\">Ylläpito</a>";}?>
+       <a href="/" <?php if((!isset($_GET["p"])) or ($_GET["p"] == 1)){echo "id=\"nykyne\"";}?>>Etusivu</a>
+       <a href="/?p=2" <?php if($_GET["p"] == 2){echo "id=\"nykyne\"";}?>>Kirjoita viesti</a>
+       <?php if($_SESSION["admin"] == 't'){echo "<a href=\"admin/admin.php?p=1\">Ylläpito</a>\n";}?>
        <a href="logout.php"> Kirjaudu ulos </a>
      </nav>
      <section>
@@ -43,10 +44,10 @@ Salasana 		<input type="password" name="salasana" required />
          include("tulostaKategoriat.php");
        }
        elseif($_GET["p"] == 2){
-         echo "kirjoita viesti";
+         include("kirjoitaViesti.php");
        }
        elseif($_GET["p"] == 3) {
-         echo "ööö";
+         // Tähä kaiketi viestin tulostus
        }
        ?>
      </section>

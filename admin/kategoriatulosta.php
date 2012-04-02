@@ -52,7 +52,7 @@ function muokkaaKategoria($id) {
     
     echo "<h2>Muokkaa kategoriaa " . $kategoriannimi . "</h2>\n";
     echo "<form method=\"post\" action=\"muokkaaKategoria.php\">\n";
-    echo "<input type=\"hidden\" name=\"id\" value=\"" . $rivi[0] . "\"/>";
+    echo "<input type=\"hidden\" name=\"id\" maxlenght=\"100\" value=\"" . $rivi[0] . "\"/>";
     echo "<pre>Kategorian nimi:	<input type=\"text\" name=\"nimi\" value=\"" . $kategoriannimi . "\" required />\n";
     echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
     while($ryhmarivi = pg_fetch_array($ryhmat)){      
@@ -72,13 +72,10 @@ function uusiKategoria() {
   include("../yhteys.php");
   $ryhmat = pg_query($yhteys, "SELECT * FROM Ryhmä");
   echo "<pre><form method=\"post\" action=\"uusiKategoria.php\">"; 
-  echo "Kategorian nimi:	<input type=\"text\" autofocus name=\"nimi\" placeholder=\"Kategorian nimi\" required>\n";
+  echo "Kategorian nimi:	<input id=\"kategoriannimi\" type=\"text\" autofocus name=\"nimi\" placeholder=\"Kategorian nimi\" required maxlength=\"50\">\n";
   echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
     while($ryhmarivi = pg_fetch_array($ryhmat)){      
       echo "<option value=\"" . $ryhmarivi[0] . "\"";
-      if ($ryhmarivi[0] == $rivi[2]) {
-        echo " selected";
-      }
       echo " />" . $ryhmarivi[1] . "</option>\n";
     }
     echo "</select>\n";

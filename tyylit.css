@@ -13,9 +13,7 @@ body{
 	-webkit-box-orient:horizontal;
 	box-orient:horizontal;
 }
-div#keskipalkki {
-	
-}
+
 div.sivupalkki {
 	-moz-box-flex:1;
 	-webkit-box-flex:1;
@@ -33,6 +31,9 @@ nav {
 	text-align: center;
 	border: thin solid black;
 }
+div#välipalkki {
+	width: 100%;
+}
 p.väliteksti {
 	margin-top: 0;
 	padding-top: 0;
@@ -47,8 +48,8 @@ p.väliteksti + p.väliteksti {
 }
 
 #keskipalkki>h1{
-	padding-left: 2em;
-	padding-right: 2em;
+	padding-left: 2.7em;
+	padding-right: 2.5em;
 	margin-bottom:30px;
 }
 section>h1{
@@ -83,8 +84,9 @@ ul,menu,dir{
 	list-style:none;
 }
 pre {
+	font-family:"Verdana","Arial",serif;	
 	margin:0;
-	font-family:"Arial",serif;
+	text-align: center;
 }
 input,select{
 	margin-top:5px;
@@ -139,6 +141,7 @@ section{
 	color:firebrick;
 }
 table{
+	width: 100%;
 	border:thin solid black;
 	margin-left: auto;
 	margin-right: auto;
@@ -158,13 +161,12 @@ thead {
 	
 }
 tr.otsikko > td {
-	width: 533px;
 	padding-top: 7px;
 	padding-bottom: 7px;
 	padding-left: 15px;
 	padding-right: 15px;
 	border-bottom:thin solid #eee;
-	font-size: 17px;
+	font-size: 16px;
 	text-align: left;
 }
 tr.otsikko > td + td {
@@ -172,7 +174,7 @@ tr.otsikko > td + td {
 	padding-left: 2px;
 	padding-right: 2px;
 	text-align: right;
-	font-size: 13px;
+	font-size: 12px;
 	vertical-align: middle;
 }
 tr.otsikko > td + td + td {
@@ -187,7 +189,6 @@ thead > tr > th  {
 	text-align: left;
 }
 thead > tr > th + th {
-	width: 70px;
 	padding-left: 2px;
 	padding-right: 2px;
 	text-align: right;
@@ -197,6 +198,61 @@ thead > tr > th + th {
 thead > tr > th + th + th {
 	padding-right: 7px;
 }
-#lukematon {
+.viestilotsikko {
+	text-align: left;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-right: thin solid #eee;
+
+}
+.viestilotsikko + td {
+	padding-left: 12px;
+}
+
+.viestilotsikko + td > input[type="submit"] {
+	width: 80px;
+	margin-bottom: 10px;
+}
+
+
+#kirjoitaviestiotsikko {
+	width: 400px;
+}
+textarea {
+	margin: 0;
+	margin-right: 10px;
+}
+.lukematon {
 	color: #EE9A00;
+}
+.pikkuteksti {
+	font-size: 10px;
+	color: darkslategrey;
+	border-bottom: thin solid #eee;
+	padding-left: 5px;
+}
+.pikkuteksti + .pikkuteksti {
+	text-align: right;
+	padding-right: 5px;
+}
+#isoteksti {
+	padding: 10px;
+}
+#kategoriavaihtoehdot {
+	width: 405px;
+}
+#eiviesteja {
+	padding: 1.5em;
+	font-size: 20px;
+	color: firebrick;
+	text-align: center;
+}
+
+
+
+@font-face {
+  font-family: 'Bilbo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Bilbo Regular'), local('Bilbo-Regular'), url('http://themes.googleusercontent.com/static/fonts/bilbo/v1/xwLgRJ9fZWeUWclu8zW0Jw.woff') format('woff');
 }

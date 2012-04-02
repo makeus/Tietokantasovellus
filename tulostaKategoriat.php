@@ -1,56 +1,61 @@
 <?php
     include("tarkista.php");
-    echo "<table>\n";
-    echo "  <thead>\n";
-    echo "    <tr>\n";
-    echo "     <th></th>\n";
-    echo "     <th>Kirjoittaja</th>\n";
-    echo "     <th>Viimeisin vastaus</th>\n";
-    echo "  </thead>\n";
+    if(count($nakyvyys) > 0) {
+      echo "<table>\n";
+      echo "  <thead>\n";
+      echo "    <tr>\n";
+      echo "     <th></th>\n";
+      echo "     <th>Kirjoittaja</th>\n";
+      echo "     <th>Viimeisin vastaus</th>\n";
+      echo "  </thead>\n";
+    } 
+    else {
+      echo "<p id=\"eiviesteja\">Ei viestejä :L</p>";
+    }  
 
     foreach($nakyvyys as &$kid){
       $kategoria = pg_query($yhteys, "SELECT kategoriannimi FROM Kategoria where id=('$kid')");
       $kategorianimi = pg_fetch_row($kategoria);
-      $otsikot = pg_query($yhteys, "SELECT otsikko, aika, kirjoittaja, id, viestinlukeneet FROM viesti where kategoria=('$kid') and vastaus is null order by aika");
+      $otsikot = pg_query($yhteys, "SELECT otsikko, aika, kirjoittaja, id, viestinlukeneet FROM viesti where kategoria=('$kid') and vastaus is null order by aika desc");
       $ekarivi = pg_fetch_row($otsikot);
       
 
       // Jos ei viestejä kategoriassa, ei tulosteta mitään.
 
       if($ekarivi != NULL) {
-        echo "<tr>";
-        echo "<td colspan=\"100%\" class=\"kategoria\">" . $kategorianimi[0] . "</td>\n";
-        echo "</tr>";        
-        echo "<tr class=\"otsikko\">"; 
+        echo "  <tr>\n";
+        echo "    <td colspan=\"3\" class=\"kategoria\">" . $kategorianimi[0] . "</td>\n";
+        echo "  </tr>\n";        
+        echo "  <tr class=\"otsikko\">\n"; 
 	        
 	if(($ekarivi[4] != null) && (in_array($kayttajanimi, pg_array_parse($ekarivi[4], FALSE))) &&  etsiOnkoLukenut($kayttajanimi, $ekarivi[3])){
-           echo "<td>" . $ekarivi[0];
+           echo "    <td>" . $ekarivi[0];
         } 
         else {
-           echo "<td id=\"lukematon\">" . $ekarivi[0] . " !";
+           echo "   <td class=\"lukematon\">" . $ekarivi[0] . " !";
         }
-	echo "</td>\n";
-        echo "<td>" . $ekarivi[2] . "</td>";
-        echo "<td>" . date("d.m.y", strtotime(etsiViimeisinViesti($ekarivi[3], $ekarivi[1]))) . "</td>";	        		
-        echo "</tr>";
+	echo "     </td>\n";
+        echo "     <td>" . $ekarivi[2] . "</td>\n";
+        echo "     <td>" . date("d.m.y", strtotime(etsiViimeisinViesti($ekarivi[3], $ekarivi[1]))) . "</td>\n";	        		
+        echo "  </tr>\n";
 
         while($otsikko = pg_fetch_array($otsikot)) {
-          echo "<tr class=\"otsikko\">";
+          echo "  <tr class=\"otsikko\">\n";
           
 	  if(($otsikko[4] != null) && (in_array($kayttajanimi, pg_array_parse($otsikko[4], FALSE))) &&  etsiOnkoLukenut($kayttajanimi, $otsikko[3])){
-             echo "<td>" . $otsikko[0];
+             echo "    <td>" . $otsikko[0];
           } 
           else {
-             echo "<td id=\"lukematon\">" . $otsikko[0] . " !";
+             echo "    <td class=\"lukematon\">" . $otsikko[0] . " !";
           }
-	  echo "</td>\n";
-          echo "<td>" . $otsikko[2] . "</td>";
-          echo "<td>" . date("d.m.y", strtotime(etsiViimeisinViesti($otsikko[3], $otsikko[1]))) . "</td>";	
-          echo "</tr>";
+	  echo "    </td>\n";
+          echo "    <td>" . $otsikko[2] . "</td>\n";
+          echo "    <td>" . date("d.m.y", strtotime(etsiViimeisinViesti($otsikko[3], $otsikko[1]))) . "</td>\n";	
+          echo "  </tr>\n";
         }
       }
     }
-    echo "</table>";
+    echo "</table>\n";
     
 
 function etsiViimeisinViesti($id, $uusin) {
