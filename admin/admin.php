@@ -68,10 +68,10 @@
            tulostaSamankaltaiset($_GET["m"]);
          }
          elseif(isset($_GET["muokkaa"])){
-          avaaMuokkaus($_GET["nimi"],$_GET["sahkoposti"],$_GET["yllapitaja"]);
+         
          }
          else{
-          listaaKayttajat();
+          tulostaKayttajat();
          }
        }
        if($_GET["p"] == 4){
