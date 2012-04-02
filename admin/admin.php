@@ -68,7 +68,7 @@
            tulostaSamankaltaiset($_GET["m"]);
          }
          elseif(isset($_GET["muokkaa"])){
-         
+           avaaMuokkaus($_GET["muokkaa"]);
          }
          else{
           tulostaKayttajat();
