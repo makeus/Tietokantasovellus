@@ -36,7 +36,7 @@
         }
 	echo "     </td>\n";
         echo "     <td>" . $ekarivi[2] . "</td>\n";
-        echo "     <td>" . date("d.m.y", strtotime(etsiViimeisinViesti($ekarivi[3], $ekarivi[1]))) . "</td>\n";	        		
+        echo "     <td>" . date("d.m.y H:i:s", strtotime(etsiViimeisinViesti($ekarivi[3], $ekarivi[1]))) . "</td>\n";	        		
         echo "  </tr>\n";
 
         while($otsikko = pg_fetch_array($otsikot)) {
@@ -50,7 +50,7 @@
           }
 	  echo "    </td>\n";
           echo "    <td>" . $otsikko[2] . "</td>\n";
-          echo "    <td>" . date("d.m.y", strtotime(etsiViimeisinViesti($otsikko[3], $otsikko[1]))) . "</td>\n";	
+          echo "    <td>" . date("d.m.y H:i:s", strtotime(etsiViimeisinViesti($otsikko[3], $otsikko[1]))) . "</td>\n";	
           echo "  </tr>\n";
         }
       }

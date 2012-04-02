@@ -36,7 +36,7 @@ Salasana 		<input type="password" name="salasana" required />
      </nav>
      <section>
        <div id="välipalkki">
-          <p class="väliteksti">Kirjautuneena käyttäjänä <?php echo $_SESSION["käyttäjänimi"]; ?></p>
+          <p class="väliteksti">Kirjautuneena käyttäjänä <strong><?php echo $_SESSION["käyttäjänimi"]; ?></strong></p>
           <p class="väliteksti"><?php echo date("d.m.y H:i:s", $_SERVER['REQUEST_TIME']); ?></p>
        </div>
        <?php
