@@ -14,6 +14,11 @@ body{
 	box-orient:horizontal;
 }
 
+div.viesti {
+	border-left:thin solid #eee;
+	padding-left: 2px;
+}
+
 div.sivupalkki {
 	-moz-box-flex:1;
 	-webkit-box-flex:1;
