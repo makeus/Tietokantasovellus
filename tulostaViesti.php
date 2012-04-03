@@ -1,7 +1,26 @@
 <?php
+include("tarkista.php");
+
+// Tarkistus, että käyttäjä saa katsoa viestin ja että viesti on olemassa
+if(isset($_GET["id"])) {
+  include("yhteys.php");
+  $id = $_GET["id"];
+  settype($id, "int");
+  $viestit = pg_query_params($yhteys, 'SELECT Kategoria FROM Viesti WHERE Id= $1 ',array($id));
+  $viesti = pg_fetch_row($viestit);
+  if(($viesti != null) && in_array($viesti[0], $nakyvyys)) {
+    tulostaViesti($id);
+  }
+  else {
+    echo "<p id=\"eiviesteja\">HEI!</p>";
+  }
+} 
+else {
+  echo "<p id=\"eiviesteja\">HEI!</p>";
+}
+
 function tulostaViesti($viestin_id){
-  session_start(); 
-  
+  merkkaaLuetuksi($viestin_id);
   printtaaViesti($viestin_id);
   echo "<form name=\"Vastaa viestiin\" action=\"vviesti.php\" method=\"post\" ><input type=\"hidden\" name=\"id\" value=\"".$viestin_id."\"  />";
   echo "<input name=\"vastaa\" type=\"submit\" value=\"Vastaa\" />";
@@ -21,9 +40,12 @@ function printtaaViesti($id){
   $teksti = pg_fetch_array($viesti);
   echo "<p>".$teksti[0]."</p>";
 }
+
 function merkkaaLuetuksi($id) {
+ include("yhteys.php");
  $kayttajanimi = $_SESSION["käyttäjänimi"];
- $kysely = pg_prepare($yhteys, "lisays", "UPDATE Viesti SET Viestinlukeneet= Viestinlukeneet || ('$1') where id=('$2')");
- $kysely = pg_execute($yhteys, "lisays", array($kayttajanimi, id));
+ $kysely = pg_prepare($yhteys, "appendaa", 'UPDATE Viesti SET Viestinlukeneet = array_append(Viestinlukeneet, $1 :: text) where id= $2');
+ $kysely = pg_execute($yhteys, "appendaa", array($kayttajanimi, $id));
 }
+
 ?>

@@ -1,5 +1,4 @@
 <?php
-  session_start();
   include ("yhteys.php");  
   $kayttajanimi = $_SESSION["käyttäjänimi"];
   $nakyvyys = array();

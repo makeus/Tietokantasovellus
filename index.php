@@ -46,7 +46,7 @@ session_start();
      else {?>
      <nav>
        <a href="/" <?php if((!isset($_GET["p"])) or ($_GET["p"] == 1)){echo "id=\"nykyne\"";}?>>Etusivu</a>
-       <a href="/?p=2" <?php if($_GET["p"] == 2){echo "id=\"nykyne\"";}?>>Kirjoita viesti</a>
+       <a href="/?p=2" <?php if((isset($_GET["p"])) or ($_GET["p"] == 2)){echo "id=\"nykyne\"";}?>>Kirjoita viesti</a>
        <?php if($_SESSION["admin"] == 't'){echo "<a href=\"admin/admin.php?p=1\">Ylläpito</a>\n";}?>
        <a href="logout.php"> Kirjaudu ulos </a>
      </nav>
@@ -64,9 +64,6 @@ session_start();
        }
        elseif($_GET["p"] == 3) {
          include("tulostaViesti.php");
-	 $id = $_GET["id"];
-         settype($id, int);
-         tulostaViesti($id);
        }
        ?>
      </section>
