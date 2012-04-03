@@ -1,7 +1,7 @@
 <?php
 function tulostaViesti($viestin_id){
   session_start(); 
-  echo "<div>";
+  echo "<div class=\"viesti\">";
   printtaaViesti($viestin_id);
   include("yhteys.php");
   $viestit = pg_prepare($yhteys, "viestit" ,'SELECT Id FROM Viesti WHERE Vastaus= $1 order by aika');
@@ -15,7 +15,8 @@ function printtaaViesti($id){
   include("yhteys.php");
   $viesti = pg_prepare($yhteys, "viesti" ,'SELECT Teksti FROM Viesti WHERE Id= $1');
   $viesti = pg_execute($yhteys, "viesti", array($id));
-  echo "".$viesti."";
+  $teksti = pg_fetch_array($viesti);
+  echo "<p>".$teksti[0]."</p>";
 }
 function merkkaaLuetuksi($id) {
  $kayttajanimi = $_SESSION["käyttäjänimi"];
