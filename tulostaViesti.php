@@ -1,16 +1,18 @@
 <?php
 function tulostaViesti($viestin_id){
   session_start(); 
-  echo "<div class=\"viesti\">";
+  
   printtaaViesti($viestin_id);
   echo "<form name=\"Vastaa viestiin\" action=\"vviesti.php\" method=\"post\" ><input type=\"hidden\" name=\"id\" value=\"".$viestin_id."\"  />";
   echo "<input name=\"vastaa\" type=\"submit\" value=\"Vastaa\" />";
   include("yhteys.php");
-  $viestit = pg_query_params($yhteys, 'SELECT Id FROM Viesti WHERE Vastaus= $1 order by aika',array($viestin_id));
+  $viestit = pg_query_params($yhteys, 'SELECT Id FROM Viesti WHERE Vastaus= $1 ',array($viestin_id));
   while ($rivi = pg_fetch_array($viestit)){
+    echo "<div class=\"viesti\">";
     tulostaViesti($rivi[0]);
+    echo "</div>";
   }
-  echo "</div>";
+  
 }
 function printtaaViesti($id){
   include("yhteys.php");
