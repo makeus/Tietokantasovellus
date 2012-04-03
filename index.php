@@ -58,7 +58,8 @@ session_start();
          include("kirjoitaViesti.php");
        }
        elseif($_GET["p"] == 3) {
-         // Tähä kaiketi viestin tulostus
+         include("tulostaViesti.php");
+         tulostaViesti($_GET["id"]);
        }
        ?>
      </section>
