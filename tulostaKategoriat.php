@@ -29,11 +29,12 @@
         echo "  <tr class=\"otsikko\">\n"; 
 	        
 	if(($ekarivi[4] != null) && (in_array($kayttajanimi, pg_array_parse($ekarivi[4], FALSE))) &&  etsiOnkoLukenut($kayttajanimi, $ekarivi[3])){
-           echo "    <td>" . $ekarivi[0];
+           echo "    <td>";
         } 
         else {
-           echo "   <td class=\"lukematon\">" . $ekarivi[0] . " !";
+           echo "   <td class=\"lukematon\">";
         }
+        echo "<a href=\"/?p=3&id=" . $ekarivi[3] . "\">" . $ekarivi[0] . "</a>\n";
 	echo "     </td>\n";
         echo "     <td>" . $ekarivi[2] . "</td>\n";
         echo "     <td>" . date("d.m.y H:i:s", strtotime(etsiViimeisinViesti($ekarivi[3], $ekarivi[1]))) . "</td>\n";	        		
@@ -43,11 +44,12 @@
           echo "  <tr class=\"otsikko\">\n";
           
 	  if(($otsikko[4] != null) && (in_array($kayttajanimi, pg_array_parse($otsikko[4], FALSE))) &&  etsiOnkoLukenut($kayttajanimi, $otsikko[3])){
-             echo "    <td>" . $otsikko[0];
+             echo "    <td>";
           } 
           else {
-             echo "    <td class=\"lukematon\">" . $otsikko[0] . " !";
+             echo "    <td class=\"lukematon\">";
           }
+          echo "<a href=\"/?p=3&id=" . $otsikko[3] . "\">" . $otsikko[0] . "</a>\n";
 	  echo "    </td>\n";
           echo "    <td>" . $otsikko[2] . "</td>\n";
           echo "    <td>" . date("d.m.y H:i:s", strtotime(etsiViimeisinViesti($otsikko[3], $otsikko[1]))) . "</td>\n";	
