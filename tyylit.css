@@ -15,8 +15,8 @@ body{
 }
 
 div.viesti {
-	border-left:thin solid #eee;
-	padding-left: 2px;
+	border-left:thin solid black;
+	padding-left: 10px;
 }
 
 div.sivupalkki {
