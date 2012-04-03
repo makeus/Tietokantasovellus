@@ -5,6 +5,7 @@ function tulostaViesti($viestin_id){
   printtaaViesti($viestin_id);
   echo "<form name=\"Vastaa viestiin\" action=\"vviesti.php\" method=\"post\" ><input type=\"hidden\" name=\"id\" value=\"".$viestin_id."\"  />";
   echo "<input name=\"vastaa\" type=\"submit\" value=\"Vastaa\" />";
+  echo "</form>";
   include("yhteys.php");
   $viestit = pg_query_params($yhteys, 'SELECT Id FROM Viesti WHERE Vastaus= $1 ',array($viestin_id));
   while ($rivi = pg_fetch_array($viestit)){
