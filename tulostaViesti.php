@@ -18,5 +18,9 @@ function printtaaViesti($id){
   $rivi = pg_fetch_array($viesti);
   echo "".$rivi["Teksti"]."";
 }
-
+function merkkaaLuetuksi($id) {
+ $kayttajanimi = $_SESSION["käyttäjänimi"];
+ $kysely = pg_prepare($yhteys, "lisays", "UPDATE Viesti SET Viestinlukeneet= Viestinlukeneet || ('$1') where id=('$2')");
+ $kysely = pg_execute($yhteys, "lisays", array($kayttajanimi, id));
+}
 ?>
