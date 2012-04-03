@@ -171,7 +171,15 @@ thead {
 tr.otsikko + tr.otsikko > td {
 	border-top:thin solid #eee;
 }
+a {
+	color: black;
+}
 tr.otsikko > td {
+	text-decoration: none;
+}
+tr.otsikko > td > a {
+	font-weight: normal;
+	text-decoration: none;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-left: 7px;
@@ -234,7 +242,7 @@ textarea {
 	margin: 0;
 	margin-right: 10px;
 }
-.lukematon {
+.lukematon > a {
 	color: #EE9A00;
 }
 .pikkuteksti {
