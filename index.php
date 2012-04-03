@@ -19,10 +19,21 @@ session_start();
 
      <section id="kirjautuminen">
        <h1>Kirjaudu sisään!</h1>
-       <form action="login.php" method="post"><pre>
-Käyttäjänimi	<input type="text" name="käyttäjänimi" autofocus required />
-Salasana 		<input type="password" name="salasana" required />
-<input type="submit" id="kirjaudusubmit" value="Kirjaudu!" /></pre>
+       <form action="login.php" method="post">
+         <table id="logintable">
+           <tr>
+             <td>Käyttäjänimi</td>
+             <td><input type="text" name="käyttäjänimi" autofocus required /></td>
+           </tr>
+           <tr>
+             <td>Salasana</td> 
+             <td><input type="password" name="salasana" required /></td>
+           </tr>
+           <tr>
+             <td></td>
+             <td><input type="submit" id="kirjaudusubmit" value="Kirjaudu!" /></td>
+           </tr>
+         </table>
        </form>
      </section>
 

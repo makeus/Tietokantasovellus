@@ -68,15 +68,22 @@ section>h2{
 section#kirjautuminen>h1{
 	font-size:20px;
 }
-section#kirjautuminen{
-	padding-top:0;
-	padding-bottom:20px;
-	text-align:center;
+table#logintable {
+	border: 0;
+	width:20%;
+	text-align: right;
+
+}
+table#logintable > tbody > tr > td {
+	padding-left: 7px;
+}
+table#logintable > tbody > tr + tr + tr > td {
+	text-align: left;
 }
 #kirjaudusubmit{
 	font-size:15px;
 	margin-top:10px;
-	padding:4px;
+	padding:3px;
 	padding-left:10px;
 	padding-right:10px;
 }
@@ -113,9 +120,8 @@ form+form.ryhmaform{
 .isosubmit{
 	margin-top:1px;
 	height:79px;
-	margin-left:1em;
-	margin-right:1em;
 	vertical-align:top;
+	padding: 0;
 }
 
 nav > a{
