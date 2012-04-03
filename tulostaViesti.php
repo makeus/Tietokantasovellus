@@ -4,8 +4,8 @@ function tulostaViesti($viestin_id){
   echo "<div>";
   printtaaViesti($viestin_id);
   include("yhteys.php");
-  $viestit = pg_prepare($yhteys, "haku" ,'SELECT Id FROM Viesti WHERE Vastaus= $1 order by aika');
-  $viestit = pg_execute($yhteys, "haku", array($viestin_id));
+  $viestit = pg_prepare($yhteys, "viestit" ,'SELECT Id FROM Viesti WHERE Vastaus= $1 order by aika');
+  $viestit = pg_execute($yhteys, "viestit", array($viestin_id));
   while ($rivi = pg_fetch_array($viestit)){
     tulostaViesti($rivi["Id"]);
   }
@@ -13,10 +13,9 @@ function tulostaViesti($viestin_id){
 }
 function printtaaViesti($id){
   include("yhteys.php");
-  $viesti = pg_prepare($yhteys, "haku" ,'SELECT Teksti FROM Viesti WHERE Id= $1');
-  $viesti = pg_execute($yhteys, "haku", array($id));
-  $rivi = pg_fetch_array($viesti);
-  echo "".$rivi["Teksti"]."";
+  $viesti = pg_prepare($yhteys, "viesti" ,'SELECT Teksti FROM Viesti WHERE Id= $1');
+  $viesti = pg_execute($yhteys, "viesti", array($id));
+  echo "".$viesti."";
 }
 function merkkaaLuetuksi($id) {
  $kayttajanimi = $_SESSION["käyttäjänimi"];
