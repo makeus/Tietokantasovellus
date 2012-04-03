@@ -35,6 +35,11 @@ session_start();
            </tr>
          </table>
        </form>
+       <?php
+         if(isset($_GET["e"])) {
+	    echo "<p id=\"eiviesteja\">Väärä käyttäjänimi tai salasana!</p>\n";
+         }
+       ?>
      </section>
 
      <?php }
@@ -59,7 +64,9 @@ session_start();
        }
        elseif($_GET["p"] == 3) {
          include("tulostaViesti.php");
-         tulostaViesti($_GET["id"]);
+	 $id = $_GET["id"];
+         settype($id, int);
+         tulostaViesti($id);
        }
        ?>
      </section>
