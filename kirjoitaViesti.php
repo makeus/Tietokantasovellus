@@ -5,7 +5,9 @@ if(count($nakyvyys) == 0) {
 }
 else {
     if(isset($_GET["v"])){
-      tulostaTeksti($_GET["v"]);
+      $vastausid = $_GET["v"];
+      settype($vastausid, int);
+      tulostaTeksti($vastausid);
     } 
     else {
       echo "<form method=\"post\" action=\"lisaaViesti.php\"><br/>\n";
