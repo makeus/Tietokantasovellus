@@ -36,9 +36,10 @@ function tulostaViesti($viestin_id){
 }
 function printtaaViesti($id){
   include("yhteys.php");
-  $viesti = pg_query_params($yhteys,'SELECT Teksti FROM Viesti WHERE Id= $1',array($id));
+  $viesti = pg_query_params($yhteys,'SELECT Kirjoittaja,Aika,Teksti FROM Viesti WHERE Id= $1',array($id));
   $teksti = pg_fetch_array($viesti);
-  echo "<p>".$teksti[0]."</p>";
+  echo "<p class=\"Kirjoittaja\">".$teksti[0]."(".$teksti[1].")</p>";
+  echo "<p>".$teksti[2]."</p>";
 }
 
 function merkkaaLuetuksi($id) {

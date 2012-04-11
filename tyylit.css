@@ -14,6 +14,14 @@ body{
 	box-orient:horizontal;
 }
 
+p.Kirjoittaja {
+	font-family:"Verdana","Arial",serif;
+	font-size:10px;
+	text-align: left;
+	color:#3C3C3C;
+}
+
+
 div.viesti {
 	border-left:thin solid black;
 	margin-left: 10px;
