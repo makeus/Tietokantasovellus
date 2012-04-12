@@ -14,25 +14,32 @@ body{
 	box-orient:horizontal;
 }
 
-p.Kirjoittaja {
+p.Kirjoittaja {	
+	background: #eee;
+	color: SlateGrey;
+	vertical-align: center;
 	font-family:"Verdana","Arial",serif;
 	font-size:10px;
 	text-align: left;
 	color:#3C3C3C;
+	margin: 0;
+	padding-left: 5px;
+	padding-top: 4px;
+	padding-bottom: 5px;
 }
 
-
 div.viesti {
-	border-left:thin solid black;
+	border-left:thin solid #bbb;
 	margin-left: 10px;
         margin-right: 0;
         margin-top: 0;
         margin-bottom: 0;
-        padding: 0;
+        padding: 10px;
+	padding-right: 0;
 }
 
 div.viesti > p {
-	padding-left: 10px;
+	margin-left: 5px;
 }
 
 div.sivupalkki {
@@ -170,12 +177,12 @@ section{
 	color:firebrick;
 }
 table{
-	width: 100%;
+	width: 788px; /* Rumaa :(( */
 	border:thin solid black;
 	margin-left: auto;
 	margin-right: auto;
 }
-td.kategoria{
+.kategoria{
 	padding-top: 7px;
 	padding-bottom: 7px;
 	color: SlateGrey;
@@ -259,7 +266,6 @@ thead > tr > th + th + th {
 	margin-bottom: 10px;
 }
 
-
 #kirjoitaviestiotsikko {
 	width: 400px;
 }
@@ -291,4 +297,31 @@ textarea {
 	font-size: 20px;
 	color: firebrick;
 	text-align: center;
+}
+.viesti > .vastauslink {
+	margin-bottom: 10px;
+	padding-bottom: 0;
+	margin-left: 10px;
+}
+.vastauslink {
+	padding-right: 5px;
+	font-size: 12px;
+	float: right;
+}
+#viestijavastauksetlaatikko {
+	width: 787px; /* Rumaa :(( */
+	display: table;
+	border: thin solid black;
+	border-spacing: 2px;
+}
+#viestijavastauksetlaatikko > p.kategoria {
+	margin: 0;
+}
+#viestijavastauksetlaatikko > p {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+#viestijavastauksetlaatikko > div {
+	margin-right: 10px;
 }

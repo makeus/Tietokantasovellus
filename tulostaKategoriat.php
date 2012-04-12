@@ -64,9 +64,8 @@ function etsiViimeisinViesti($id, $uusin) {
     include("yhteys.php");
     $palautus = $uusin;
     $vastaukset = pg_query($yhteys, "SELECT id, aika FROM Viesti where vastaus = ('$id')");
-    
     while($vastaus = pg_fetch_array($vastaukset)) {
-       $palautus = max($uusin, etsiViimeisinViesti($vastaus[0], $vastaus[1]));
+       $palautus = max($palautus, etsiViimeisinViesti($vastaus[0], $vastaus[1]));
     }
     return $palautus;
 }
@@ -77,10 +76,14 @@ function etsiOnkoLukenut($kayttajanimi, $id) {
     $vastaukset = pg_query($yhteys, "SELECT id, viestinlukeneet FROM Viesti where vastaus = ('$id')");
     
     while($vastaus = pg_fetch_array($vastaukset)) {
-       if(($vastaus[1] == null) or (!in_array($kayttajanimi, pg_array_parse($vastaus[1], FALSE)))){
+       if(!in_array($kayttajanimi, pg_array_parse($vastaus[1], FALSE))){
            $palautus = FALSE;  
+	   break;
        } else {
-           $palautus = etsiOnkoLukenut($kayttajanimi, $vastaus[0]);
+           if(!etsiOnkoLukenut($kayttajanimi, $vastaus[0])){
+              $palautus = FALSE;
+              break;
+           }
        }
     }
     return $palautus;

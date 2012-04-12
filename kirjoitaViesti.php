@@ -9,6 +9,12 @@ else {
       settype($vastausid, int);
       tulostaTeksti($vastausid);
     } 
+    elseif(isset($_GET["id"])){
+      $vastausid = $_GET["id"];
+      settype($vastausid, int);
+      ketjuvastaus($vastausid);
+    }
+    
     else {
       echo "<form method=\"post\" action=\"lisaaViesti.php\"><br/>\n";
       echo "<table>\n";
@@ -53,14 +59,14 @@ function tulostaTeksti($id) {
 
     echo "<table>\n";
     echo "  <tr>\n";
-    echo "   <td colspan=\"2\" class=\"kategoria\">" . $viesti[1] . "</td>\n";
+    echo "   <td colspan=\"3\" class=\"kategoria\">" . $viesti[1] . "</td>\n";
     echo "  </tr>\n";
     echo "  <tr>\n";
     echo "   <td colspan=\"1\" class=\"pikkuteksti\">" . $viesti[4] . " (" . date("d.m.y H:i:s", strtotime($viesti[5])) . ")</td>\n";
     echo "   <td colspan=\"1\" class=\"pikkuteksti\">" . $kategoriannimi[0] . "</td>\n";
     echo "  </tr>\n";
     echo "  <tr>\n";
-    echo "   <td id=\"isoteksti\">" . $viesti[2] . "<td>\n";
+    echo "   <td id=\"isoteksti\" colspan=\"2\">" . $viesti[2] . "<td>\n";
     echo "  </tr>\n";
     echo "</table><br>\n";
     echo "<form method=\"post\" action=\"lisaaViesti.php\">";
@@ -75,5 +81,26 @@ function tulostaTeksti($id) {
     echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti[1] . "\" required/></td>\n";
     echo "  </tr>\n";
 
+}
+
+function ketjuvastaus($id){
+    include("yhteys.php");
+    $viestit = pg_query($yhteys, "SELECT Id, Otsikko, teksti, kategoria, kirjoittaja, aika FROM Viesti where id=('$id')");
+    $viesti = pg_fetch_row($viestit);
+    $kategoria = pg_query($yhteys, "SELECT KategorianNimi FROM Kategoria where id=('$viesti[3]')");
+    $kategoriannimi = pg_fetch_row($kategoria);  
+
+    echo "<br/>";
+    echo "<form method=\"post\" action=\"lisaaViesti.php\">";
+    echo "<input type=\"hidden\" name=\"vastaus\" value=\"" . $viesti[0] . "\" />\n";
+    echo "<input type=\"hidden\" name=\"kategoria\" value=\"" . $viesti[3] . "\"/>\n";
+    echo "<table>\n";
+    echo "  <tr>\n";
+    echo "   <td colspan=\"2\" class=\"kategoria\">Kirjoita Vastaus</td>\n";
+    echo "  </tr>\n";
+    echo "  <tr>\n";
+    echo "   <td class=\"viestilotsikko\">Otsikko:</td>\n";
+    echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti[1] . "\" required/></td>\n";
+    echo "  </tr>\n";
 }
 ?>
