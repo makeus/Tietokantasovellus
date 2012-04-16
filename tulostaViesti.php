@@ -41,12 +41,20 @@ function printtaaViesti($id){
   include("yhteys.php");
   $viesti = pg_query_params($yhteys,'SELECT Kirjoittaja,Aika,Teksti, Otsikko FROM Viesti WHERE Id= $1',array($id));
   $teksti = pg_fetch_array($viesti);
+  if($_SESSION["admin"] == 't' || $teksti[0]==$_SESSION["käyttäjänimi"]){
   echo "<p class=\"Kirjoittaja\">".$teksti[0].
     " (".date("d.m.y H:i:s", strtotime($teksti[1])).") " 
     . $teksti[3] .
     "<a class=\"poistolink\" href=# onclick='varmista(\"poista.php?id=" . $id . "\", \"Oletko varma, että haluat poistaa viestin?\")'>poista</a>"
     ."<a class=\"vastauslink\" href=\"/?p=2&v=" . $id . "\">vastaa</a></p>";
   echo "<p>".$teksti[2]."</p>";
+  }else{
+    echo "<p class=\"Kirjoittaja\">".$teksti[0].
+    " (".date("d.m.y H:i:s", strtotime($teksti[1])).") " 
+    . $teksti[3] .
+    "<a class=\"vastauslink\" href=\"/?p=2&v=" . $id . "\">vastaa</a></p>";
+  echo "<p>".$teksti[2]."</p>";
+  }
 }
 
 function merkkaaLuetuksi($id) {
