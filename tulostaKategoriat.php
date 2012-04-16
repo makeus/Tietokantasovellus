@@ -1,6 +1,9 @@
 <?php
 
 include("tarkista.php");
+include("logiikka/kategoriafunktiot.php");
+
+
 if (count($nakyvyys) > 0) {
     echo "<table>\n";
     echo "  <thead>\n";
@@ -14,8 +17,7 @@ if (count($nakyvyys) > 0) {
 }
 
 foreach ($nakyvyys as &$kid) {
-    $kategoria = pg_query($yhteys, "SELECT kategoriannimi FROM Kategoria where id=('$kid')");
-    $kategorianimi = pg_fetch_row($kategoria);
+    $kategorianimi = getKategoriannimi($kid);
     $otsikot = pg_query($yhteys, "SELECT otsikko, aika, kirjoittaja, id, viestinlukeneet FROM viesti where kategoria=('$kid') and vastaus is null order by aika desc");
     $ekarivi = pg_fetch_row($otsikot);
 
