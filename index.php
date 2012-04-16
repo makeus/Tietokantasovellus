@@ -8,6 +8,13 @@ session_start();
     
     <title>Työryhmätiedoitus</title>
     <LINK rel="stylesheet" type="text/css" href="tyylit.css"/>
+    <script type="text/javascript">
+      function varmista(url, viesti){
+        if(confirm(viesti)) {
+          window.location = url;
+        }
+      }
+    </script>
   </head>
   <body>
    <div class="sivupalkki"></div>
