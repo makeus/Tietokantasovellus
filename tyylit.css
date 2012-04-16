@@ -1,327 +1,327 @@
 body,html{
-	height:100%;
-	width:100%;
-	margin:0;
-	padding:0;
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
 }
 body{
-	font-family:"Verdana","Arial",serif;
-	display:-moz-box;
-	display:-webkit-box;
-	display:box;
-	-moz-box-orient:horizontal;
-	-webkit-box-orient:horizontal;
-	box-orient:horizontal;
+    font-family:"Verdana","Arial",serif;
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+    -moz-box-orient:horizontal;
+    -webkit-box-orient:horizontal;
+    box-orient:horizontal;
 }
 
 p.Kirjoittaja {	
-	background: #eee;
-	color: SlateGrey;
-	vertical-align: center;
-	font-family:"Verdana","Arial",serif;
-	font-size:10px;
-	text-align: left;
-	color:#3C3C3C;
-	margin: 0;
-	padding-left: 5px;
-	padding-top: 4px;
-	padding-bottom: 5px;
+    background: #eee;
+    color: SlateGrey;
+    vertical-align: center;
+    font-family:"Verdana","Arial",serif;
+    font-size:10px;
+    text-align: left;
+    color:#3C3C3C;
+    margin: 0;
+    padding-left: 5px;
+    padding-top: 4px;
+    padding-bottom: 5px;
 }
 
 div.viesti {
-	border-left:thin solid #bbb;
-	margin-left: 10px;
-        margin-right: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding: 10px;
-	padding-right: 0;
+    border-left:thin solid #bbb;
+    margin-left: 10px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px;
+    padding-right: 0;
 }
 
 div.viesti > p {
-	margin-left: 5px;
+    margin-left: 5px;
 }
 
 div.sivupalkki {
-	-moz-box-flex:1;
-	-webkit-box-flex:1;
-	box-flex:1;
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
 }
 h1 {
-	text-align: center;
-	margin-top:0;
-	padding-top:15px;
-	margin-bottom:0;
-	color:lightgrey;
-	font-size:50px;
+    text-align: center;
+    margin-top:0;
+    padding-top:15px;
+    margin-bottom:0;
+    color:lightgrey;
+    font-size:50px;
 }
 nav {
-	text-align: center;
-	border: thin solid black;
+    text-align: center;
+    border: thin solid black;
 }
 div#välipalkki {
-	width: 100%;
+    width: 100%;
 }
 p.väliteksti {
-	margin-top: 0;
-	padding-top: 0;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	display: inline;
-	float: left;
-	font-size: 12px;
-	width: 50%;
+    margin-top: 0;
+    padding-top: 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    display: inline;
+    float: left;
+    font-size: 12px;
+    width: 50%;
 }
 
 p.väliteksti + p.väliteksti {
-	text-align: right;
+    text-align: right;
 }
 
 #keskipalkki>h1{
-	padding-left: 2.7em;
-	padding-right: 2.5em;
-	margin-bottom:30px;
+    padding-left: 2.7em;
+    padding-right: 2.5em;
+    margin-bottom:30px;
 }
 section>h1{
-	margin-bottom:15px;
-	padding-left:0px;
-	font-size:20px;
-	color:grey;
+    margin-bottom:15px;
+    padding-left:0px;
+    font-size:20px;
+    color:grey;
 }
 section>h2{
-	margin-bottom:15px;
-	font-size:16px;
-	color:grey;
+    margin-bottom:15px;
+    font-size:16px;
+    color:grey;
 }
 section#kirjautuminen>h1{
-	font-size:20px;
+    font-size:20px;
 }
 table#logintable {
-	border: 0;
-	width:20%;
-	text-align: right;
+    border: 0;
+    width:20%;
+    text-align: right;
 
 }
 table#logintable > tbody > tr > td {
-	padding-left: 7px;
+    padding-left: 7px;
 }
 table#logintable > tbody > tr + tr + tr > td {
-	text-align: left;
+    text-align: left;
 }
 #kirjaudusubmit{
-	font-size:15px;
-	margin-top:10px;
-	padding:3px;
-	padding-left:10px;
-	padding-right:10px;
+    font-size:15px;
+    margin-top:10px;
+    padding:3px;
+    padding-left:10px;
+    padding-right:10px;
 }
 ul,menu,dir{
-	margin-top:0px;
-	padding-left:10px;
-	list-style:none;
+    margin-top:0px;
+    padding-left:10px;
+    list-style:none;
 }
 pre {
-	font-family:"Verdana","Arial",serif;	
-	margin:0;
-	text-align: center;
+    font-family:"Verdana","Arial",serif;	
+    margin:0;
+    text-align: center;
 }
 input,select{
-	margin-top:5px;
+    margin-top:5px;
 }
 form.ryhmaform{
-	height:100%;
-	float:left;
-	width:50%;
-	font-size:15px;
-	text-align:center;
-	display:inline;
+    height:100%;
+    float:left;
+    width:50%;
+    font-size:15px;
+    text-align:center;
+    display:inline;
 }
 form+form.ryhmaform{
-	float:right;
+    float:right;
 }
 .ryhmaselect{
-	margin-top:1px;
-	font-size:16px;
-	text-align:center;
-	width:45%;
+    margin-top:1px;
+    font-size:16px;
+    text-align:center;
+    width:45%;
 }
 .isosubmit{
-	margin-top:1px;
-	height:79px;
-	vertical-align:top;
-	padding: 0;
+    margin-top:1px;
+    height:79px;
+    vertical-align:top;
+    padding: 0;
 }
 
 nav > a{
-	margin-left: 15px;
-        margin-right: 15px;
-	text-decoration:none;
-	font-size:15px;
-	color:slategrey;
-	line-height:180%;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration:none;
+    font-size:15px;
+    color:slategrey;
+    line-height:180%;
 }
 
 nav > h2{
-	color:lightslategrey;
-	font-size:17px;
-	margin-bottom:6px;
+    color:lightslategrey;
+    font-size:17px;
+    margin-bottom:6px;
 }
 section{
-	padding-top:1em;
-	padding-bottom:2em;
+    padding-top:1em;
+    padding-bottom:2em;
 }
 #nykyne{
-	color:black;
+    color:black;
 }
 .virhe{
-	color:firebrick;
+    color:firebrick;
 }
 table{
-	width: 788px; /* Rumaa :(( */
-	border:thin solid black;
-	margin-left: auto;
-	margin-right: auto;
+    width: 788px; /* Rumaa :(( */
+    border:thin solid black;
+    margin-left: auto;
+    margin-right: auto;
 }
 .kategoria{
-	padding-top: 7px;
-	padding-bottom: 7px;
-	color: SlateGrey;
-	font-weight: bold;
-	font-size:16px;
-	text-align:center;
-	background: #eee;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: SlateGrey;
+    font-weight: bold;
+    font-size:16px;
+    text-align:center;
+    background: #eee;
 }
 thead {
-	border thin solid black;
-	padding: 0;
-	
+    border thin solid black;
+    padding: 0;
+
 }
 tr.otsikko + tr.otsikko > td {
-	border-top:thin solid #eee;
+    border-top:thin solid #eee;
 }
 a {
-	color: black;
-	text-decoration: none;
+    color: black;
+    text-decoration: none;
 }
 tr.otsikko > td {
-	text-decoration: none;
+    text-decoration: none;
 }
 tr.otsikko > td > a {
-	font-weight: normal;
-	padding-top: 2px;
-	padding-bottom: 2px;
-	padding-left: 7px;
-	padding-right: 15px;
-	font-size: 15px;
-	text-align: left;
+    font-weight: normal;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 7px;
+    padding-right: 15px;
+    font-size: 15px;
+    text-align: left;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 tr.otsikko > td + td {
-	width: 70px;
-	padding-left: 2px;
-	padding-right: 2px;
-	text-align: right;
-	font-size: 12px;
-	vertical-align: middle;
+    width: 70px;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: right;
+    font-size: 12px;
+    vertical-align: middle;
 }
 tr.otsikko > td + td + td {
-	width: 60px;
-	font-size: 10px;
-	padding-right: 7px;
+    width: 60px;
+    font-size: 10px;
+    padding-right: 7px;
 }
 thead > tr > th  {
-	padding-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 15px;
-	padding-right: 15px;
-	font-size: 10px;
-	text-align: right;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 10px;
+    text-align: right;
 }
 thead > tr > th + th {
-	padding-left: 2px;
-	padding-right: 2px;
-	text-align: right;
-	font-size: 10px;
-	vertical-align: middle;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: right;
+    font-size: 10px;
+    vertical-align: middle;
 }
 thead > tr > th + th + th {
-	padding-right: 6px;
+    padding-right: 6px;
 }
 .viestilotsikko {
-	text-align: left;
-	padding-left: 12px;
-	padding-right: 12px;
-	border-right: thin solid #eee;
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-right: thin solid #eee;
 
 }
 .viestilotsikko + td {
-	padding-left: 12px;
+    padding-left: 12px;
 }
 
 .viestilotsikko + td > input[type="submit"] {
-	width: 80px;
-	margin-bottom: 10px;
+    width: 80px;
+    margin-bottom: 10px;
 }
 
 #kirjoitaviestiotsikko {
-	width: 400px;
+    width: 400px;
 }
 textarea {
-	margin: 0;
-	margin-right: 10px;
+    margin: 0;
+    margin-right: 10px;
 }
 .lukematon > a {
-	color: #EE9A00;
+    color: #EE9A00;
 }
 .pikkuteksti {
-	font-size: 10px;
-	color: darkslategrey;
-	border-bottom: thin solid #eee;
-	padding-left: 5px;
+    font-size: 10px;
+    color: darkslategrey;
+    border-bottom: thin solid #eee;
+    padding-left: 5px;
 }
 .pikkuteksti + .pikkuteksti {
-	text-align: right;
-	padding-right: 5px;
+    text-align: right;
+    padding-right: 5px;
 }
 #isoteksti {
-	padding: 10px;
+    padding: 10px;
 }
 #kategoriavaihtoehdot {
-	width: 405px;
+    width: 405px;
 }
 #eiviesteja {
-	padding: 1.5em;
-	font-size: 20px;
-	color: firebrick;
-	text-align: center;
+    padding: 1.5em;
+    font-size: 20px;
+    color: firebrick;
+    text-align: center;
 }
 .viesti > .vastauslink {
-	margin-bottom: 10px;
-	padding-bottom: 0;
-	margin-left: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+    margin-left: 10px;
 }
 .vastauslink {
-	padding-right: 5px;
-	font-size: 12px;
-	float: right;
+    padding-right: 5px;
+    font-size: 12px;
+    float: right;
 }
 #viestijavastauksetlaatikko {
-	width: 787px; /* Rumaa :(( */
-	display: table;
-	border: thin solid black;
-	border-spacing: 2px;
+    width: 787px; /* Rumaa :(( */
+    display: table;
+    border: thin solid black;
+    border-spacing: 2px;
 }
 #viestijavastauksetlaatikko > p.kategoria {
-	margin: 0;
+    margin: 0;
 }
 #viestijavastauksetlaatikko > p {
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 #viestijavastauksetlaatikko > div {
-	margin-right: 10px;
+    margin-right: 10px;
 }

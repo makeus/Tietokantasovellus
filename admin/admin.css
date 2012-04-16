@@ -1,127 +1,127 @@
 
 body,html{
-	height:100%;
-	width:100%;
-	margin:0;
-	padding:0;
-	font-family:"Verdana","Arial",serif;
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+    font-family:"Verdana","Arial",serif;
 }
 div{
-	display:-moz-box;
-	display:-webkit-box;
-	display:box;
-	-moz-box-orient:horizontal;
-	-webkit-box-orient:horizontal;
-	box-orient:horizontal;
+    display:-moz-box;
+    display:-webkit-box;
+    display:box;
+    -moz-box-orient:horizontal;
+    -webkit-box-orient:horizontal;
+    box-orient:horizontal;
 }
 h1{
-	margin-top:0;
-	padding-top:15px;
-	margin-bottom:0;
-	padding-left:15px;
-	color:lightgrey;
-	font-size:50px;
+    margin-top:0;
+    padding-top:15px;
+    margin-bottom:0;
+    padding-left:15px;
+    color:lightgrey;
+    font-size:50px;
 
 }
 section>h1{
-	margin-bottom:15px;
-	padding-left:0px;
-	font-size:20px;
-	color:grey;
+    margin-bottom:15px;
+    padding-left:0px;
+    font-size:20px;
+    color:grey;
 }
 section>h2{
-	margin-bottom:15px;
-	font-size:16px;
-	color:grey;
+    margin-bottom:15px;
+    font-size:16px;
+    color:grey;
 }
 section>h2.ryhmah2{
-	font-size: 14px;
-	text-align:center;
-	width:50%;
-	display:inline;
-	float:left;
+    font-size: 14px;
+    text-align:center;
+    width:50%;
+    display:inline;
+    float:left;
 }
 section>h2+h2.ryhmah2{
-	float:right;
+    float:right;
 }
 nav{
-	padding:20px;
-	padding-top:40px;
-	padding-right:25px;
-	float:center;
+    padding:20px;
+    padding-top:40px;
+    padding-right:25px;
+    float:center;
 }
 ul,menu,dir{
-	margin-top:0px;
-	padding-left:10px;
-	list-style:none;
+    margin-top:0px;
+    padding-left:10px;
+    list-style:none;
 }
 pre{
-	margin:0;
-	font-family:"Arial",serif;
+    margin:0;
+    font-family:"Arial",serif;
 }
 input,select{
-	margin-top:5px;
+    margin-top:5px;
 }
 form.ryhmaform{
-	height:100%;
-	float:left;
-	width:50%;
-	font-size:15px;
-	text-align:center;
-	display:inline;
+    height:100%;
+    float:left;
+    width:50%;
+    font-size:15px;
+    text-align:center;
+    display:inline;
 }
 form+form.ryhmaform{
-	float:right;
+    float:right;
 }
 .ryhmaselect{
-	margin-top:1px;
-	font-size:16px;
-	text-align:center;
-	width:45%;
+    margin-top:1px;
+    font-size:16px;
+    text-align:center;
+    width:45%;
 }
 .isosubmit{
-	margin-top:1px;
-	height:79px;
-	margin-left:1em;
-	margin-right:1em;
-	vertical-align:top;
+    margin-top:1px;
+    height:79px;
+    margin-left:1em;
+    margin-right:1em;
+    vertical-align:top;
 }
 
 li>a{
-	text-decoration:none;
-	font-size:15px;
-	color:slategrey;
-	line-height:180%;
+    text-decoration:none;
+    font-size:15px;
+    color:slategrey;
+    line-height:180%;
 }
 nav>h2{
-	color:lightslategrey;
-	font-size:17px;
-	margin-bottom:6px;
+    color:lightslategrey;
+    font-size:17px;
+    margin-bottom:6px;
 }
 section{
-	-moz-box-flex:1;
-	-webkit-box-flex:1;
-	box-flex:1;
-	padding:2em;
+    -moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+    padding:2em;
 }
 #nykyne{
-	color:black;
-	}
+    color:black;
+}
 .virhe{
-	color:firebrick;
+    color:firebrick;
 }
 .ok {
-	color: DarkSeaGreen;
+    color: DarkSeaGreen;
 }
 table{
-	border:thin solid black;
-	width:100%;
+    border:thin solid black;
+    width:100%;
 }
 td{
-	border-top: thin solid #ddd;
-	text-align:center;
-	padding: 2px;
+    border-top: thin solid #ddd;
+    text-align:center;
+    padding: 2px;
 }
 #kategoriannimi {
-	width: 300px;
+    width: 300px;
 }
