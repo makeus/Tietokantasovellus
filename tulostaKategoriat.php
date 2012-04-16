@@ -1,7 +1,8 @@
 <?php
 
 include("tarkista.php");
-include("logiikka/kategoriafunktiot.php");
+include("logiikat/kategoriafunktiot.php");
+include("logiikat/viestifunktiot.php");
 
 
 if (count($nakyvyys) > 0) {
@@ -58,49 +59,5 @@ foreach ($nakyvyys as &$kid) {
     }
 }
 echo "</table>\n";
-
-function etsiViimeisinViesti($id, $uusin) {
-    include("yhteys.php");
-    $palautus = $uusin;
-    $vastaukset = pg_query($yhteys, "SELECT id, aika FROM Viesti where vastaus = ('$id')");
-    while ($vastaus = pg_fetch_array($vastaukset)) {
-        $palautus = max($palautus, etsiViimeisinViesti($vastaus[0], $vastaus[1]));
-    }
-    return $palautus;
-}
-
-function etsiOnkoLukenut($kayttajanimi, $id) {
-    include("yhteys.php");
-    $palautus = TRUE;
-    $vastaukset = pg_query($yhteys, "SELECT id, viestinlukeneet FROM Viesti where vastaus = ('$id')");
-
-    while ($vastaus = pg_fetch_array($vastaukset)) {
-        if (!in_array($kayttajanimi, pg_array_parse($vastaus[1], FALSE))) {
-            $palautus = FALSE;
-            break;
-        } else {
-            if (!etsiOnkoLukenut($kayttajanimi, $vastaus[0])) {
-                $palautus = FALSE;
-                break;
-            }
-        }
-    }
-    return $palautus;
-}
-
-function pg_array_parse($array, $asText = true) {
-    $s = $array;
-    if ($asText) {
-        $s = str_replace("{", "array('", $s);
-        $s = str_replace("}", "')", $s);
-        $s = str_replace(",", "','", $s);
-    } else {
-        $s = str_replace("{", "array(", $s);
-        $s = str_replace("}", ")", $s);
-    }
-    $s = "\$retval = $s;";
-    eval($s);
-    return $retval;
-}
 
 ?>

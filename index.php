@@ -59,7 +59,7 @@ session_start();
                     ?>>Kirjoita viesti</a>
                        <?php
                        if ($_SESSION["admin"] == 't') {
-                           echo "<a href=\"admin/admin.php?p=1\">Ylläpito</a>\n";
+                           echo "<a href=\"yllapito/admin.php?p=1\">Ylläpito</a>\n";
                        }
                        ?>
                     <a href="logout.php"> Kirjaudu ulos </a>
