@@ -13,7 +13,6 @@ function etsiViimeisinViesti($id, $uusin) {
 function etsiOnkoLukenut($kayttajanimi, $id) {
     $palautus = TRUE;
     $vastaukset = select("id, viestinlukeneet", "Viesti", "vastaus = ('$id'");
-    $vastaukset = pg_query($yhteys, "SELECT id, viestinlukeneet FROM Viesti where vastaus = ('$id')");
 
     foreach ($vastaukset as $vastaus) {
         if (!in_array($kayttajanimi, pg_array_parse($vastaus["viestinlukeneet"], FALSE))) {
