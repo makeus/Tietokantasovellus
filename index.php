@@ -4,28 +4,17 @@ session_start();
 
 <!DOCTYPE html>
 <html>
-  <head>
-    
-    <title>Työryhmätiedoitus</title>
-    <LINK rel="stylesheet" type="text/css" href="tyylit.css"/>
-    <script type="text/javascript">
-      function varmista(url, viesti){
-        if(confirm(viesti)) {
-          window.location = url;
-        }
-      }
-    </script>
-  </head>
-  <body>
-   <div class="sivupalkki"></div>
-   <div id="keskipalkki">
-     <h1>Työryhmätiedoitus</h1>
-     <?php
-       if(!session_is_registered("käyttäjänimi")){
-     ?>
+    <head>
 
         <title>Työryhmätiedoitus</title>
         <LINK rel="stylesheet" type="text/css" href="tyylit.css"/>
+        <script type="text/javascript">
+            function varmista(url, viesti){
+                if(confirm(viesti)) {
+                    window.location = url;
+                }
+            }
+        </script>
     </head>
     <body>
         <div class="sivupalkki"></div>
@@ -37,7 +26,7 @@ session_start();
 
                 <section id="kirjautuminen">
                     <h1>Kirjaudu sisään!</h1>
-                    <form action="login.php" method="post">
+                    <form action="toiminnot/login.php" method="post">
                         <table id="logintable">
                             <tr>
                                 <td>Käyttäjänimi</td>
@@ -63,26 +52,22 @@ session_start();
             <?php } else {
                 ?>
                 <nav>
-                    <a href="/" 
-                    <?php
-                    if ((!isset($_GET["p"])) or ($_GET["p"] == 1)) {
-                        echo "id=\"nykyne\"";
-                    }
-                    ?>>Etusivu</a>
-                    <a href="/?p=2" 
-                    <?php
-                    if(isset($_GET["p"])) {
-                        if ($_GET["p"] == 2) {
-                            echo "id=\"nykyne\"";
-                        }
-                    }
-                    ?>>Kirjoita viesti</a>
+                    <a href="/" <?php
+            if ((!isset($_GET["p"])) or ($_GET["p"] == 1)) {
+                echo "id=\"nykyne\"";
+            }
+                ?>>Etusivu</a>
+                    <a href="/?p=2" <?php
+                   if ((isset($_GET["p"])) or ($_GET["p"] == 2)) {
+                       echo "id=\"nykyne\"";
+                   }
+                ?>>Kirjoita viesti</a>
                        <?php
                        if ($_SESSION["admin"] == 't') {
                            echo "<a href=\"admin/admin.php?p=1\">Ylläpito</a>\n";
                        }
                        ?>
-                    <a href="logout.php"> Kirjaudu ulos </a>
+                    <a href="toiminnot/logout.php"> Kirjaudu ulos </a>
                 </nav>
                 <section>
                     <div id="välipalkki">

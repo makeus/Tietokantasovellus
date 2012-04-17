@@ -66,7 +66,7 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                             ?>>Luo kategoria</a></li>
                     </ul><br/>
                     <ul>
-                        <li><a href="../logout.php">Logout</a></li>
+                        <li><a href="../toiminnot/logout.php">Logout</a></li>
                         <li><a href="../">Etusivu</a></li>
                     </ul>
                 </nav>      

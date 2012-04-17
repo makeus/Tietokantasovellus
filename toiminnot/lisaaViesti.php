@@ -1,31 +1,32 @@
 <?php
 
 session_start();
-include("yhteys.php");
-$otsikko = pg_escape_string($yhteys, htmlspecialchars($_POST["otsikko"]));
-$teksti = pg_escape_string($yhteys, htmlspecialchars($_POST["teksti"]));
-$kayttajanimi = $_SESSION["käyttäjänimi"];
+if (session_is_registered("käyttäjänimi")) {
+    include_once("../tietokanta/kyselyt.php");
 
-$kategoria = $_POST["kategoria"];
-settype($kategoria, int);
+    $otsikko = escape($_POST["otsikko"]);
+    $teksti = escape($_POST["teksti"]);
+    $kayttajanimi = $_SESSION["käyttäjänimi"];
 
-// Jos on vastaus
-if (isset($_POST["vastaus"])) {
+    $kategoria = $_POST["kategoria"];
+    settype($kategoria, int);
 
-    $vastaus = $_POST["vastaus"];
-    settype($vastaus, int);
+    // Jos on vastaus
+    if (isset($_POST["vastaus"])) {
 
-    $kysely = pg_prepare($yhteys, "lisays", 'INSERT INTO Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja, Vastaus) 
-                                                  VALUES (NOW(), $1, $2, $3, Array[$4], $5, $6)');
-    $kysely = pg_execute($yhteys, "lisays", array($otsikko, $teksti, $kategoria, $kayttajanimi, $kayttajanimi, $vastaus));
-    header("Location:/");
-}
+        $vastaus = $_POST["vastaus"];
+        settype($vastaus, int);
 
-// Jos ei :D!
-else {
-    $kysely = pg_prepare($yhteys, "lisays", 'INSERT INTO Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja) 
-                                                  VALUES (NOW(), $1, $2, $3, Array[$4], $5)');
-    $kysely = pg_execute($yhteys, "lisays", array($otsikko, $teksti, $kategoria, $kayttajanimi, $kayttajanimi));
-    header("Location:/");
+        insert("Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja, Vastaus)", "NOW(), '$otsikko', '$teksti', '$kategoria', Array['$kayttajanimi'], '$kayttajanimi', '$vastaus'");
+        header("Location:/");
+    }
+
+    // Jos ei :D!
+    else {
+        insert("Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja)", "NOW(), '$otsikko', '$teksti', '$kategoria', Array['$kayttajanimi'], '$kayttajanimi'");
+        header("Location:/");
+    }
+} else {
+    header("HTTP/1.1 403 Forbidden");
 }
 ?>

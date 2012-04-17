@@ -1,11 +1,19 @@
 <?php
-  session_start();
-  include("yhteys.php");
-  $viesti = pg_query_params($yhteys,'SELECT Kirjoittaja FROM Viesti WHERE Id= $1',array($_GET["id"]));
-  $kirjoittaja = pg_fetch_array($viesti);
-  if($_SESSION["admin"] == 't' || $kirjoittaja[0]==$_SESSION["käyttäjänimi"]){
-    $kysely = pg_prepare($yhteys, "lahetys", 'DELETE FROM Viesti WHERE id=($1)');
-    $kysely = pg_execute($yhteys, "lahetys", array($_GET["id"]));
-  }
-  header("Location: index.php");
+
+if (session_is_registered("käyttäjänimi")) {
+    session_start();
+    include_once("../logiikka/viestifunktiot.php");
+    include_once("../tietokanta/kyselyt.php");
+
+    $viesti = getViesti($_GET["id"]);
+    $kirjoittaja = $viesti["kirjoittaja"];
+    $id = $viesti["id"];
+
+    if ($_SESSION["admin"] == 't' || $kirjoittaja == $_SESSION["käyttäjänimi"]) {
+        delete("Viesti", "id=('$id')");
+    }
+    header("Location: ../index.php");
+} else {
+    header("HTTP/1.1 403 Forbidden");
+}
 ?>

@@ -1,36 +1,37 @@
 <?php
-/*
- * Hakee kategorian nimen id:n perusteella
- */
-function getKategoriannimi($id) {
-    include_once 'kyselyt.php';
-    
-    $kategoriat = select("kategoriannimi", "kategoria", "id=('$id')");
-    $kategoriannimi = $kategoriat[0];
-    return $kategoriannimi["kategoriannimi"];
-}
 
-/*
- * Hakee parametrinä annetulle käyttäjälle sallitut kategoriat.
- * Palauttaa taulukollisen kategoriaid:tä.
- */
-function getNakyvyys($kayttajanimi) {
-    include_once 'kyselyt.php';
-    include_once 'viestifunktiot.php';
-    
-    $nakyvyys = array();
-    $kategoriat = selectorder("Näkyvyys, id", "Kategoria", "id");
-    foreach ($kategoriat as &$rivi) {
-        $katnakyvyys = $rivi["näkyvyys"];
-        $ryhmannimi = getRyhmannimi($katnakyvyys);
-        $jasenet = select("RyhmänJäsen", "RyhmäNimi", "RyhmänNimi=('$ryhmannimi') AND RyhmänJäsen=('$kayttajanimi')");
-        $jasen = $jasenet[0];
+if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
+    header("HTTP/1.1 403 Forbidden");
+} else {
 
-        if ($jasen["ryhmänjäsen"] == $kayttajanimi) {
-            array_push($nakyvyys, $rivi["id"]);
-        }
+    function getRyhmat() {
+        include_once '../tietokanta/kyselyt.php';
+        $return = selectorder("*", "Ryhmä", "id");
+        return $return;
     }
-    return $nakyvyys;
-}
 
+    function getRyhmanJasenet($ryhmannimi) {
+        include_once '../tietokanta/kyselyt.php';
+        $return = select("Ryhmänjäsen", "RyhmäNimi", "ryhmännimi = ('$ryhmannimi')");
+        return $return;
+    }
+
+    function getRyhmannimi($id) {
+        include_once '../tietokanta/kyselyt.php';
+        $ryhmat = select("RyhmänNimi", "Ryhmä", "id=('$id')");
+        $ryhmannimi = $ryhmat[0];
+        return $ryhmannimi["ryhmännimi"];
+    }
+
+    function getKayttajat($ehto) {
+        $return = select("*", "Käyttäjä", $ehto . "ORDER BY käyttäjänimi");
+        return $return;
+    }
+
+    function getKayttajatAll() {
+        $return = selectorder("*", "Käyttäjä", "käyttäjänimi");
+        return $return;
+    }
+
+}
 ?>

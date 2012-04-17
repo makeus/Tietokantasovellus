@@ -1,7 +1,18 @@
 <?php
-  session_start();
-  include("../yhteys.php");
-  $kysely = pg_prepare($yhteys, "lisays", 'INSERT INTO Kategoria (Kategoriannimi, Näkyvyys) VALUES ($1, $2)');
-  $kysely = pg_execute($yhteys, "lisays", array(htmlspecialchars($_POST["nimi"]), $_POST["nakyvyys"]));
-  header("Location: admin.php?p=5");
+
+session_start();
+if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
+    header("HTTP/1.1 403 Forbidden");
+} else {
+    include_once ("../../tietokanta/kyselyt.php");
+    
+    $nimi = $_POST["nimi"];
+    $nimi = escape($nimi);
+    $nakyvyys = $_POST["nakyvyys"];
+    settype($nakyvyys, 'int');
+    
+    insert("Kategoria(KategorianNimi, Näkyvyys)", "'$nimi', '$nakyvyys'");
+
+    header("Location: ../admin.php?p=5");
+}
 ?>

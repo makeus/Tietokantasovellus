@@ -1,16 +1,24 @@
 <?php
-  session_start();
-  include("../yhteys.php");
-  include("tarkistukset.php");
-  $nimi = $_POST['nimi'];
-  if(tarkistaRyhmaNimi($nimi)) {
-    header("Location: admin.php?p=2&e=$nimi");
-  } else {
-    $kysely = pg_prepare($yhteys, "lisays", 'INSERT INTO Ryhmä (Ryhmännimi) VALUES ($1)');
-    $kysely = pg_execute($yhteys, "lisays", array(htmlspecialchars($_POST["nimi"])));
-    $ryhmat = pg_query($yhteys, "SELECT id FROM Ryhmä where RyhmänNimi='$nimi'");
-    $rivi = pg_fetch_array($ryhmat);
-    $id = $rivi[0];
-    header("Location: admin.php?p=1&m=$id");
-  }
+
+session_start();
+if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
+    header("HTTP/1.1 403 Forbidden");
+} else {
+    include_once ("../../tietokanta/kyselyt.php");
+    include_once ("../logiikka/tarkistukset.php");
+
+    $nimi = $_POST['nimi'];
+    $nimi = escape($nimi);
+    if (tarkistaRyhmaNimi($nimi)) {
+        header("Location: ../admin.php?p=2&e=$nimi");
+    } else {
+
+        insert("Ryhmä (Ryhmännimi)", "('$nimi')");
+        $ryhmat = select("id", "Ryhmä", "RyhmänNimi=('$ryhmannimi')");
+        $ryhmanid = $ryhmat[0];
+        $id = $ryhmanid["id"];
+
+        header("Location: ../admin.php?p=1&m=$id");
+    }
+}
 ?>

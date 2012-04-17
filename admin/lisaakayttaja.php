@@ -7,6 +7,6 @@ Ylläpitäjä?	<select name="admin">
   <option value="f" selected>Ei</option>
 </select>
 <input type="submit" />
-</pre>
+    </pre>
 </form>
 

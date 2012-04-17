@@ -1,85 +1,104 @@
 <?php
-  function tulostaKategoriat(){
-   session_start(); 
-   
-   if($_SESSION["admin"] == 't'){
 
-    include("../yhteys.php");
-    $kategoriat = pg_query($yhteys, 'SELECT * FROM Kategoria order by id');
+if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
+    header("HTTP/1.1 403 Forbidden");
+} else {
 
-    // Taulukon otsikko
-    echo "<table>
+    function tulostaKategoriat() {
+
+
+        include_once 'logiikka/kategoriafunktiot.php';
+        include_once 'logiikka/ryhmafunktiot.php';
+
+        $kategoriat = getKategoriat();
+
+        // Taulukon otsikko
+        echo "<table>
            <tr>
              <th>ID</th>
              <th>Kategorian nimi</th>
              <th>Näkyvyys</th>
              <th>Muokkaa</th>
              <th>Poista</th>
-           </tr>";    
-
-    while ($rivi = pg_fetch_array($kategoriat)) {
-    $nakyvyys = $rivi["näkyvyys"];
-    $ryhmat = pg_query($yhteys, "SELECT ryhmännimi FROM Ryhmä where id=('$nakyvyys')");
-    $ryhmarivi = pg_fetch_row($ryhmat);    
-    $ryhmannimi = $ryhmarivi[0];
-
-     echo "<tr>
-             <td>" . $rivi["id"] . "</td>
-             <td>" . $rivi["kategoriannimi"] . "</td>
-             <td>" . $ryhmannimi . "</td>
-             <td> <a href=\"admin.php?p=5&m=" . $rivi["id"] ."\">x</a></td>";
-     echo "</td>
-             <td> <a href=# onclick='varmista(\"poistaKategoria.php?id=" . $rivi["id"] . "\", \"Oletko varma, että haluat poistaa kategorian? Poistaminen poistaa myös kategoriaan kuuluvat viestit\")'>x</a></td>
            </tr>";
 
-    }
-    echo "</table><br>";
-  }
-  else { 
-    header('HTTP/1.1 403 Forbidden');
-  }
-}
+        if (!empty($kategoriat)) {
+            foreach ($kategoriat as $rivi) {
+                $nakyvyys = $rivi["näkyvyys"];
+                $ryhmannimi = getRyhmannimi($nakyvyys);
 
-function muokkaaKategoria($id) {
-    include("../yhteys.php");
-    $kategoria = pg_query($yhteys, "SELECT * FROM Kategoria where id=('$id')");
-    $rivi = pg_fetch_row($kategoria);    
-    $kategoriannimi = $rivi[1];
-    if(!isset($kategoriannimi)){
-      header("Location: admin.php?p=5");
+                echo "<tr>
+                        <td>" . $rivi["id"] . "</td>
+                        <td>" . $rivi["kategoriannimi"] . "</td>
+                        <td>" . $ryhmannimi . "</td>
+                        <td> <a href=\"admin.php?p=5&m=" . $rivi["id"] . "\">x</a></td>";
+                echo "</td>
+                        <td> <a href=# onclick='varmista(\"toiminnot/poistaKategoria.php?id=" . $rivi["id"] . "\", \"Oletko varma, että haluat poistaa kategorian? Poistaminen poistaa myös kategoriaan kuuluvat viestit\")'>x</a></td>
+                     </tr>";
+            }
+        }
+        echo "</table><br>";
     }
-    $ryhmat = pg_query($yhteys, "SELECT * FROM Ryhmä");
-    
-    echo "<h2>Muokkaa kategoriaa " . $kategoriannimi . "</h2>\n";
-    echo "<form method=\"post\" action=\"muokkaaKategoria.php\">\n";
-    echo "<input type=\"hidden\" name=\"id\" maxlenght=\"100\" value=\"" . $rivi[0] . "\"/>";
-    echo "<pre>Kategorian nimi:	<input type=\"text\" name=\"nimi\" value=\"" . $kategoriannimi . "\" required />\n";
-    echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
-    while($ryhmarivi = pg_fetch_array($ryhmat)){      
-      echo "<option value=\"" . $ryhmarivi[0] . "\"";
-      if ($ryhmarivi[0] == $rivi[2]) {
-        echo " selected";
-      }
-      echo " />" . $ryhmarivi[1] . "</option>\n";
-    }
-    echo "</select>\n";
-    echo "<input type=\"submit\" value=\"Vahvista\" />\n";
-    echo "</pre>\n</form>";
 
-}  
+    function muokkaaKategoria($id) {
+        include_once 'logiikka/kategoriafunktiot.php';
+        include_once 'logiikka/ryhmafunktiot.php';
 
-function uusiKategoria() {
-  include("../yhteys.php");
-  $ryhmat = pg_query($yhteys, "SELECT * FROM Ryhmä");
-  echo "<pre><form method=\"post\" action=\"uusiKategoria.php\">"; 
-  echo "Kategorian nimi:	<input id=\"kategoriannimi\" type=\"text\" autofocus name=\"nimi\" placeholder=\"Kategorian nimi\" required maxlength=\"50\">\n";
-  echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
-    while($ryhmarivi = pg_fetch_array($ryhmat)){      
-      echo "<option value=\"" . $ryhmarivi[0] . "\"";
-      echo " />" . $ryhmarivi[1] . "</option>\n";
+
+        $kategoria = getKategoria($id);
+
+        if (empty($kategoria)) {
+            header("Location: admin.php?p=5");
+        } else {
+
+
+            $kategoriannimi = $kategoria["kategoriannimi"];
+            $ryhmat = getRyhmat();
+
+            echo "<h2>Muokkaa kategoriaa " . $kategoriannimi . "</h2>\n";
+            echo "<form method=\"post\" action=\"toiminnot/muokkaaKategoria.php\">\n";
+            echo "<input type=\"hidden\" name=\"id\" maxlenght=\"100\" value=\"" . $kategoria["id"] . "\"/>";
+            echo "<pre>Kategorian nimi:	<input type=\"text\" name=\"nimi\" value=\"" . $kategoriannimi . "\" required />\n";
+            echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
+
+            foreach ($ryhmat as $ryhmarivi) {
+                echo "<option value=\"" . $ryhmarivi["id"] . "\"";
+
+                if ($ryhmarivi["id"] == $kategoria["näkyvyys"]) {
+                    echo " selected";
+                }
+                echo " />" . $ryhmarivi["ryhmännimi"] . "</option>\n";
+            }
+
+            echo "</select>\n";
+            echo "<input type=\"submit\" value=\"Vahvista\" />\n";
+            echo "</pre>\n</form>";
+        }
     }
-    echo "</select>\n";
-  echo "<input type=\"submit\">";
-  echo "</form></pre>";
+
+    function uusiKategoria() {
+
+        include_once 'logiikka/ryhmafunktiot.php';
+
+        $ryhmat = getRyhmat();
+
+        if (empty($ryhmat)) {
+            echo "<p class=\"virhe\"> EI RYHMIÄ!</p>";
+        } else {
+
+            echo "<pre><form method=\"post\" action=\"toiminnot/uusiKategoria.php\">";
+            echo "Kategorian nimi:	<input id=\"kategoriannimi\" type=\"text\" autofocus name=\"nimi\" placeholder=\"Kategorian nimi\" required maxlength=\"50\">\n";
+            echo "Näkyvyys:		<select name=\"nakyvyys\">\n";
+
+            foreach ($ryhmat as $ryhmarivi) {
+                echo "<option value=\"" . $ryhmarivi["id"] . "\"";
+                echo " />" . $ryhmarivi["ryhmännimi"] . "</option>\n";
+            }
+            echo "</select>\n";
+            echo "<input type=\"submit\">";
+            echo "</form></pre>";
+        }
+    }
+
 }
 ?>

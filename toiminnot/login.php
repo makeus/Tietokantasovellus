@@ -1,15 +1,16 @@
 <?php
 
 session_start();
-include ("yhteys.php");
-$kayttajanimi = pg_escape_string($yhteys, htmlspecialchars($_POST["käyttäjänimi"]));
-$salasana = pg_escape_string($yhteys, htmlspecialchars($_POST["salasana"]));
+include_once '../tietokanta/kyselyt.php';
+include_once '../logiikka/kayttajafunktiot.php';
+$kayttajanimi = escape(htmlspecialchars($_POST["käyttäjänimi"]));
+$salasana = escape($_POST["salasana"]);
 
-$kysely = pg_query($yhteys, "SELECT käyttäjänimi, ylläpitäjä FROM Käyttäjä WHERE Käyttäjänimi='" . $kayttajanimi . "' and Salasana='" . $salasana . "'");
 
-if (($tulos = pg_fetch_row($kysely)) != NULL) {
-    $_SESSION["käyttäjänimi"] = $tulos[0];
-    $_SESSION["admin"] = $tulos[1];
+$kysely = getLogindata($kayttajanimi, $salasana);
+ if (!empty($kysely)) {
+    $_SESSION["käyttäjänimi"] = $kysely["käyttäjänimi"];
+    $_SESSION["admin"] = $kysely["ylläpitäjä"];
     header("Location: /");
 } else {
     header("Location: /?e=1");

@@ -1,36 +1,22 @@
 <?php
-/*
- * Hakee kategorian nimen id:n perusteella
- */
-function getKategoriannimi($id) {
-    include_once 'kyselyt.php';
-    
-    $kategoriat = select("kategoriannimi", "kategoria", "id=('$id')");
-    $kategoriannimi = $kategoriat[0];
-    return $kategoriannimi["kategoriannimi"];
-}
 
-/*
- * Hakee parametrinä annetulle käyttäjälle sallitut kategoriat.
- * Palauttaa taulukollisen kategoriaid:tä.
- */
-function getNakyvyys($kayttajanimi) {
-    include_once 'kyselyt.php';
-    include_once 'viestifunktiot.php';
-    
-    $nakyvyys = array();
-    $kategoriat = selectorder("Näkyvyys, id", "Kategoria", "id");
-    foreach ($kategoriat as &$rivi) {
-        $katnakyvyys = $rivi["näkyvyys"];
-        $ryhmannimi = getRyhmannimi($katnakyvyys);
-        $jasenet = select("RyhmänJäsen", "RyhmäNimi", "RyhmänNimi=('$ryhmannimi') AND RyhmänJäsen=('$kayttajanimi')");
-        $jasen = $jasenet[0];
+if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
+    header("HTTP/1.1 403 Forbidden");
+} else {
 
-        if ($jasen["ryhmänjäsen"] == $kayttajanimi) {
-            array_push($nakyvyys, $rivi["id"]);
-        }
+    function getKategoriat() {
+        include_once '../tietokanta/kyselyt.php';
+        $kategoriat = selectorder("*", "Kategoria", "id");
+        return $kategoriat;
     }
-    return $nakyvyys;
-}
+    
+    function getKategoria($id) {
+        include_once '../tietokanta/kyselyt.php';
+        $kategoriat = select("*", "Kategoria", "id=('$id')");
+        return $kategoriat[0];
+    }
+    
+    
 
+}
 ?>
