@@ -313,6 +313,11 @@ textarea {
 	font-size: 12px;
 	float: right;
 }
+.poistolink {
+	padding-right: 5px;
+	font-size: 12px;
+	float: right;
+}
 #viestijavastauksetlaatikko {
     width: 787px; /* Rumaa :(( */
     display: table;
