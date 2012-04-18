@@ -51,6 +51,9 @@ session_start();
 
             <?php } else {
                 ?>
+            
+            <!-- Tulostetaan nav ja asetetaan nykyne arvo nykyiseen sivuun -->
+            
                 <nav>
                     <a href="/" <?php
             if ((!isset($_GET["p"])) or ($_GET["p"] == 1)) {
@@ -58,7 +61,7 @@ session_start();
             }
                 ?>>Etusivu</a>
                     <a href="/?p=2" <?php
-                   if ((isset($_GET["p"])) or ($_GET["p"] == 2)) {
+                   if ((isset($_GET["p"])) and ($_GET["p"] == 2)) {
                        echo "id=\"nykyne\"";
                    }
                 ?>>Kirjoita viesti</a>
@@ -70,11 +73,17 @@ session_start();
                     <a href="toiminnot/logout.php"> Kirjaudu ulos </a>
                 </nav>
                 <section>
+                    
+                    <!-- Kirjautumistieto ja aika -->
                     <div id="välipalkki">
                         <p class="väliteksti">Kirjautuneena käyttäjänä <strong><?php echo $_SESSION["käyttäjänimi"]; ?></strong></p>
                         <p class="väliteksti"><?php echo date("d.m.y H:i:s", $_SERVER['REQUEST_TIME']); ?></p>
                     </div>
                     <?php
+                    
+                    /*
+                     * Näytettävä sivu
+                     */
                     if ((!isset($_GET["p"])) or ($_GET["p"] == 1)) {
                         include("tulostaKategoriat.php");
                     } elseif ($_GET["p"] == 2) {

@@ -23,11 +23,13 @@ if (!session_is_registered("käyttäjänimi")) {
 
     function getNakyvyys($kayttajanimi) {
         include_once 'tietokanta/kyselyt.php';
-        include_once 'viestifunktiot.php';
+        include_once 'logiikka/viestifunktiot.php';
 
         $nakyvyys = array();
+        
         $kategoriat = selectorder("Näkyvyys, id", "Kategoria", "id");
-        foreach ($kategoriat as &$rivi) {
+
+        foreach ($kategoriat as $rivi) {
             $katnakyvyys = $rivi["näkyvyys"];
             $ryhmannimi = getRyhmannimi($katnakyvyys);
             $jasenet = select("RyhmänJäsen", "RyhmäNimi", "RyhmänNimi=('$ryhmannimi') AND RyhmänJäsen=('$kayttajanimi')");

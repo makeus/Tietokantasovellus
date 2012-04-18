@@ -1,15 +1,17 @@
 <?php
 
+session_start();
 if (session_is_registered("käyttäjänimi")) {
-    session_start();
+
     include_once("../logiikka/viestifunktiot.php");
     include_once("../tietokanta/kyselyt.php");
 
     $viesti = getViesti($_GET["id"]);
     $kirjoittaja = $viesti["kirjoittaja"];
     $id = $viesti["id"];
+    settype($id, 'int');
 
-    if ($_SESSION["admin"] == 't' || $kirjoittaja == $_SESSION["käyttäjänimi"]) {
+    if ((($_SESSION["admin"] == 't') || ($kirjoittaja == $_SESSION["käyttäjänimi"])) && (isset($id)) && ($id != "")) {
         delete("Viesti", "id=('$id')");
     }
     header("Location: ../index.php");

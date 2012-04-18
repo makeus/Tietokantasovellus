@@ -13,8 +13,8 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         header("Location: ../admin.php?p=2&e=$nimi");
     } else {
 
-        insert("Ryhmä (Ryhmännimi)", "('$nimi')");
-        $ryhmat = select("id", "Ryhmä", "RyhmänNimi=('$ryhmannimi')");
+        insert("Ryhmä (Ryhmännimi)", "'$nimi'");
+        $ryhmat = select("id", "Ryhmä", "RyhmänNimi=('$nimi')");
         $ryhmanid = $ryhmat[0];
         $id = $ryhmanid["id"];
 

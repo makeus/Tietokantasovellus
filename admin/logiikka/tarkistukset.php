@@ -5,9 +5,7 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
 } else {
 
     function tarkistaRyhmaNimi($nimi) {
-        include_once ("../../tietokanta/kyselyt.php");
-
-
+        
         $ryhmat = selectorder("Ryhmännimi", "Ryhmä", "Ryhmännimi");
         $loytyy = FALSE;
         if (!empty($ryhmat)) {
@@ -22,7 +20,6 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     }
 
     function tarkistaKategorianNimi($nimi) {
-        include_once ("../../tietokanta/kyselyt.php");
 
         $kategoriat = selectorder("KategorianNimi", "Kategoria", "KategorianNimi");
         $loytyy = FALSE;
@@ -37,13 +34,12 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     }
 
     function tarkistaKayttaja($nimi) {
-        include_once ("../../tietokanta/kyselyt.php");
 
-        $kayttajat = seletorder("Käyttäjänimi", "Käyttäjä", "Käyttäjänimi");
+        $kayttajat = selectorder("Käyttäjänimi", "Käyttäjä", "Käyttäjänimi");
         $loytyy = FALSE;
         if (!empty($kayttajat)) {
             foreach ($kayttajat as $rivi) {
-                if ($rivi["Käyttäjänimi"] == $nimi) {
+                if ($rivi["käyttäjänimi"] == $nimi) {
                     $loytyy = TRUE;
                 }
             }

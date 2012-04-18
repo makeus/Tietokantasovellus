@@ -6,8 +6,8 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
 } else {
     include_once ("../../tietokanta/kyselyt.php");
 
-    $ryhmannimi = $_POST["ryhmannimi"];
-    $jasen = $_POST["jasen"];
+    $ryhmannimi = escape($_POST["ryhmannimi"]);
+    $jasen = escape($_POST["jasen"]);
 
     delete("RyhmäNimi", "ryhmännimi=('$ryhmannimi') and ryhmänjäsen=('$jasen')");
     

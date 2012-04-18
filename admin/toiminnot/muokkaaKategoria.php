@@ -5,9 +5,10 @@ if ((session_is_registered("käyttäjänimi")) and ($_SESSION["admin"] == 't')) 
 
     include_once ("../../tietokanta/kyselyt.php");
 
-    $nimi = $_POST['nimi'];
-    $nakyvyys = $_POST["nakyvyys"];
+    $nimi = escape($_POST['nimi']);
+    $nakyvyys = escape($_POST["nakyvyys"]);
     $id = $_POST["id"];
+    settype($id, 'int');
 
     update("Kategoria", "KategorianNimi=('$nimi'), Näkyvyys=('$nakyvyys') WHERE Id=('$id')");
     header("Location: ../admin.php?p=5");

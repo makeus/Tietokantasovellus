@@ -25,7 +25,7 @@ if (!session_is_registered("käyttäjänimi")) {
             vastattavateksti($vastausid);
         } elseif (isset($_GET["id"])) {
             $vastausid = $_GET["id"];
-            settype($vastausid, int);
+            settype($vastausid, 'int');
             ketjuvastaus($vastausid);
         } else {
             echo "<form method=\"post\" action=\"toiminnot/lisaaViesti.php\"><br/>\n";
@@ -66,52 +66,52 @@ if (!session_is_registered("käyttäjänimi")) {
         echo "</table>\n";
         echo "</form>\n";
     }
-
-    function vastattavateksti($id) {
-        $viesti = getViesti($id);
-        $kategoriannimi = getKategoriannimi($viesti["kategoria"]);
-
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "   <td colspan=\"3\" class=\"kategoria\">" . $viesti["otsikko"] . "</td>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "   <td colspan=\"1\" class=\"pikkuteksti\">" . $viesti["kirjoittaja"] . " (" . date("d.m.y H:i:s", strtotime($viesti["aika"])) . ")</td>\n";
-        echo "   <td colspan=\"1\" class=\"pikkuteksti\">" . $kategoriannimi . "</td>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "   <td id=\"isoteksti\" colspan=\"2\">" . $viesti["teksti"] . "<td>\n";
-        echo "  </tr>\n";
-        echo "</table><br>\n";
-        echo "<form method=\"post\" action=\"toiminnot/lisaaViesti.php\">";
-        echo "<input type=\"hidden\" name=\"vastaus\" value=\"" . $viesti["id"] . "\" />\n";
-        echo "<input type=\"hidden\" name=\"kategoria\" value=\"" . $viesti["kategoria"] . "\"/>\n";
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "   <td colspan=\"2\" class=\"kategoria\">Kirjoita Vastaus</td>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "   <td class=\"viestilotsikko\">Otsikko:</td>\n";
-        echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti["otsikko"] . "\" required/></td>\n";
-        echo "  </tr>\n";
-    }
-
-    function ketjuvastaus($id) {
-        $viesti = getViesti($id);
-
-        echo "<br/>";
-        echo "<form method=\"post\" action=\"toiminnot/lisaaViesti.php\">";
-        echo "<input type=\"hidden\" name=\"vastaus\" value=\"" . $viesti["id"] . "\" />\n";
-        echo "<input type=\"hidden\" name=\"kategoria\" value=\"" . $viesti["kategoria"] . "\"/>\n";
-        echo "<table>\n";
-        echo "  <tr>\n";
-        echo "   <td colspan=\"2\" class=\"kategoria\">Kirjoita Vastaus</td>\n";
-        echo "  </tr>\n";
-        echo "  <tr>\n";
-        echo "   <td class=\"viestilotsikko\">Otsikko:</td>\n";
-        echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti["otsikko"] . "\" required/></td>\n";
-        echo "  </tr>\n";
-    }
-
 }
+
+function vastattavateksti($id) {
+    $viesti = getViesti($id);
+    $kategoriannimi = getKategoriannimi($viesti["kategoria"]);
+
+    echo "<table>\n";
+    echo "  <tr>\n";
+    echo "   <td colspan=\"3\" class=\"kategoria\">" . $viesti["otsikko"] . "</td>\n";
+    echo "  </tr>\n";
+    echo "  <tr>\n";
+    echo "   <td colspan=\"1\" class=\"pikkuteksti\">" . $viesti["kirjoittaja"] . " (" . date("d.m.y H:i:s", strtotime($viesti["aika"])) . ")</td>\n";
+    echo "   <td colspan=\"1\" class=\"pikkuteksti\">" . $kategoriannimi . "</td>\n";
+    echo "  </tr>\n";
+    echo "  <tr>\n";
+    echo "   <td id=\"isoteksti\" colspan=\"2\">" . $viesti["teksti"] . "<td>\n";
+    echo "  </tr>\n";
+    echo "</table><br>\n";
+    echo "<form method=\"post\" action=\"toiminnot/lisaaViesti.php\">";
+    echo "<input type=\"hidden\" name=\"vastaus\" value=\"" . $viesti["id"] . "\" />\n";
+    echo "<input type=\"hidden\" name=\"kategoria\" value=\"" . $viesti["kategoria"] . "\"/>\n";
+    echo "<table>\n";
+    echo "  <tr>\n";
+    echo "   <td colspan=\"2\" class=\"kategoria\">Kirjoita Vastaus</td>\n";
+    echo "  </tr>\n";
+    echo "  <tr>\n";
+    echo "   <td class=\"viestilotsikko\">Otsikko:</td>\n";
+    echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti["otsikko"] . "\" required/></td>\n";
+    echo "  </tr>\n";
+}
+
+function ketjuvastaus($id) {
+    $viesti = getViesti($id);
+
+    echo "<br/>";
+    echo "<form method=\"post\" action=\"toiminnot/lisaaViesti.php\">";
+    echo "<input type=\"hidden\" name=\"vastaus\" value=\"" . $viesti["id"] . "\" />\n";
+    echo "<input type=\"hidden\" name=\"kategoria\" value=\"" . $viesti["kategoria"] . "\"/>\n";
+    echo "<table>\n";
+    echo "  <tr>\n";
+    echo "   <td colspan=\"2\" class=\"kategoria\">Kirjoita Vastaus</td>\n";
+    echo "  </tr>\n";
+    echo "  <tr>\n";
+    echo "   <td class=\"viestilotsikko\">Otsikko:</td>\n";
+    echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti["otsikko"] . "\" required/></td>\n";
+    echo "  </tr>\n";
+}
+
 ?>

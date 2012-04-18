@@ -309,12 +309,7 @@ textarea {
     float: right;
 }
 .poistolink {
-	padding-right: 5px;
-	font-size: 12px;
-	float: right;
-}
-.poistolink {
-	padding-right: 5px;
+	padding-right: 10px;
 	font-size: 12px;
 	float: right;
 }

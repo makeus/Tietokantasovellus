@@ -72,61 +72,125 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                 </nav>      
                 <section>
                     <?php
-                    if ($_GET["p"] == 1) {
+                    /*
+                     * Sivujen valinta
+                     * p = null tai 1 -> Hallinnoi ryhmiä
+                     * p = 2 -> Luo Ryhmä
+                     * p = 3 -> Hallinoi käyttäjiä
+                     * p = 4 -> Luo Käyttäjä
+                     * p = 5 -> Hallinnoi kategorioita
+                     * p = 6 -> Luo Kategoria
+                     */
+                    if ((!isset($_GET["p"])) || ($_GET["p"] == 1)) {
                         echo "<h1>Hallinnoi ryhmiä</h1>";
                         include("ryhmatulosta.php");
                         tulostaRyhmat();
+                        /*
+                         * Jos muokkaa arvo on annettu, avataan muokkausosa.
+                         * m:n arvo on ryhmän id
+                         */
                         if (isset($_GET["m"])) {
                             muokkaaRyhma($_GET["m"]);
                         }
-                    }
-                    if ($_GET["p"] == 2) {
+                    } elseif ($_GET["p"] == 2) {
                         echo "<h1>Luo ryhmä</h1>";
                         include ("ryhmatulosta.php");
                         uusiRyhma();
+                        /*
+                         * Jos virhe arvo on annettu
+                         * Virhe tässätapauksessa jo olemassaoleva nimi
+                         * e:n arvo ryhmän nimi
+                         */
                         if (isset($_GET["e"])) {
                             echo "<p class=\"virhe\">Ryhmä " . $_GET["e"] . " löytyy jo!</p>";
                         }
-                    }
-                    if ($_GET["p"] == 3) {
+                    } elseif ($_GET["p"] == 3) {
                         echo "<h1>Hallinnoi käyttäjiä</h1>";
-                        include("hallinnoikayttaja.php");
+                        include("kayttajatulosta.php");
+                        /*
+                         * Jos virhe arvo on annettu
+                         * Virhe tässätapauksessa jo olemassaoleva nimi
+                         * e:n arvo käyttäjän nimi
+                         */
                         if (isset($_GET["e"])) {
                             echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
                         }
+                        /*
+                         * Jos sivu on tapahtunut poiston jälkeen
+                         * po kuvaa onnistumista
+                         * f -> virhe, käyttäjä yrittää poistaa itseään tai poisto epäonnistui
+                         * muuten onnistunut ilmoitus tulostetaan.
+                         */
+                        if (isset($_GET["po"])) {
+                            if ($_GET["po"] == "f") {
+                                if (isset($_GET["nimi"])) {
+                                    echo "<p class\"virhe\">HEI! (Poistossa jotain vikaa)</p>";
+                                } else {
+                                    echo "<p class=\"virhe\">Et voi poistaa itseäsi!</p>";
+                                }
+                            } else {
+                                echo "<p class=\"ok\">Käyttäjä " . $_GET["po"] . " poistettiin onnistuneesti!</p>";
+                            }
+                        }
+                        /*
+                         * Jos m arvo on annettu
+                         * m arvo kuvaa käyttäjän hakua
+                         * tyhjä arvo tulostaa kaikki arvot, muuten etsitään samanlaiset käyttäjät
+                         * ei löydetty nimi tuottaa tyhjän taulukon.
+                         */
                         if (isset($_GET["m"])) {
-                            tulostaSamankaltaiset($_GET["m"]);
+                            if ($_GET["m"] == "") {
+                                tulostaKayttajat();
+                            } else {
+                                tulostaSamankaltaiset($_GET["m"]);
+                            }
+                            /*
+                             * Jos muokkaa arvo on annettu
+                             * muokkaa avaa muokkauslomakkeen käyttäjälle
+                             * muokkaa arvo on käyttäjän nimi.
+                             * tuntematon nimi antaa virheilmoituksen.
+                             */
                         } elseif (isset($_GET["muokkaa"])) {
                             avaaMuokkaus($_GET["muokkaa"]);
+                            tulostaKayttajat();
+                            /*
+                             * Jos ei parametreja, tulostetaan kaikki käyttäjät
+                             */
                         } else {
                             tulostaKayttajat();
                         }
-                    }
-                    if ($_GET["p"] == 4) {
+                    } elseif ($_GET["p"] == 4) {
                         echo "<h1>Luo käyttäjä</h1>";
-                        include("lisaakayttaja.php");
+                        include("kayttajatulosta.php");
+                        uusiKayttaja();
+                        /*
+                         * Jos virhe arvo on annettu
+                         * Virhe tässätapauksessa jo olemassaoleva nimi
+                         * e:n arvo käyttäjän nimi
+                         * Ok ilmoittaa onnistuneesta poistosta
+                         */
                         if (isset($_GET["e"])) {
                             echo "<p class=\"virhe\">Käyttäjänimi " . $_GET["e"] . " löytyy jo!</p>";
                         }
                         if (isset($_GET["ok"])) {
                             echo "<p class=\"ok\">Käyttäjänimi " . $_GET["ok"] . " luotiin onnistuneesti!</p>";
                         }
-                    }
-                    if ($_GET["p"] == 5) {
+                    } elseif ($_GET["p"] == 5) {
                         echo "<h1>Hallinnoi kategorioita</h1>";
                         include("kategoriatulosta.php");
                         tulostaKategoriat();
                         if (isset($_GET["m"])) {
                             muokkaaKategoria($_GET["m"]);
-                            if (isset($_GET["e"])) {
-                                echo "<p class=\"virhe\">Kategoria " . $_GET["e"] . " löytyy jo!</p>";
-                            }
                         }
-                    }
-                    if ($_GET["p"] == 6) {
+                    } elseif ($_GET["p"] == 6) {
                         echo "<h1>Luo kategoria</h1>";
                         include ("kategoriatulosta.php");
                         uusiKategoria();
+                        /*
+                         * Jos virhe arvo on annettu
+                         * Virhe tässätapauksessa jo olemassaoleva nimi
+                         * e:n arvo kategorian nimi
+                         */
                         if (isset($_GET["e"])) {
                             echo "<p class=\"virhe\">Kategoria " . $_GET["e"] . " löytyy jo!</p>";
                         }
