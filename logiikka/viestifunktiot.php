@@ -31,9 +31,8 @@ if (!session_is_registered("käyttäjänimi")) {
         $vastaukset = select("id, viestinlukeneet", "Viesti", "vastaus = ('$id')");
         if (!empty($vastaukset)) {
             foreach ($vastaukset as $vastaus) {
-                $taulu = array();
-                pg_array_parse($vastaus["viestinlukeneet"], &$taulu, 1);
-                if (!in_array($kayttajanimi, $taulu)) {
+                array_parse($vastaus["viestinlukeneet"], &$lukeneet);
+                if (!in_array($kayttajanimi, $lukeneet)) {
                     $palautus = FALSE;
                     break;
                 } else {
@@ -46,6 +45,16 @@ if (!session_is_registered("käyttäjänimi")) {
         }
 
         return $palautus;
+    }
+
+    function getLukeneet($id) {
+        include_once 'tietokanta/kyselyt.php';
+        $lukeneet = array();
+        $viestinlukeneet = select("viestinlukeneet", "Viesti", "id = ('$id')");
+        if (!empty($viestinlukeneet)) {
+                array_parse($viestinlukeneet[0]["viestinlukeneet"], &$lukeneet);
+        }
+        return $lukeneet;
     }
 
     /*
@@ -96,37 +105,10 @@ if (!session_is_registered("käyttäjänimi")) {
 
     function merkkaaLuetuksi($id, $kayttajanimi) {
         include_once 'tietokanta/kyselyt.php';
-        $viesti = getViesti($id);
-        $taulu = array();
-        pg_array_parse($viesti["viestinlukeneet"], &$taulu, 1);
-        if (!in_array($kayttajanimi, $taulu)) {
+        $lukeneet = getLukeneet($id);
+        if (!in_array($kayttajanimi, $lukeneet)) {
             update("Viesti", "Viestinlukeneet = array_append(Viestinlukeneet, ('$kayttajanimi') :: text) where id='$id'");
         }
-    }
-
-    /*
-     * Tekee postgre muotosesta taulukosta php arrayn
-     */
-
-    function pg_array_parse($text, &$output, $limit = false, $offset = 1) {
-        if (false === $limit) {
-            $limit = strlen($text) - 1;
-            $output = array();
-        }
-        if ('{}' != $text)
-            do {
-                if ('{' != $text{$offset}) {
-                    preg_match("/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/", $text, $match, 0, $offset);
-                    $offset += strlen($match[0]);
-                    $output[] = ( '"' != $match[1]{0} ? $match[1] : stripcslashes(substr($match[1], 1, -1)) );
-                    if ('},' == $match[3])
-                        return $offset;
-                }
-                else
-                    $offset = pg_array_parse($text, $output[], $limit, $offset + 1);
-            }
-            while ($limit > $offset);
-        return $output;
     }
 
 }

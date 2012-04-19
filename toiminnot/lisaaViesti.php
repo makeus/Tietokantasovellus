@@ -9,13 +9,13 @@ if (session_is_registered("käyttäjänimi")) {
     $kayttajanimi = $_SESSION["käyttäjänimi"];
 
     $kategoria = $_POST["kategoria"];
-    settype($kategoria, int);
+    settype($kategoria, 'int');
 
     // Jos on vastaus
     if (isset($_POST["vastaus"])) {
 
         $vastaus = $_POST["vastaus"];
-        settype($vastaus, int);
+        settype($vastaus, 'int');
 
         insert("Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja, Vastaus)", "NOW(), '$otsikko', '$teksti', '$kategoria', Array['$kayttajanimi'], '$kayttajanimi', '$vastaus'");
 

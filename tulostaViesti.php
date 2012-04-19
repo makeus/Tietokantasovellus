@@ -56,17 +56,28 @@ function tulostaViesti($viestin_id, $eka) {
 
 function printtaaViesti($id, $eka) {
     $viesti = getViesti($id);
+    echo "<p class=\"Kirjoittaja\"><strong>" . $viesti["kirjoittaja"] . "</strong> (" . date("d.m.y H:i:s", strtotime($viesti["aika"])) . ") " . $viesti["otsikko"];
+    echo "<a class=\"vastauslink\" href=\"/?p=2&v=" . $id . "&pal=" . $eka . "\">vastaa</a>";
+
+
     if ($_SESSION["admin"] == 't' || $viesti["kirjoittaja"] == $_SESSION["käyttäjänimi"]) {
-        echo "<p class=\"Kirjoittaja\">" . $viesti["kirjoittaja"] .
-        " (" . date("d.m.y H:i:s", strtotime($viesti["aika"])) . ") "
-        . $viesti["otsikko"] .
-        "<a class=\"vastauslink\" href=\"/?p=2&v=" . $id . "&pal=" . $eka . "\">vastaa</a>" .
-        "<a class=\"poistolink\" href=# onclick='varmista(\"toiminnot/poistaViesti.php?id=" . $id . "\", \"Oletko varma, että haluat poistaa viestin?\")'>poista</a></p>";
-        echo "<p>" . $viesti["teksti"] . "</p>";
-    } else {
-        echo "<p class=\"Kirjoittaja\">" . $viesti["kirjoittaja"] . " (" . date("d.m.y H:i:s", strtotime($viesti["aika"])) . ") " . $viesti["otsikko"] . "<a class=\"vastauslink\" href=\"/?p=2&v=" . $id . "\">vastaa</a></p>";
-        echo "<p>" . $viesti["teksti"] . "</p>";
+        echo "<a class=\"poistolink\" href=# onclick='varmista(\"toiminnot/poistaViesti.php?id=" . $id . "\", \"Oletko varma, että haluat poistaa viestin?\")'>poista</a></p>";
     }
+
+    echo "<p>" . $viesti["teksti"] . "</p>";
+    $lukeneet = getLukeneet($id);
+    echo "<a class=\"naytalukeneet\" id=\"link" . $id . "\" onclick='naytaLukeneet(" . $id . ")'>Näytä</a>";
+    echo "<p class=\"lukeneet\" id=\"" . $id . "\">Viestin lukeneet:  ";
+    if (!empty($lukeneet)) {
+        foreach ($lukeneet as $i => $lukija) {
+            if ($i == 0) {
+                echo $lukija;
+            } else {
+                echo ", " . $lukija;
+            }
+        }
+    }
+    echo "</p>";
 }
 
 ?>

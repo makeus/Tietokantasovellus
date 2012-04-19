@@ -45,4 +45,30 @@ function insert($minne, $mita) {
     $kysely = pg_query($GLOBALS['yhteys'], "INSERT INTO $minne VALUES ($mita)");
 }
 
+/*
+ * Tekee postgre muotosesta taulukosta php arrayn
+ */
+
+function array_parse($text, &$output, $limit = false, $offset = 1) {
+    $offset = 1;
+    if (false === $limit) {
+        $limit = strlen($text) - 1;
+        $output = array();
+    }
+    if ('{}' != $text)
+        do {
+            if ('{' != $text{$offset}) {
+                preg_match("/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/", $text, $match, 0, $offset);
+                $offset += strlen($match[0]);
+                $output[] = ( '"' != $match[1]{0} ? $match[1] : stripcslashes(substr($match[1], 1, -1)) );
+                if ('},' == $match[3])
+                    return $offset;
+            }
+            else
+                $offset = pg_array_parse($text, $output[], $limit, $offset + 1);
+        }
+        while ($limit > $offset);
+    return $output;
+}
+
 ?>

@@ -14,6 +14,21 @@ session_start();
                     window.location = url;
                 }
             }
+            
+            function naytaLukeneet(id){
+                var e = document.getElementById(id);
+                var link = document.getElementById("link" + id);
+                
+                if(e.style.visibility == 'visible') {
+                    e.style.visibility = 'hidden';
+                    link.textContent = "Näytä";
+                }
+                else {
+                    e.style.visibility = 'visible';
+                    link.textContent = "Piilota";
+                }
+            }
+            
         </script>
     </head>
     <body>
@@ -51,9 +66,9 @@ session_start();
 
             <?php } else {
                 ?>
-            
-            <!-- Tulostetaan nav ja asetetaan nykyne arvo nykyiseen sivuun -->
-            
+
+                <!-- Tulostetaan nav ja asetetaan nykyne arvo nykyiseen sivuun -->
+
                 <nav>
                     <a href="/" <?php
             if ((!isset($_GET["p"])) or ($_GET["p"] == 1)) {
@@ -73,14 +88,13 @@ session_start();
                     <a href="toiminnot/logout.php"> Kirjaudu ulos </a>
                 </nav>
                 <section>
-                    
+
                     <!-- Kirjautumistieto ja aika -->
                     <div id="välipalkki">
                         <p class="väliteksti">Kirjautuneena käyttäjänä <strong><?php echo $_SESSION["käyttäjänimi"]; ?></strong></p>
                         <p class="väliteksti"><?php echo date("d.m.y H:i:s", $_SERVER['REQUEST_TIME']); ?></p>
                     </div>
                     <?php
-                    
                     /*
                      * Näytettävä sivu
                      */

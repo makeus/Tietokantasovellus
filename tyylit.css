@@ -309,9 +309,9 @@ textarea {
     float: right;
 }
 .poistolink {
-	padding-right: 10px;
-	font-size: 12px;
-	float: right;
+    padding-right: 10px;
+    font-size: 12px;
+    float: right;
 }
 #viestijavastauksetlaatikko {
     width: 787px; /* Rumaa :(( */
@@ -329,4 +329,17 @@ textarea {
 }
 #viestijavastauksetlaatikko > div {
     margin-right: 10px;
+}
+.lukeneet{
+    font-size: 10px;
+    background: #eee;
+    visibility: hidden;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.naytalukeneet {
+    cursor:pointer;
+    padding-right: 5px;
+    font-size: 10px;
+    float: right;
 }

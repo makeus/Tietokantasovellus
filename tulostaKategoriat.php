@@ -53,9 +53,7 @@ if (!session_is_registered("käyttäjänimi")) {
                 /*
                  * Tarkistetaan onko käyttäjä lukenut kyseisen otsikon kaikki viestit. 
                  */
-                $taulu = array();
-                pg_array_parse($otsikko["viestinlukeneet"], &$taulu, 1);
-                if (($otsikko["viestinlukeneet"] != null) && (in_array($kayttajanimi, &$taulu)) && etsiOnkoLukenut($kayttajanimi, $otsikko["id"])) {
+                if (($otsikko["viestinlukeneet"] != null) && (etsiOnkoLukenut($kayttajanimi, $otsikko["id"]))) {
                     echo "    <td>";
                 } else {
                     echo "    <td class=\"lukematon\">";
