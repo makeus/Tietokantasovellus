@@ -6,7 +6,7 @@ if (session_is_registered("käyttäjänimi")) {
     include_once("../logiikka/viestifunktiot.php");
     include_once("../tietokanta/kyselyt.php");
 
-    $viesti = getViesti($_GET["id"]);
+    $viesti = getViesti2($_GET["id"]);
     $kirjoittaja = $viesti["kirjoittaja"];
     $id = $viesti["id"];
     settype($id, 'int');

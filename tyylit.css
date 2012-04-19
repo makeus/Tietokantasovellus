@@ -327,6 +327,9 @@ textarea {
     margin-right: 10px;
     margin-top: 10px;
 }
+#viestijavastauksetlaatikko > a {
+    margin-right: 10px;
+}
 #viestijavastauksetlaatikko > div {
     margin-right: 10px;
 }
@@ -340,6 +343,6 @@ textarea {
 .naytalukeneet {
     cursor:pointer;
     padding-right: 5px;
-    font-size: 10px;
+    font-size: 11px;
     float: right;
 }

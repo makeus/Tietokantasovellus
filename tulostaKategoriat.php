@@ -45,7 +45,6 @@ if (!session_is_registered("käyttäjänimi")) {
             echo "  <tr>\n";
             echo "    <td colspan=\"3\" class=\"kategoria\">" . $kategorianimi . "</td>\n";
             echo "  </tr>\n";
-            echo "  <tr class=\"otsikko\">\n";
 
             foreach ($otsikot as $otsikko) {
                 echo "  <tr class=\"otsikko\">\n";

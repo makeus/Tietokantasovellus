@@ -67,7 +67,7 @@ function printtaaViesti($id, $eka) {
     echo "<p>" . $viesti["teksti"] . "</p>";
     $lukeneet = getLukeneet($id);
     echo "<a class=\"naytalukeneet\" id=\"link" . $id . "\" onclick='naytaLukeneet(" . $id . ")'>Näytä</a>";
-    echo "<p class=\"lukeneet\" id=\"" . $id . "\">Viestin lukeneet:  ";
+    echo "<p class=\"lukeneet\" id=\"" . $id . "\"><strong>Viestin lukeneet:</strong>  ";
     if (!empty($lukeneet)) {
         foreach ($lukeneet as $i => $lukija) {
             if ($i == 0) {

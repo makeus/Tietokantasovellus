@@ -52,7 +52,7 @@ if (!session_is_registered("käyttäjänimi")) {
         $lukeneet = array();
         $viestinlukeneet = select("viestinlukeneet", "Viesti", "id = ('$id')");
         if (!empty($viestinlukeneet)) {
-                array_parse($viestinlukeneet[0]["viestinlukeneet"], &$lukeneet);
+            array_parse($viestinlukeneet[0]["viestinlukeneet"], &$lukeneet);
         }
         return $lukeneet;
     }
@@ -74,6 +74,15 @@ if (!session_is_registered("käyttäjänimi")) {
 
     function getViesti($id) {
         include_once 'tietokanta/kyselyt.php';
+        $vastaukset = select("*", "viesti", "id=('$id')");
+        return $vastaukset[0];
+    }
+
+    /*
+     * Sama kuin yllä, ilman includeen
+     */
+
+    function getViesti2($id) {
         $vastaukset = select("*", "viesti", "id=('$id')");
         return $vastaukset[0];
     }
