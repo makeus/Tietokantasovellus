@@ -86,7 +86,7 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                         include("ryhmatulosta.php");
                         tulostaRyhmat();
                         /*
-                         * Jos muokkaa arvo on annettu, avataan muokkausosa.
+                         * Jos muokkaa-arvo on annettu, avataan muokkausosa.
                          * m:n arvo on ryhmän id
                          */
                         if (isset($_GET["m"])) {
@@ -97,7 +97,7 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                         include ("ryhmatulosta.php");
                         uusiRyhma();
                         /*
-                         * Jos virhe arvo on annettu
+                         * Jos virhe-arvo on annettu
                          * Virhe tässätapauksessa jo olemassaoleva nimi
                          * e:n arvo ryhmän nimi
                          */
@@ -108,7 +108,7 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                         echo "<h1>Hallinnoi käyttäjiä</h1>";
                         include("kayttajatulosta.php");
                         /*
-                         * Jos virhe arvo on annettu
+                         * Jos virhe-arvo on annettu
                          * Virhe tässätapauksessa jo olemassaoleva nimi
                          * e:n arvo käyttäjän nimi
                          */
@@ -133,8 +133,8 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                             }
                         }
                         /*
-                         * Jos m arvo on annettu
-                         * m arvo kuvaa käyttäjän hakua
+                         * Jos m-arvo on annettu
+                         * m-arvo kuvaa käyttäjän hakua
                          * tyhjä arvo tulostaa kaikki arvot, muuten etsitään samanlaiset käyttäjät
                          * ei löydetty nimi tuottaa tyhjän taulukon.
                          */
@@ -145,9 +145,9 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                                 tulostaSamankaltaiset($_GET["m"]);
                             }
                             /*
-                             * Jos muokkaa arvo on annettu
+                             * Jos muokkaa-arvo on annettu
                              * muokkaa avaa muokkauslomakkeen käyttäjälle
-                             * muokkaa arvo on käyttäjän nimi.
+                             * muokkaa-arvo on käyttäjän nimi.
                              * tuntematon nimi antaa virheilmoituksen.
                              */
                         } elseif (isset($_GET["muokkaa"])) {
@@ -164,7 +164,7 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                         include("kayttajatulosta.php");
                         uusiKayttaja();
                         /*
-                         * Jos virhe arvo on annettu
+                         * Jos virhe-arvo on annettu
                          * Virhe tässätapauksessa jo olemassaoleva nimi
                          * e:n arvo käyttäjän nimi
                          * Ok ilmoittaa onnistuneesta poistosta
@@ -187,7 +187,7 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                         include ("kategoriatulosta.php");
                         uusiKategoria();
                         /*
-                         * Jos virhe arvo on annettu
+                         * Jos virhe-arvo on annettu
                          * Virhe tässätapauksessa jo olemassaoleva nimi
                          * e:n arvo kategorian nimi
                          */

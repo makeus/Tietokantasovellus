@@ -18,13 +18,24 @@ if (session_is_registered("käyttäjänimi")) {
         settype($vastaus, int);
 
         insert("Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja, Vastaus)", "NOW(), '$otsikko', '$teksti', '$kategoria', Array['$kayttajanimi'], '$kayttajanimi', '$vastaus'");
-        header("Location:/");
+
+        if (isset($_POST["palaaminen"])) {
+            $palaaminen = $_POST["palaaminen"];
+            header("Location:/?p=3&id=$palaaminen");
+        } else {
+            header("Location:/");
+        }
     }
 
     // Jos ei :D!
     else {
         insert("Viesti (Aika, Otsikko, Teksti, Kategoria, Viestinlukeneet, Kirjoittaja)", "NOW(), '$otsikko', '$teksti', '$kategoria', Array['$kayttajanimi'], '$kayttajanimi'");
-        header("Location:/");
+        if (isset($_POST["palaaminen"])) {
+            $palaaminen = $_POST["palaaminen"];
+            header("Location:/?p=3&id=$palaaminen");
+        } else {
+            header("Location:/");
+        }
     }
 } else {
     header("HTTP/1.1 403 Forbidden");

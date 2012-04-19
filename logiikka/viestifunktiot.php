@@ -31,7 +31,9 @@ if (!session_is_registered("käyttäjänimi")) {
         $vastaukset = select("id, viestinlukeneet", "Viesti", "vastaus = ('$id')");
         if (!empty($vastaukset)) {
             foreach ($vastaukset as $vastaus) {
-                if (!in_array($kayttajanimi, pg_array_parse($vastaus["viestinlukeneet"], FALSE))) {
+                $taulu = array();
+                pg_array_parse($vastaus["viestinlukeneet"], &$taulu, 1);
+                if (!in_array($kayttajanimi, $taulu)) {
                     $palautus = FALSE;
                     break;
                 } else {
@@ -95,8 +97,9 @@ if (!session_is_registered("käyttäjänimi")) {
     function merkkaaLuetuksi($id, $kayttajanimi) {
         include_once 'tietokanta/kyselyt.php';
         $viesti = getViesti($id);
-
-        if (!in_array($kayttajanimi, pg_array_parse($viesti["viestinlukeneet"], FALSE))) {
+        $taulu = array();
+        pg_array_parse($viesti["viestinlukeneet"], &$taulu, 1);
+        if (!in_array($kayttajanimi, $taulu)) {
             update("Viesti", "Viestinlukeneet = array_append(Viestinlukeneet, ('$kayttajanimi') :: text) where id='$id'");
         }
     }
@@ -105,19 +108,25 @@ if (!session_is_registered("käyttäjänimi")) {
      * Tekee postgre muotosesta taulukosta php arrayn
      */
 
-    function pg_array_parse($array, $asText = true) {
-        $s = $array;
-        if ($asText) {
-            $s = str_replace("{", "array('", $s);
-            $s = str_replace("}", "')", $s);
-            $s = str_replace(",", "','", $s);
-        } else {
-            $s = str_replace("{", "array(", $s);
-            $s = str_replace("}", ")", $s);
+    function pg_array_parse($text, &$output, $limit = false, $offset = 1) {
+        if (false === $limit) {
+            $limit = strlen($text) - 1;
+            $output = array();
         }
-        $s = "\$retval = $s;";
-        eval($s);
-        return $retval;
+        if ('{}' != $text)
+            do {
+                if ('{' != $text{$offset}) {
+                    preg_match("/(\\{?\"([^\"\\\\]|\\\\.)*\"|[^,{}]+)+([,}]+)/", $text, $match, 0, $offset);
+                    $offset += strlen($match[0]);
+                    $output[] = ( '"' != $match[1]{0} ? $match[1] : stripcslashes(substr($match[1], 1, -1)) );
+                    if ('},' == $match[3])
+                        return $offset;
+                }
+                else
+                    $offset = pg_array_parse($text, $output[], $limit, $offset + 1);
+            }
+            while ($limit > $offset);
+        return $output;
     }
 
 }

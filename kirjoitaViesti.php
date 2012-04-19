@@ -19,9 +19,10 @@ if (!session_is_registered("käyttäjänimi")) {
          * Vastataanko ketjuun..
          * Ulkoasu vaihtelee
          */
+
         if (isset($_GET["v"])) {
             $vastausid = $_GET["v"];
-            settype($vastausid, int);
+            settype($vastausid, 'int');
             vastattavateksti($vastausid);
         } elseif (isset($_GET["id"])) {
             $vastausid = $_GET["id"];
@@ -51,6 +52,12 @@ if (!session_is_registered("käyttäjänimi")) {
 
             echo "   </select></td>\n";
             echo "  </tr>\n";
+        }
+        if (isset($_GET["pal"])) {
+            echo "<input type=\"hidden\" name=\"palaaminen\" value=\"" . $_GET["pal"] . "\" />";
+        }
+        if (isset($_GET["id"])) {
+            echo "<input type=\"hidden\" name=\"palaaminen\" value=\"" . $_GET["id"] . "\" />";
         }
         echo "  <tr>\n";
         echo "    <td class=\"viestilotsikko\">Viesti:</td>\n";
