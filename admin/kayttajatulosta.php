@@ -4,17 +4,38 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     header("HTTP/1.1 403 Forbidden");
 } else {
 
+    /*
+     * Uuden käyttäjän luomislomake
+     */
     function uusiKayttaja() {
-        echo "<form name=\"Luo käyttäjä\" action=\"toiminnot/uusiKayttaja.php\" method=\"post\" ><pre>";
-        echo "Käyttäjänimi:	<input type=\"text\" autofocus name=\"kayttajanimi\" maxlength=\"20\" pattern=\"^[a-öA-Ö][a-öA-Ö0-9-_\.]{1,20}$\" required placeholder=\"Käyttäjänimi\" />\n";
-        echo "Sähköposti:	<input type=\"text\" name=\"sahkoposti\" placeholder=\"Sähköposti\" />\n";
-        echo "Salasana: 	<input type=\"password\" name=\"salasana\" required placeholder=\"Salasana\" maxlength=\"20\"/>\n";
-        echo "Ylläpitäjä?	<select name=\"admin\">";
-        echo "  <option value=\"t\">Kyllä</option>";
-        echo "  <option value=\"f\" selected>Ei</option>";
-        echo "</select>\n";
-        echo "<input type=\"submit\" />\n";
-        echo "    </pre>";
+        echo "<form name=\"Luo käyttäjä\" action=\"toiminnot/uusiKayttaja.php\" method=\"post\" >";
+        echo "<table id=\"uusikayttajatable\">";
+        echo "  <tr>";
+        echo "    <td>Käyttäjänimi:</td>";
+        echo "    <td><input type=\"text\" autofocus name=\"kayttajanimi\" maxlength=\"20\" pattern=\"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$\" required placeholder=\"Käyttäjänimi\" /></td>";
+        echo "  </tr>";
+        echo "  <tr>";
+        echo "    <td>Sähköposti:</td>";
+        echo "    <td><input type=\"text\" name=\"sahkoposti\" placeholder=\"Sähköposti\" /></td>";
+        echo "  </tr>";
+        echo "    <td>Ylläpitäjä?</td>";
+        echo "    <td><select name=\"admin\">";
+        echo "          <option value=\"t\">Kyllä</option>";
+        echo "          <option value=\"f\" selected>Ei</option>";
+        echo "        </select></td>";
+        echo "  </tr>";
+        echo "  <tr>";
+        echo "    <td>Salasana:</td>";
+        echo "    <td><input class=\"salasana\" type=\"password\" name=\"salasana\" required placeholder=\"Salasana\" maxlength=\"20\"/></td>";
+        echo "  </tr>";
+        echo "    <td>Salasana uudelleen:</td>";
+        echo "    <td><input class=\"salasana\" type=\"password\" name=\"salasana2\" required placeholder=\"Salasana\" maxlength=\"20\" oninput=\"tarkistasalasanat()\" /></td>";
+        echo "  </tr>";
+        echo "  <tr>";
+        echo "  <tr>";
+        echo "    <td><input type=\"submit\" /></td>";
+        echo "  </tr>";
+        echo "</table>";
         echo "</form>";
     }
 
@@ -38,8 +59,7 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
              <td>" . $rivi["käyttäjänimi"] . "</td>
              <td>" . $rivi["sähköposti"] . "</td>
              <td>" . $rivi["ylläpitäjä"] . "</td>
-             <td> <a href=\"admin.php?p=3&muokkaa=" . $rivi["käyttäjänimi"] . "\">x</a></td>";
-                echo "</td>
+             <td> <a href=\"admin.php?p=3&muokkaa=" . $rivi["käyttäjänimi"] . "\">x</a></td>
              <td> <a href=# onclick='varmista(\"toiminnot/poistaKayttaja.php?poista=" . $rivi["käyttäjänimi"] . "\", \"Oletko varma, että haluat poistaa käyttäjän?\")'>x</a></td>
            </tr>";
             }
@@ -102,9 +122,9 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     }
 
     function etsi() {
-        echo "<pre>Käyttäjänimi: <input type = \"text\" name = \"käyttäjänimi\" autofocus placeholder = \"Käyttäjänimi\" onkeypress=\"{if (event.keyCode==13)hae()}\"/>   ";
+        echo "Käyttäjänimi: <input type = \"text\" name = \"käyttäjänimi\" autofocus placeholder = \"Käyttäjänimi\" onkeypress=\"{if (event.keyCode==13)hae()}\"/>\n";
         echo "<button onclick=\"hae()\">Etsi!</button>\n";
-        echo "</pre>";
+        echo "<br/>";
         echo "<br/>";
     }
 

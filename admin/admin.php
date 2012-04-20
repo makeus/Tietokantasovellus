@@ -14,10 +14,18 @@ if ($_SESSION["admin"] == 't') {  // Jos admin oikeudet on t, eli true!
                         window.location = url;
                     }
                 }
-                
+                    
                 function hae(){
                     var nimi = document.getElementsByName("käyttäjänimi")[0].value;
                     window.location = "admin.php?p=3&m=" + nimi;
+                }
+                function tarkistasalasanat(){
+                    salasanat = document.getElementsByClassName("salasana");
+                    if (salasanat[1].value != salasanat[0].value) {
+                        salasanat[1].setCustomValidity("Salasanat eivät täsmää!");
+                    } else {
+                        salasanat[1].setCustomValidity("");
+                    }
                 }
             </script>
         </head>

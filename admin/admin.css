@@ -125,3 +125,11 @@ td{
 #kategoriannimi {
     width: 300px;
 }
+#uusikayttajatable {
+    border: 0;
+    width: 30%;
+}
+#uusikayttajatable > tbody > tr > td {
+    border: 0;
+    text-align: left;
+}

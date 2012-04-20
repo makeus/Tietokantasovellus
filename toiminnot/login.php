@@ -2,12 +2,19 @@
 
 session_start();
 
+/*
+ * Luodaan väliaikainen käyttäjä, jottai tarvittaviin funktioihin päästään käsiksi.
+ */
 $_SESSION["käyttäjänimi"] = "temp";
 
 include_once '../tietokanta/kyselyt.php';
 
+/*
+ * "karataan" käyttäjänimi, salasana ja hashataan salasana
+ */
 $kayttajanimi = escape(htmlspecialchars($_POST["käyttäjänimi"]));
 $salasana = escape($_POST["salasana"]);
+$salasana = hash('sha256', $salasana);
 $kysely = getLogindata($kayttajanimi, $salasana);
 session_unset();
 

@@ -12,6 +12,7 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     $nimi = escape($_POST["kayttajanimi"]);
     $sahkoposti = escape($_POST["sahkoposti"]);
     $salasana = escape($_POST["salasana"]);
+    $salasana = hash('sha256', $salasana);
     $yllapitaja = escape($_POST["admin"]);
 
     if (tarkistaKayttaja($nimi)) {
