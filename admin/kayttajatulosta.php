@@ -102,9 +102,8 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     }
 
     function etsi() {
-        echo "<pre><form name = \"Etsi käyttäjä\" action = \"toiminnot/etsiKayttaja.php\" method = \"post\" >Käyttäjänimi: <input type = \"text\" name = \"käyttäjänimi\" autofocus placeholder = \"Käyttäjänimi\" />   ";
-        echo "<input name = \"etsi\" type = \"submit\" value = \"Etsi\" />\n";
-        echo "</form>";
+        echo "<pre>Käyttäjänimi: <input type = \"text\" name = \"käyttäjänimi\" autofocus placeholder = \"Käyttäjänimi\" onkeypress=\"{if (event.keyCode==13)hae()}\"/>   ";
+        echo "<button onclick=\"hae()\">Etsi!</button>\n";
         echo "</pre>";
         echo "<br/>";
     }
