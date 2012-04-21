@@ -5,7 +5,7 @@ if (!session_is_registered("käyttäjänimi")) {
 } else {
 
 
-    $GLOBALS['yhteys'] = pg_connect("dbname=keus user=keus password=a646a8dd503014f5");
+    $GLOBALS['yhteys'] = pg_connect("dbname=jeraiha user=jeraiha password=e5329390139e67c9");
     if ($GLOBALS['yhteys'] == FALSE) {
         echo "Tietokantayhteys epäonnistui!";
     }

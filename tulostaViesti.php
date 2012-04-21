@@ -51,7 +51,7 @@ function tulostaViesti($viestin_id, $eka) {
 }
 
 /*
- * Tulostetaan viestin sisältö, aika, otsikko, kirjoittaja ja vastaa-nappi, sekä mikäli kirjoittaja tai ylläpitäjä, niin poista nappi.
+ * Tulostetaan viestin sisältö, aika, otsikko, kirjoittaja ja vastaa-nappi, jos kyseessä on viestinkirjoittaja tai ylläpitäjä, niin poista nappi.
  */
 
 function printtaaViesti($id, $eka) {

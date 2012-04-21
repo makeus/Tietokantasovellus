@@ -120,5 +120,15 @@ if (!session_is_registered("käyttäjänimi")) {
         }
     }
 
+
+    /*
+     * Hakee viestit käyttäjänimen ja hakusanan perustella.
+     */
+    function getHakutulokset($kayttajanimi,$hakusana) {
+        include_once 'tietokanta/kyselyt.php';
+        $vastaukset = select("*", "viesti", "Kirjoittaja LIKE '%$kayttajanimi%' AND Teksti LIKE '%$hakusana%'");
+        return $vastaukset;
+    }
+
 }
 ?>

@@ -28,6 +28,16 @@ session_start();
                     link.textContent = "Piilota";
                 }
             }
+
+            function naytaHaku(){
+                var e = document.querySelector('#hakija');
+                if(e.style.display == 'block') {
+                    e.style.display = 'none';
+                }
+                else {
+                    e.style.display = 'block';
+                }
+            }
             
         </script>
     </head>
@@ -86,6 +96,11 @@ session_start();
                        }
                        ?>
                     <a href="toiminnot/logout.php"> Kirjaudu ulos </a>
+                    <a id="hakunappi" onclick="naytaHaku()">Haku</a>
+                    <div id="hakija"><form name="haku" action="index.php?p=4" method="post">
+                    <input type="text" placeholder="Käyttäjänimi" name="kayttajanimi"/>
+                    <input type="text" placeholder="Hakusana" name="hakusana"/>
+                    <input type="submit"/></form></div>
                 </nav>
                 <section>
 
@@ -104,6 +119,8 @@ session_start();
                         include("kirjoitaViesti.php");
                     } elseif ($_GET["p"] == 3) {
                         include("tulostaViesti.php");
+                    } elseif ($_GET["p"] == 4){
+                        include("tulostaHaku.php");
                     }
                     ?>
                 </section>

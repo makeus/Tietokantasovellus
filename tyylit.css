@@ -346,3 +346,17 @@ textarea {
     font-size: 11px;
     float: right;
 }
+div.hakutulos {
+    margin-top: 10px;
+}
+#hakija {
+    display: none;
+    position: absolute;
+    width: 200px;
+    left: 1150px;
+    top: 140px;
+    background-color: BlanchedAlmond;
+}
+#hakunappi {
+    cursor: pointer;
+}
