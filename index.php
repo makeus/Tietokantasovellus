@@ -31,15 +31,20 @@ session_start();
             var hakuNappi;
             window.onload = function(){
                 hakuNappi = document.querySelector("#hakunappi");
-                hakuNappi.addEventListener('click',naytaHaku,false);
+                if(hakuNappi != null) { 
+                    hakuNappi.addEventListener('click',naytaHaku,false);
+                }
             }
             function naytaHaku(evt){
                 var e = document.querySelector("#hakija");
+                var linkki = document.querySelector("#hakunappi");
+                e.children[0].children[0].focus();
                 if(e.style.display == 'block') {
                     e.style.display = 'none';
                 }
                 else {
                     e.style.display = 'block';
+                    
                     e.style.left = (evt.pageX-30)+'px';
                     e.style.top = (evt.pageY+20)+'px';
                 }
@@ -104,9 +109,8 @@ session_start();
                     <a href="toiminnot/logout.php"> Kirjaudu ulos </a>
                     <a id="hakunappi">Haku</a>
                     <div id="hakija"><form name="haku" action="index.php?p=4" method="post">
-                    <input type="text" placeholder="Käyttäjänimi" name="kayttajanimi"/>
-                    <input type="text" placeholder="Hakusana" name="hakusana"/>
-                    <input type="submit"/></form></div>
+                            <input type="text" autofocus placeholder="Hakusana" name="hakusana"/>
+                            <input type="submit" value="Hae!"/></form></div>
                 </nav>
                 <section>
 
@@ -125,7 +129,7 @@ session_start();
                         include("kirjoitaViesti.php");
                     } elseif ($_GET["p"] == 3) {
                         include("tulostaViesti.php");
-                    } elseif ($_GET["p"] == 4){
+                    } elseif ($_GET["p"] == 4) {
                         include("tulostaHaku.php");
                     }
                     ?>

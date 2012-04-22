@@ -3,7 +3,7 @@
 session_start();
 
 /*
- * Luodaan väliaikainen käyttäjä, jottai tarvittaviin funktioihin päästään käsiksi.
+ * Luodaan väliaikainen käyttäjä, jotta tarvittaviin funktioihin päästään käsiksi.
  */
 $_SESSION["käyttäjänimi"] = "temp";
 

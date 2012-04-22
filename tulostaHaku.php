@@ -1,7 +1,7 @@
 <?php
-session_start();
+
 if (!session_is_registered("käyttäjänimi")) {
-    echo "tännemeni";
+    header("HTTP/1.1 403 Forbidden");
 } else {
 
     include("logiikka/kategoriafunktiot.php");
@@ -13,18 +13,18 @@ if (!session_is_registered("käyttäjänimi")) {
     $kayttajanimi = $_SESSION["käyttäjänimi"];
     $nakyvyys = getNakyvyys($kayttajanimi);
 
-    $hakunimi = escape($_POST["kayttajanimi"]);
+    $hakunimi = escape($_POST["hakusana"]);
     $hakusana = escape($_POST["hakusana"]);
-    $hakutulokset = getHakutulokset($hakunimi,$hakusana);
+    $hakutulokset = getHakutulokset($hakunimi, $hakusana);
     echo "<br/>";
     echo "<div  id=\"viestijavastauksetlaatikko\">";
     if (!empty($hakutulokset)) {
         foreach ($hakutulokset as $rivi) {
             if ((!empty($rivi)) && (in_array($rivi["kategoria"], $nakyvyys))) {
-                echo printtaaViesti($rivi["id"],$rivi["id"]);
+                echo printtaaViesti($rivi["id"], $rivi["id"]);
             }
         }
-    }else{
+    } else {
         echo "<p>Ei tuloksia</p>";
     }
     echo "</div>";
@@ -33,7 +33,6 @@ if (!session_is_registered("käyttäjänimi")) {
 /*
  * Tulostaa hakutuloksena tulleen viestin.
  */
-
 
 function printtaaViesti($id, $eka) {
     $viesti = getViesti($id);

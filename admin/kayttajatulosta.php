@@ -12,7 +12,7 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         echo "<table id=\"uusikayttajatable\">";
         echo "  <tr>";
         echo "    <td>Käyttäjänimi:</td>";
-        echo "    <td><input type=\"text\" autofocus name=\"kayttajanimi\" maxlength=\"20\" pattern=\"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$\" required placeholder=\"Käyttäjänimi\" /></td>";
+        echo "    <td><input type=\"text\" autofocus name=\"kayttajanimi\" maxlength=\"20\" pattern=\"^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$\" oninvalid=\"this.setCustomValidity('Epämääräinen käyttäjätunnus!')\" oninput=\"this.setCustomValidity('')\" required placeholder=\"Käyttäjänimi\" /></td>";
         echo "  </tr>";
         echo "  <tr>";
         echo "    <td>Sähköposti:</td>";

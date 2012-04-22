@@ -126,7 +126,7 @@ if (!session_is_registered("käyttäjänimi")) {
      */
     function getHakutulokset($kayttajanimi,$hakusana) {
         include_once 'tietokanta/kyselyt.php';
-        $vastaukset = select("*", "viesti", "Kirjoittaja LIKE '%$kayttajanimi%' AND Teksti LIKE '%$hakusana%'");
+        $vastaukset = select("*", "viesti", "Kirjoittaja LIKE '%$kayttajanimi%' OR Teksti LIKE '%$hakusana%'");
         return $vastaukset;
     }
 

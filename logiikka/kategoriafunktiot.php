@@ -28,13 +28,12 @@ if (!session_is_registered("käyttäjänimi")) {
         $nakyvyys = array();
         
         $kategoriat = selectorder("Näkyvyys, id", "Kategoria", "id");
-
+        
         foreach ($kategoriat as $rivi) {
             $katnakyvyys = $rivi["näkyvyys"];
             $ryhmannimi = getRyhmannimi($katnakyvyys);
             $jasenet = select("RyhmänJäsen", "RyhmäNimi", "RyhmänNimi=('$ryhmannimi') AND RyhmänJäsen=('$kayttajanimi')");
             $jasen = $jasenet[0];
-
             if ($jasen["ryhmänjäsen"] == $kayttajanimi) {
                 array_push($nakyvyys, $rivi["id"]);
             }
