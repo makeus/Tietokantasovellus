@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Lisää uuden viestin tietokantaan
+ */
 session_start();
 if (session_is_registered("käyttäjänimi")) {
     include_once("../tietokanta/kyselyt.php");

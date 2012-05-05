@@ -3,6 +3,9 @@
 if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
     header("HTTP/1.1 403 Forbidden");
 } else {
+    /*
+     * Kategoriantaulukon tulostus
+     */
 
     function tulostaKategoriat() {
 
@@ -40,6 +43,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         echo "</table><br>";
     }
 
+    /*
+     * Kategorian muokkaamislomake
+     */
+
     function muokkaaKategoria($id) {
         include_once 'logiikka/kategoriafunktiot.php';
         include_once 'logiikka/ryhmafunktiot.php';
@@ -75,6 +82,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
             echo "</pre>\n</form>";
         }
     }
+
+    /*
+     * Uuden kateogorian muokkaamislomake
+     */
 
     function uusiKategoria() {
 

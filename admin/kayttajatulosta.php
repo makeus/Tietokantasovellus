@@ -7,6 +7,7 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     /*
      * Uuden käyttäjän luomislomake
      */
+
     function uusiKayttaja() {
         echo "<form name=\"Luo käyttäjä\" action=\"toiminnot/uusiKayttaja.php\" method=\"post\" >";
         echo "<table id=\"uusikayttajatable\">";
@@ -39,6 +40,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         echo "</form>";
     }
 
+    /*
+     * Käyttäjätaulukon tulostus
+     */
+
     function tulostaKayttajat() {
         etsi();
         include_once 'logiikka/kayttajafunktiot.php';
@@ -66,6 +71,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         }
         echo "</table><br>";
     }
+
+    /*
+     * Käyttäjätaulukon tulostus suodatettuna
+     */
 
     function tulostaSamankaltaiset($nimi) {
         etsi();
@@ -98,6 +107,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         echo "</table><br>";
     }
 
+    /*
+     * Käyttäjän muokkaamislomake
+     */
+
     function avaaMuokkaus($nimi) {
         include_once 'logiikka/kayttajafunktiot.php';
         $kayttaja = getKayttaja($nimi);
@@ -120,6 +133,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
             echo "<p class=\"virhe\">HEI!</p>";
         }
     }
+
+    /*
+     * Hakukenttä
+     */
 
     function etsi() {
         echo "Käyttäjänimi: <input type = \"text\" name = \"käyttäjänimi\" autofocus placeholder = \"Käyttäjänimi\" onkeypress=\"{if (event.keyCode==13)hae()}\"/>\n";

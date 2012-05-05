@@ -1,16 +1,19 @@
 <?php
 
+/*
+ * Muokkaa käyttäjän tietoja, mikäli nimi ei ole varattu
+ */
 session_start();
 if ((session_is_registered("käyttäjänimi")) and ($_SESSION["admin"] == 't')) {
 
     include_once ("../../tietokanta/kyselyt.php");
     include_once ("../logiikka/tarkistukset.php");
-    
+
     $nimi = escape($_POST['käyttäjänimi']);
     $sahkoposti = escape($_POST["sähköposti"]);
     $yllapitaja = escape($_POST["admin"]);
     $vanha = escape($_POST["vanhakäyttäjänimi"]);
-    
+
     if (tarkistaKayttaja($nimi)) {
         header("Location: ../admin.php?p=3&muokkaa=$nimi&e=$nimi");
     } else {

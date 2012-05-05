@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Kaikki tietokantakyselyt ja yhteydenotto.
+ */
+
 if (!session_is_registered("käyttäjänimi")) {
     header("HTTP/1.1 403 Forbidden");
 } else {

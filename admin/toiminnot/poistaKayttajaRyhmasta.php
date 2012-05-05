@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Poistaa käyttäjän ryhmästä
+ */
 session_start();
 if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
     header("HTTP/1.1 403 Forbidden");
@@ -10,7 +13,7 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     $jasen = escape($_POST["jasen"]);
 
     delete("RyhmäNimi", "ryhmännimi=('$ryhmannimi') and ryhmänjäsen=('$jasen')");
-    
+
     $ryhmat = select("id", "Ryhmä", "RyhmänNimi=('$ryhmannimi')");
     $ryhmanid = $ryhmat[0];
     $id = $ryhmanid["id"];

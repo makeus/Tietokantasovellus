@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Muokkaa kategorian tietoja
+ */
 session_start();
 if ((session_is_registered("käyttäjänimi")) and ($_SESSION["admin"] == 't')) {
 

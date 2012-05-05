@@ -1,14 +1,17 @@
 <?php
 
+/*
+ * Lisää uuden käyttäjän mikäli samalla nimellä ei löydy vastaavaa
+ */
 session_start();
 if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
     header("HTTP/1.1 403 Forbidden");
 } else {
     include_once ("../../tietokanta/kyselyt.php");
     include_once ("../logiikka/tarkistukset.php");
-    
+
     function_exists('selectorder');
-    
+
     $nimi = escape($_POST["kayttajanimi"]);
     $sahkoposti = escape($_POST["sahkoposti"]);
     $salasana = escape($_POST["salasana"]);

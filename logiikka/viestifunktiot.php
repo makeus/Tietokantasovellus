@@ -47,6 +47,10 @@ if (!session_is_registered("käyttäjänimi")) {
         return $palautus;
     }
 
+    /*
+     * Hakee viestinlukeneet idn perusteella
+     */
+
     function getLukeneet($id) {
         include_once 'tietokanta/kyselyt.php';
         $lukeneet = array();
@@ -120,11 +124,11 @@ if (!session_is_registered("käyttäjänimi")) {
         }
     }
 
-
     /*
      * Hakee viestit käyttäjänimen ja hakusanan perustella.
      */
-    function getHakutulokset($kayttajanimi,$hakusana) {
+
+    function getHakutulokset($kayttajanimi, $hakusana) {
         include_once 'tietokanta/kyselyt.php';
         $vastaukset = select("*", "viesti", "Kirjoittaja LIKE '%$kayttajanimi%' OR Teksti LIKE '%$hakusana%'");
         return $vastaukset;

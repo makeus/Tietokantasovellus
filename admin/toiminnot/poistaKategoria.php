@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Poistaa kategorian
+ */
 session_start();
 if ((session_is_registered("käyttäjänimi")) and ($_SESSION["admin"] == 't')) {
     include_once ("../../tietokanta/kyselyt.php");

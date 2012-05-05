@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Lisää uuden ryhmän, mikäli samalle nimellä ei löydy vastaavaa
+ */
+
 session_start();
 if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) {
     header("HTTP/1.1 403 Forbidden");

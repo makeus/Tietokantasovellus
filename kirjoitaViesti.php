@@ -74,6 +74,9 @@ if (!session_is_registered("käyttäjänimi")) {
         echo "</form>\n";
     }
 }
+/*
+ * Tulostaa vastattavan viestin ja viestilomakkeen ilman kategoriaa
+ */
 
 function vastattavateksti($id) {
     $viesti = getViesti($id);
@@ -103,6 +106,10 @@ function vastattavateksti($id) {
     echo "   <td><input id=\"kirjoitaviestiotsikko\" type=\"text\" name=\"otsikko\" maxlength=\"64\" value=\"Re: " . $viesti["otsikko"] . "\" required/></td>\n";
     echo "  </tr>\n";
 }
+
+/*
+ * Tulostaa viestilomakkeen ilman kategoriaa
+ */
 
 function ketjuvastaus($id) {
     $viesti = getViesti($id);

@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * Poistaa käyttäjän, mikäli poistettava löytyy ja poistettava ei ole poistaja itse
+ */
 session_start();
 if ((session_is_registered("käyttäjänimi")) and ($_SESSION["admin"] == 't')) {
 

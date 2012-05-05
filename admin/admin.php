@@ -32,6 +32,8 @@ if ((session_is_registered("käyttäjänimi")) and ($_SESSION["admin"] == 't')) 
         <body>
             <h1>Ylläpitosivu</h1>
             <div>
+                
+                <!-- Sivupalkki -->
                 <nav>
                     <h2>Ryhmät</h2>
                     <ul>

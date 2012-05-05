@@ -43,6 +43,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         echo "</table><br>";
     }
 
+    /*
+     * Ryhmän muokkaamislomake
+     */
+
     function muokkaaRyhma($id) {
         include_once 'logiikka/ryhmafunktiot.php';
         $ryhmannimi = getRyhmannimi($id);
@@ -95,6 +99,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         echo "</select>";
         echo "</form>";
     }
+
+    /*
+     * Uuden ryhmän luomislomake
+     */
 
     function uusiRyhma() {
         echo "<pre><form method=\"post\" action=\"toiminnot/uusiRyhma.php\">";

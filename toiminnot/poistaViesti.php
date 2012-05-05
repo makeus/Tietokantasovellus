@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Poistaa viestin tietokannasta, mikäli siihen on oikeus
+ */
+
 session_start();
 if (session_is_registered("käyttäjänimi")) {
 

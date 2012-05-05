@@ -4,6 +4,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
     header("HTTP/1.1 403 Forbidden");
 } else {
 
+    /*
+     * Tarkistaa onko ryhmännimi varattu
+     */
+    
     function tarkistaRyhmaNimi($nimi) {
         
         $ryhmat = selectorder("Ryhmännimi", "Ryhmä", "Ryhmännimi");
@@ -18,6 +22,11 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         }
         return $loytyy;
     }
+    
+    /*
+     * Tarkistaa onko kategoriannimi varattu
+     * Ei varsinaisesti käytössä, koska kategoriannimi ei tarvitse olla uniikki
+     */
 
     function tarkistaKategorianNimi($nimi) {
 
@@ -32,6 +41,10 @@ if ((!session_is_registered("käyttäjänimi")) or ($_SESSION["admin"] != 't')) 
         }
         return $loytyy;
     }
+    
+    /*
+     * Tarkistaa onko käyttäjänimi varattu
+     */
 
     function tarkistaKayttaja($nimi) {
 
