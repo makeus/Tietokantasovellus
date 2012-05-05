@@ -7,9 +7,14 @@
 if (!session_is_registered("käyttäjänimi")) {
     header("HTTP/1.1 403 Forbidden");
 } else {
-    $dbname = "keus";
-    $user = "keus";
-    $salasana = "a646a8dd503014f5";
+    
+   /*
+    * Täytä nämä!
+    */
+    $dbname = "";
+    $user = "";
+    $salasana = "";
+    
 
     $GLOBALS['yhteys'] = pg_connect("dbname=$dbname user=$user password=$salasana");
     if ($GLOBALS['yhteys'] == FALSE) {

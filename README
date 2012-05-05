@@ -1,0 +1,16 @@
+Asennus- ja käyttöohje
+
+1. Avataan postgresql käyttöliittymä (psql)
+2. Ajetaan create table lauseet, järjestyksessä ylhäältä alas, mielellään yksi kerrallaan.
+3. Ajetaan 
+
+INSERT Into Käyttäjä (Käyttäjänimi, Salasana, Ylläpitäjä) Values ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', TRUE);
+
+4. Asetetaan tietokanta/kyselyt.php tarvittavat tietokannan kirjautumistiedot.
+4. Lisätään php tiedostot palvelimelle tarvittavilla oikeuksilla.
+5. Kirjaudutaan sisään käyttäjänä admin salasana admin
+6. Avataan ylläpitosivu ja luodaan käyttäjiä, kategorioita ja ryhmiä.
+7. Laitetaan ryhmiä kategorioihin
+8. Laitetaan käyttäjiä ryhmiin.
+9. Jutellaan mukavia :D!
+10. Jutellaan työasioista :(
